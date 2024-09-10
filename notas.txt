@@ -1,0 +1,202 @@
+ <main class="selectors">
+        <select class="select-libertador">
+            <option value="" disabled selected>Selecciona el piso</option>
+            <option class="option-select" value="L0">Libertador Planta baja</option>
+            <option class="option-select"value="L0">Libertador Primer piso</option>
+            <option class="option-select" value="L0">Libertador segundo piso</option>
+            <option class="option-select" value="L0">Libertador tercer piso</option>   
+        </select>
+        <select class="select-monta"> 
+            <option value="" disabled selected>Selecciona el piso</option>
+            <option class="option-select" value="M0">Montañeses Primer piso</option>
+            <option class="option-select" value="M1">Montañeses segundo piso</option>
+            <option class="option-select" value="M2">Montañeses tercer piso</option>   
+            <option class="option-select" value="M3">Montañeses cuarto piso</option>   
+            <option class="option-select" value="M4">Montañeses quinto piso</option>   
+        </select>
+        <select class="classrooms" id="classrooms"></select>
+      <a href="qr.html"> Retirar</a>
+      <!-- eso se tiene que cargar una vez que hayan elegido options  -->
+    </main> 
+
+
+
+    let selector_libertador = document.getElementById("select-libertador");
+    let classroomsLib = document.getElementById("classrooms");
+
+
+    selector_libertador = document.addEventListener("change", ()=>selectCarros());
+
+    function selectCarros(){
+        for (let index = 0; index < classroomsLib.children.length; index++) {
+            classroomsLib.children[index].remove();           
+        }
+        for (let i = 0; i < firstFloor.length; i++) {
+            let selector = document.createElement("option");
+            selector.value = firstFloor[i].ROOM_ID;
+            selector.innerHTML = firstFloor[i].ROOM_ID;
+            classrooms.appendChild(selector);
+        } }
+
+    let selector_monta = document.getElementById("select-monta");
+    let classroomsMonta = document.getElementById("classrooms");
+
+    selector_libertador = document.addEventListener("change", ()=>selectCarros());
+
+    
+
+
+     const firstFloor = [
+        {
+            "id":3,
+            "ROOM_ID": "L101",
+            
+    
+        },
+        {
+            "id":20,
+            "ROOM_ID": "L118",
+            
+    
+        },{
+            "id":101,
+            "ROOM_ID": "L116",
+            
+    
+        },
+        {
+            "id":12,
+            "ROOM_ID": "L109",
+            
+    
+        },{
+            "id":300,
+            "ROOM_ID": "L103",
+            
+    
+        },
+        {
+            "id":7,
+            "ROOM_ID": "L105",
+            
+    
+        },
+        {
+            "id":2,
+            "ROOM_ID": "L101",
+            
+    
+        }
+    ]
+
+    function qr() {
+        JsBarcode("#barcode", "1234", {
+            format: "pharmacode",
+            lineColor: "#0aa",
+            width: 4,
+            height: 40,
+            displayValue: false
+        });
+    }
+
+ 
+    qr();
+
+
+PARA EL MAIN LEERLO ANTES E PONERLO 
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Function to show the appropriate tab
+    function showTab(tabId) {
+        // Hide all tab content
+        let tabContent = document.getElementsByClassName("content");
+        for (let i = 0; i < tabContent.length; i++) {
+            tabContent[i].classList.remove("active");
+        }
+        // Show the selected tab
+        let tab = document.getElementById(tabId);
+        if (tab) {
+            tab.classList.add("active");
+        }
+        // Update tab buttons' active state
+        let tabLinks = document.getElementsByClassName("decision-button");
+        for (let i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove("active");
+        }
+        let tabLink = document.getElementById('button-' + tabId);
+        if (tabLink) {
+            tabLink.classList.add("active");
+        }
+    }
+
+    // Handle tab button clicks
+    function handleButtonClick(event) {
+        let tabId = event.currentTarget.id.replace('button-', '');
+        showTab(tabId);
+    }
+
+    // Handle form submission
+    function handleSubmit(event) {
+        event.preventDefault();
+        let form = event.target;
+        let user = form.querySelector('input[name="username"], input[name="dni"]').value;
+        let password = form.querySelector('input[name="password"]').value;
+        console.log('Usuario:', user);
+        console.log('Contraseña:', password);
+
+        // Save login status
+        localStorage.setItem("loggedIn", "true");
+        
+        // Redirect to the index page
+        window.location.href = 'index.html';
+    }
+
+    // Add event listeners to tab buttons
+    let buttons = document.getElementsByClassName("decision-button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", handleButtonClick);
+    }
+
+    // Add event listeners to forms
+    let loginForm = document.getElementById("login-form");
+    let registerForm = document.getElementById("register-form");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", handleSubmit);
+    }
+
+    if (registerForm) {
+        registerForm.addEventListener("submit", handleSubmit);
+    }
+
+    // Handle initial tab display based on URL hash
+    let hash = window.location.hash.substring(1);
+    if (hash) {
+        showTab(hash);
+    }
+
+    // Manage section visibility based on login status
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+    
+    const header = document.querySelector("header");
+    const computersSection = document.getElementById("computers");
+    const heroSections = document.querySelectorAll(".hero-section");
+    const footer = document.querySelector("footer");
+
+    if (isLoggedIn) {
+        header.style.display = "block";
+        computersSection.style.display = "block";
+        footer.style.display = "block";
+        heroSections.forEach(section => {
+            section.style.display = "none";
+        });
+    } else {
+        header.style.display = "block";
+        computersSection.style.display = "none";
+        footer.style.display = "block";
+        heroSections.forEach(section => {
+            section.style.display = "block";
+        });
+    }
+});

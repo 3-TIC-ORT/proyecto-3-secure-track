@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Track QR</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/qr.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <style>    
+     main{
+    align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+    }
+    </style>
+</head>
+<body>
+    <header> 
+        <nav class="menu"> 
+            <a href="index.html">
+                <img id="logo" src="img/logo.png" width="110px" height="110px">
+            </a> 
+            <ul>
+                <li><h1 class="titulo">SECURE TRACK</h1></li>
+                <li><a href="index.html" class="textLi">INICIO</a></li> 
+                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
+                <li class="desplegableHeader">
+                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
+                     <div class="desplegable-contenido"> 
+                        <!--aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>   
+    <main>
+        <div class="qr-container">
+            <div class="qr" id="qr"></div>
+            <p id="text" class="text"></p>
+            <div id="timer">El QR estará disponible en <span id="time">5:00</span></div>
+        </div>
+
+
+        <div id="modal" class="modal">
+            <div class="modal-content" style="display: none;">
+                <p id="modal-message">Ya se acabo el timepo</p>
+                <button class="close-btn" id="close-btn" onclick="closeModal()">Cerrar</button>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="politica-terminos/politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="politica-terminos/terminos-y-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 Secure Track  Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+<script src="./js/qr.js" type="module"></script>
+</body>
+</html>

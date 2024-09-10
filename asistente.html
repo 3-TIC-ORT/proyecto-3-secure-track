@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Track</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/asist.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+    <header> 
+        <nav class="menu"> 
+            <a href="index.html">
+                <img id="logo" src="img/logo.png" width="110px" height="110px" alt="Secure Track Logo">
+            </a> 
+            <ul>
+                <li><h1 class="titulo">SECURE TRACK</h1></li>
+                <li><a href="index.html" class="textLi">INICIO</a></li> 
+                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
+                <li class="desplegableHeader">
+                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
+                    <div class="desplegable-contenido"> 
+                        <!-- Aquí se cargarán los carros que se pueden retirar (luego del log in) -->
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>   
+ <main>
+    
+<table id="transaccionesTable">
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Usuario</th>
+            <th>Slot</th>
+            <th>N° de Computadora</th>
+            <th>Status</th>
+            <th>Hora de Retirada</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Los datos dinámicos serán añadidos aquí -->
+    </tbody>
+</table>
+</main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 Secure Track. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+        if (!localStorage.getItem("asist-Key")) {
+            alert("Acceso denegado");
+            window.location.href = "index.html";
+        }
+
+        async function cargarTransacciones() {
+        try {
+            // Suponiendo que el backend devuelve un JSON con las transacciones
+            const response = await fetch('/api/transacciones'); // Cambia la URL según tu backend
+            const transacciones = await response.json();
+            
+            // Selecciona el cuerpo de la tabla
+            const tbody = document.querySelector('#transaccionesTable tbody');
+            
+            // Limpia cualquier fila previa
+            tbody.innerHTML = '';
+            
+            // Itera sobre las transacciones y crea filas dinámicas
+            transacciones.forEach(transaccion => {
+                const fila = document.createElement('tr');
+                
+                fila.innerHTML = `
+                    <td>${transaccion.alumno}</td>
+                    <td>${transaccion.usuario}</td>
+                    <td>${transaccion.slot}</td>
+                    <td>${transaccion.computadora}</td>
+                    <td>${transaccion.status}</td>
+                    <td>${transaccion.hora}</td>
+                `;
+                
+                tbody.appendChild(fila);
+            });
+        } catch (error) {
+            console.error('Error al cargar las transacciones:', error);
+        }
+    }
+
+    // Llama a la función al cargar la página
+    cargarTransacciones();
+</script>
+
+    </script>
+    
+</body>
+</html>
