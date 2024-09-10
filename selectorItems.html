@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Track</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/selector.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <!-- Pantalla de carga -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+</div>
+
+    <header> 
+        <nav class="menu"> 
+            <a href="index.html">
+                <img id="logo" src="img/logo.png" width="110px" height="110px">
+            </a> 
+            <ul>
+                <li><h1 class="titulo">SECURE TRACK</h1></li>
+                <li><a href="index.html" class="textLi">INICIO</a></li> 
+                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
+                <li class="desplegableHeader">
+                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
+                     <div class="desplegable-contenido"></div>
+                </li>
+            </ul>
+        </nav>
+    </header>   
+    <main>
+        <div class="decision" id="decision">
+            <p>Retirar una computadora del edificio:</p>
+            <div class="building-buttons">
+                <button class="building" id="monta">MONTAÑESES</button> 
+                <button class="building" id="libertador">LIBERTADOR</button>
+            </div>
+        </div>
+    
+        <div class="selector-container">
+            <select class="select-libertador disactive" id="select-libertador">
+                <option value="" disabled selected>Selecciona el piso de Libertador</option>
+                <option class="option-select" value="L0">Libertador Planta baja</option>
+                <option class="option-select" value="L1">Libertador Primer piso</option>
+                <option class="option-select" value="L2">Libertador Segundo piso</option>
+                <option class="option-select" value="L3">Libertador Tercer piso</option>
+            </select>
+    
+            <select class="select-monta disactive" id="select-monta">
+                <option value="" disabled selected>Selecciona el piso de Montañeses</option>
+                <option class="option-select" value="M1">Montañeses Primer piso</option>
+                <option class="option-select" value="M2">Montañeses Segundo piso</option>
+                <option class="option-select" value="M3">Montañeses Tercer piso</option>
+                <option class="option-select" value="M4">Montañeses Cuarto piso</option>
+                <option class="option-select" value="M5">Montañeses Quinto piso</option>
+            </select>
+        </div>
+    
+        <div class="classroom-container">
+            <select class="classrooms disactive" id="classrooms">
+                <option value="" disabled selected>Selecciona el aula del piso correspondiente</option>
+            </select>
+        </div>
+    
+        <div class="button-container">
+            <button class="confirmar" id="confirmButton" style="display: none;">Retiro Computadora</button>
+            <button class="devolucion" id="returnButton" style="display: none;">Devolución</button>
+        </div>
+    </main>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <p id="modal-message">No hay aulas disponibles en este piso, por favor seleccione otra. ¡Gracias por comprender!</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 Secure Track  Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/selectors.js" type="module"></script> 
+</body>
+</html>
