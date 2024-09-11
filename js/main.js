@@ -104,14 +104,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
-<<<<<<< Updated upstream
                 sessionStorage.setItem("userId", data.id);
-=======
-                sessionStorage.setItem("userId", data.id); // Save user ID in sessionStorage
                 sessionStorage.setItem("profilePhoto", data.profilePhotoURL); // Save profile photo URL in sessionStorage
     
           
->>>>>>> Stashed changes
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
