@@ -69,20 +69,49 @@ document.addEventListener("DOMContentLoaded", function() {
         register_user({ username: dni, password });
     });
 
-    async function register_user(user) {
+    // async function register_user(user) {
+    //     try {
+    //         let response = await fetch(`https://secure-track-db.vercel.app/users/register`, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(user)
+    //         });
+    //         let data = await response.json();
+
+    //         if (response.status === 200) {
+    //             showSuccess("Registro exitoso. Redirigiendo...");
+    //             localStorage.setItem("userId", data.id);
+    //             setTimeout(() => {
+    //                 location.href = "../selectorItems.html";
+    //             }, 2000);
+    //         } else {
+    //             showError(data.message || "Error en el registro.");
+    //         }
+    //     } catch (error) {
+    //         showError("Error en el servidor. Inténtelo de nuevo.");
+    //     }
+    // }
+    async function register_user(formData) {
         try {
             let response = await fetch(`https://secure-track-db.vercel.app/users/register`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
+                body: formData
             });
+    
             let data = await response.json();
-
+    
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
+<<<<<<< Updated upstream
                 sessionStorage.setItem("userId", data.id);
+=======
+                sessionStorage.setItem("userId", data.id); // Save user ID in sessionStorage
+                sessionStorage.setItem("profilePhoto", data.profilePhotoURL); // Save profile photo URL in sessionStorage
+    
+          
+>>>>>>> Stashed changes
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
@@ -93,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
+    
 
     async function logueo_user(user) {
         try {

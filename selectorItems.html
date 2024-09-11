@@ -30,6 +30,12 @@
                 </li>
             </ul>
         </nav>
+<div class="image-user">
+    <img id="profile-image" src="" alt="Foto de Perfil" style="display:none;" />
+</div>
+
+
+
     </header>   
     <main>
         <div class="decision" id="decision">
@@ -91,5 +97,18 @@
     </footer>
 
     <script src="js/selectors.js" type="module"></script> 
+ 
+        
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const profilePhotoURL = sessionStorage.getItem("profilePhoto"); // Get the profile photo URL from sessionStorage
+        if (profilePhotoURL) {
+            const profileImage = document.getElementById("profile-image");
+            profileImage.src = profilePhotoURL; // Set the image source to the stored URL
+            profileImage.style.display = 'block'; // Display the image
+        }
+    });
+</script>
+   
 </body>
 </html>

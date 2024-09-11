@@ -1,4 +1,15 @@
-/* General CSS */
+:root {
+    --primary-bg: #618a96;
+    --hover-bg: #70aebe;
+    --button-bg: #5a8794;
+    --text-color: white;
+    --border-color: #061316;
+    --font-size: 16px;
+    --padding: 12px;
+    --border-radius: 8px;
+    --margin: 20px;
+    --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
+}
 
 main {
     display: flex;
@@ -11,54 +22,61 @@ main {
 .building-buttons {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: var(--margin);
 }
 
 .building {
     padding: 10px 20px;
-    border-radius: 8px;
-    border: 2px; 
-    background-color:  #618a96; 
-    font-size: 16px;
+    border-radius: var(--border-radius);
+    border: 2px;
+    background-color: var(--primary-bg);
+    font-size: var(--font-size);
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 3%;
 }
 
 .building:hover {
-    background-color:  #3C6975; 
-    text-decoration: underline;
+    background-color: var(--hover-bg);
+    cursor: pointer;
+}
+#monta:hover{
+    padding: 14px 24px;
+}
+#libertador:hover{
+    padding: 14px 24px;
 }
 
 .selector-container, .classroom-container {
     width: 80%;
-    margin-top: 20px;
+    margin-top: var(--margin);
     text-align: center;
 }
 
 select {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 2px solid  #3C6975; ;
-    font-size: 16px;
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-color);
+    font-size: var(--font-size);
 }
 
 button.confirmar, button.devolucion {
     width: 80%;
-    padding: 12px;
-    margin-top: 20px;
-    border-radius: 8px;
+    padding: var(--padding);
+    margin-top: var(--margin);
+    border-radius: var(--border-radius);
     border: none;
-    background-color: #00bcd4;
-    color: white;
-    font-size: 16px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    font-size: var(--font-size);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button.confirmar:hover, button.devolucion:hover {
-    background-color:  #3C6975; ;
+    background-color: var(--hover-bg);
+    cursor: pointer;
 }
 
 .disactive {
@@ -70,27 +88,27 @@ button.confirmar:hover, button.devolucion:hover {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 20px;
+    margin-top: var(--margin);
 }
 
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 20px;
+    margin: 15% auto;
+    padding: var(--padding);
     border: 1px solid #888;
-    width: 80%; 
-    max-width: 500px; 
+    width: 80%;
+    max-width: 500px;
     text-align: center;
 }
 
@@ -108,9 +126,9 @@ button.confirmar:hover, button.devolucion:hover {
     text-decoration: none;
     cursor: pointer;
 }
-/* Pantalla de carga */
+
 .loading-screen {
-    display: none; /* Oculta la pantalla de carga por defecto */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -123,10 +141,9 @@ button.confirmar:hover, button.devolucion:hover {
     justify-content: center;
 }
 
-/* Estilo del loader */
 .loader {
     border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
+    border-top: 16px solid ;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -138,3 +155,18 @@ button.confirmar:hover, button.devolucion:hover {
     100% { transform: rotate(360deg); }
 }
 
+.image-user {
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    width: 50px;  
+    height: 50px; 
+  }
+  
+ .image-user img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;  
+    border: 2px solid #fff;  
+    box-shadow: var(--main-shadow);
+  }
