@@ -1,5 +1,5 @@
     let text = document.getElementById("text")    
-    let res = localStorage.getItem("correctKey")
+    let res = sessionStorageStorage.getItem("correctKey")
 
     let qr = document.getElementById("qr");
     let timerDisplay = document.getElementById("time");

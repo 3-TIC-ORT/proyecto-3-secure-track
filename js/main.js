@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
-                localStorage.setItem("userId", data.id);
+                sessionStorage.setItem("userId", data.id);
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (response.status === 200) {
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
-                localStorage.setItem("userId", data.id);
+                sessionStorage.setItem("userId", data.id);
                 setTimeout(() => {
                     if (data.occupation === "Estudiante") {
                         location.href = "../selectorItems.html";
