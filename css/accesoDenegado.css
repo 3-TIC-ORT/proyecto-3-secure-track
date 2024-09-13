@@ -53,6 +53,7 @@ body {
     box-shadow: var(--container-shadow);
     border-radius: var(--container-border-radius);
     text-align: center;
+    display: flex;
 }
 
 .monitor {
@@ -125,6 +126,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+
 }
 
 .guard {
@@ -132,8 +134,10 @@ h1 {
     height: var(--guard-height);
     background-color: var(--guard-bg-color);
     border-radius: var(--guard-border-radius);
+    top: 0;
+
+    & > img{
+        height: 100%;
+    }
 }
 
-.left-guard {
-    transform: rotateY(180deg);
-}
