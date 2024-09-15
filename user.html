@@ -34,9 +34,19 @@
                     <label for="register-password">Contraseña</label>
                     <input type="password" id="register-password" name="password" required>
 
-                    <label for="profile-photo">Foto de Perfil</label>
-                    <input type="file" id="profile-photo" name="profile-photo" accept="image/*" required>
-                
+                    <label for="avatar">Elige tu avatar de animal:</label>
+
+                    <select  style="margin-bottom: 2%;" class="avatar" id="avatar" name="avatar">
+                        <option value="" disabled selected>Selecciona tu avatar</option>
+                      <option value="img/gato.jpg">Gato🐈‍</option>
+                      <option value="img/panda.jpg">Perro🐶</option>
+                      <option value="img/tigre.jpg">Tigre</option>
+                      <option value="img/zorro.jpg">Zorro</option>
+                      <option value="img/conejo.jpg">conejo</option>
+                    </select>
+                  
+        
+                 
                     <button type="submit" class="submit" id="submit-register">Registrarse</button>
                 </form>
                 </form>

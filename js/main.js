@@ -69,45 +69,20 @@ document.addEventListener("DOMContentLoaded", function() {
         register_user({ username: dni, password });
     });
 
-    // async function register_user(user) {
-    //     try {
-    //         let response = await fetch(`https://secure-track-db.vercel.app/users/register`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify(user)
-    //         });
-    //         let data = await response.json();
-
-    //         if (response.status === 200) {
-    //             showSuccess("Registro exitoso. Redirigiendo...");
-    //             localStorage.setItem("userId", data.id);
-    //             setTimeout(() => {
-    //                 location.href = "../selectorItems.html";
-    //             }, 2000);
-    //         } else {
-    //             showError(data.message || "Error en el registro.");
-    //         }
-    //     } catch (error) {
-    //         showError("Error en el servidor. Inténtelo de nuevo.");
-    //     }
-    // }
-    async function register_user(formData) {
+    async function register_user(user) {
         try {
             let response = await fetch(`https://secure-track-db.vercel.app/users/register`, {
                 method: "POST",
-                body: formData
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
             });
-    
             let data = await response.json();
-    
+
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
-                sessionStorage.setItem("userId", data.id);
-                sessionStorage.setItem("profilePhoto", data.profilePhotoURL); // Save profile photo URL in sessionStorage
-    
-          
+                localStorage.setItem("userId", data.id);
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
@@ -118,8 +93,13 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
-    
+    let avatarSelect = document.getElementById("avatar");
 
+    avatarSelect.addEventListener("change", function () {
+      const selectedAvatar = this.value;
+      sessionStorage.setItem("profilePhoto", selectedAvatar); 
+    });
+    
     async function logueo_user(user) {
         try {
             let response = await fetch(`https://secure-track-db.vercel.app/users/login`, {

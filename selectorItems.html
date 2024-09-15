@@ -97,18 +97,15 @@
     </footer>
 
     <script src="js/selectors.js" type="module"></script> 
- 
-        
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const profilePhotoURL = sessionStorage.getItem("profilePhoto"); // Get the profile photo URL from sessionStorage
-        if (profilePhotoURL) {
-            const profileImage = document.getElementById("profile-image");
-            profileImage.src = profilePhotoURL; // Set the image source to the stored URL
-            profileImage.style.display = 'block'; // Display the image
-        }
-    });
-</script>
-   
+  <script> 
+    document.addEventListener("DOMContentLoaded", function () {
+    const profilePhotoURL = sessionStorage.getItem("profilePhoto"); 
+    if (profilePhotoURL) {
+      const profileImage = document.getElementById("profile-image");
+      profileImage.src = profilePhotoURL; 
+      profileImage.style.display = "block"; 
+    }
+  });
+  </script>   
 </body>
 </html>

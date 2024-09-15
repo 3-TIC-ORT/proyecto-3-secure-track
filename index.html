@@ -26,9 +26,13 @@
                 </li>
             </ul>
         </nav>
-    </header>   
-    <main>
+        <div class="image-user">
+            <img id="profile-image" src="" alt="Foto de Perfil" style="display:none;" />
+        </div>
+    </header>  
+   
 
+    <main>
         <div class="carousel">
             <div class="carousel-inner" id="carousel">
                 <div class="carousel-item color1"><p>Slide 1</p></div>
@@ -65,5 +69,16 @@
     </footer>
     <script src="js/main.js"></script>
     <script src="js/index--front.js"></script>
+    <script>
+        
+    document.addEventListener("DOMContentLoaded", function () {
+    const profilePhotoURL = sessionStorage.getItem("profilePhoto"); 
+    if (profilePhotoURL) {
+      const profileImage = document.getElementById("profile-image");
+      profileImage.src = profilePhotoURL; 
+      profileImage.style.display = "block"; 
+    }
+  });
+    </script>
 </body>
 </html>
