@@ -2,6 +2,10 @@ import cv2
 import time
 import requests as req
 import json
+import serial
+
+arduino = serial.Serial(port='COM5', baudrate=9600, timeout=.1) 
+
 
 def sendRequest(data):
     payload={
@@ -17,6 +21,18 @@ def sendRequest(data):
     except Exception as e:
         return(e) 
 
+def enviarArduino(data):
+    if data["type"]=="unico":
+        res=["0"]+data["slots"]
+    elif data["type"]=="devMultiple":
+        res=["1"]+data["slots"]
+    elif data["type"]=="retMultiple":
+        res=["2"]+data["slots"]
+    return (",".join(res))
+
+def enviarSerial(data):
+    arduino.write(data.encode())
+
 capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
 while capture.isOpened():
@@ -27,8 +43,8 @@ while capture.isOpened():
     data, bbox, rectifiedImage = qrDetector.detectAndDecode(frame)
     if len(data) > 0:
         print(f"QR Code detected: {data}")
-        print(sendRequest(data))
+        print(enviarSerial(enviarArduino(sendRequest(data))))
         time.sleep(2)
-    time.sleep(0.002)
+    time.sleep(0.02)
 capture.release()
 cv2.destroyAllWindows()
