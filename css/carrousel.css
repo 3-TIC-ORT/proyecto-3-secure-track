@@ -1,11 +1,11 @@
 :root {
-    --carousel-width: 80%;
+    --carousel-width: 70%;
     --carousel-height: 350px;
     --carousel-margin-top: 2%;
-    --control-bg-color: rgb(135, 206, 235); /* Color de fondo celeste */
-    --control-border-color: white; /* Borde blanco */
-    --carousel-border-color: rgb(135, 206, 235); /* Borde del carrusel celeste */
-    --control-hover-bg-color: rgba(135, 206, 235, 0.8); /* Hover celeste más oscuro */
+    --control-bg-color: transparent; 
+    --control-border-color: black; 
+    --carousel-border-color: black; 
+    --control-hover-bg-color: rgba(0, 0, 0, 0.2); 
 }
 
 /* Carousel */
@@ -16,8 +16,8 @@
     overflow: hidden;
     position: relative;
     margin: auto;
-    border-radius: 5%;
-    border: 5px solid var(--carousel-border-color); /* Borde celeste del carrusel */
+    border-radius: 7%;
+    border: 7px solid var(--carousel-border-color); 
 }
 
 .carousel-inner {
@@ -34,7 +34,7 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: white;
+    color: black; /* Text color black */
 }
 
 /* Colors for carousel items */
@@ -47,40 +47,41 @@
 .controls {
     position: absolute;
     top: 50%;
-    /* width: calc(100% + 10%);  */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
-    /* left: -5%;  */
+    pointer-events: none; /* Ensure the buttons don't shift content */
 }
 
 .control {
     background-color: var(--control-bg-color);
-    border: 3px solid var(--control-border-color);
-    padding: 0;
+    border: none; /* Remove border */
+    pointer-events: all;
     cursor: pointer;
-    width: 0;
-    height: 0;
-    border-style: solid;
+    padding: 10px;
 }
 
 #prevBtn {
-    border-width: 20px 30px 20px 0; /* Triángulo izquierdo */
-    border-color: transparent var(--control-border-color) transparent transparent;
-    margin-left: 10px;
+    border: solid black;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    margin-left: 20px;
 }
 
 #nextBtn {
-    border-width: 20px 0 20px 30px; /* Triángulo derecho */
-    border-color: transparent transparent transparent var(--control-border-color);
-    margin-right: 10px;
+    border: solid black;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    margin-right: 20px;
 }
 
 .control:hover {
-    background-color: transparent;
-    border-color: transparent var(--control-hover-bg-color) transparent transparent;
-}
-
-#nextBtn:hover {
-    border-color: transparent transparent transparent var(--control-hover-bg-color);
+    background-color: var(--control-hover-bg-color);
 }
