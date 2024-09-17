@@ -1,0 +1,86 @@
+:root {
+    --carousel-width: 80%;
+    --carousel-height: 350px;
+    --carousel-margin-top: 2%;
+    --control-bg-color: rgb(135, 206, 235); /* Color de fondo celeste */
+    --control-border-color: white; /* Borde blanco */
+    --carousel-border-color: rgb(135, 206, 235); /* Borde del carrusel celeste */
+    --control-hover-bg-color: rgba(135, 206, 235, 0.8); /* Hover celeste más oscuro */
+}
+
+/* Carousel */
+.carousel {
+    width: var(--carousel-width);
+    height: var(--carousel-height);
+    margin-top: var(--carousel-margin-top);
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+    border-radius: 5%;
+    border: 5px solid var(--carousel-border-color); /* Borde celeste del carrusel */
+}
+
+.carousel-inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+/* Colors for carousel items */
+.color1 { background-color: rgb(50, 151, 146); }
+.color2 { background-color: rgb(71, 160, 71); }
+.color3 { background-color: rgb(122, 122, 185); }
+.color4 { background-color: rgb(241, 203, 131); }
+.color5 { background-color: rgb(187, 59, 187); }
+
+.controls {
+    position: absolute;
+    top: 50%;
+    /* width: calc(100% + 10%);  */
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    /* left: -5%;  */
+}
+
+.control {
+    background-color: var(--control-bg-color);
+    border: 3px solid var(--control-border-color);
+    padding: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+#prevBtn {
+    border-width: 20px 30px 20px 0; /* Triángulo izquierdo */
+    border-color: transparent var(--control-border-color) transparent transparent;
+    margin-left: 10px;
+}
+
+#nextBtn {
+    border-width: 20px 0 20px 30px; /* Triángulo derecho */
+    border-color: transparent transparent transparent var(--control-border-color);
+    margin-right: 10px;
+}
+
+.control:hover {
+    background-color: transparent;
+    border-color: transparent var(--control-hover-bg-color) transparent transparent;
+}
+
+#nextBtn:hover {
+    border-color: transparent transparent transparent var(--control-hover-bg-color);
+}

@@ -5,58 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/carrousel.css">
     <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 <body>
     <header> 
-        <nav class="menu"> 
-            <a href="index.html">
-                <img id="logo" src="img/logo.png" width="110px" height="110px" alt="Secure Track Logo">
-            </a> 
             <ul>
-                <li><h1 class="titulo">SECURE TRACK</h1></li>
-                <li><a href="index.html" class="textLi">INICIO</a></li> 
-                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
-                <li class="desplegableHeader">
-                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
-                    <div class="desplegable-contenido"> 
-                        <!-- Aquí se cargarán los carros que se pueden retirar (luego del log in) -->
-                    </div>
-                </li>
+                <li><h1 class="titulo">BIENVENIDOS A SECURE TRACK</h1></li>
             </ul>
         </nav>
         <div class="image-user">
-            <img id="profile-image" src="" alt="Foto de Perfil" style="display:none;" />
+            <a href="cerrarSesion.html">  <img id="profile-image" src="" alt="Foto de Perfil" style="display:none;" /></a>
         </div>
     </header>  
-   
-
     <main>
-        <div class="carousel">
-            <div class="carousel-inner" id="carousel">
-                <div class="carousel-item color1"><p>Slide 1</p></div>
-                <div class="carousel-item color2"><p>Slide 2</p></div>
-                <div class="carousel-item color3"><p>Slide 3</p></div>
-                <div class="carousel-item color4"><p>Slide 4</p></div>
-                <div class="carousel-item color5"><p>Slide 5</p></div>
+        <main>
+            <div class="carousel">
+                <div class="carousel-inner" id="carousel">
+                    <div class="carousel-item color1"><p>Slide 1</p></div>
+                    <div class="carousel-item color2"><p>Slide 2</p></div>
+                    <div class="carousel-item color3"><p>Slide 3</p></div>
+                    <div class="carousel-item color4"><p>Slide 4</p></div>
+                    <div class="carousel-item color5"><p>Slide 5</p></div>
+                </div>
+                <div class="controls">
+                    <button class="control" id="prevBtn"></button>
+                    <button class="control" id="nextBtn"></button>
+                </div>
             </div>
-            <div class="controls">
-                <button class="control" id="prevBtn">&lt;</button>
-                <button class="control" id="nextBtn">&gt;</button>
-            </div>
-        </div>
-        
+            
+
         <section class="welcome">
-            <p class="slogan" id="slogan">BIENVENID@S/ WELCOME / ברוג'ים הבאים</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum accusamus consequuntur, quas reiciendis veritatis exercitationem deleniti est ea animi. Voluptatum, perferendis laudantium possimus quibusdam a ad culpa vitae. Ea, nesciunt!</p>
-            <a href="user.html#login" class="welcome-button">Iniciar Sesión</a>
-            <a href="user.html#register" class="welcome-button">Registrarse</a>
-            <a href="aboutus.html" class="welcome-button">About us</a>
+            <a href="user.html#login" class="welcome-button">INICIAR SESIÓN</a>
+            <a href="user.html#register" class="register-button">registrarse</a>
+            <a href="aboutus.html" class="welcome-button">¿QUÉ ES SECURE TRACK?</a>
         </section>
 
-</main>
-    <footer>
+    </main>
+    <!-- <footer>
         <div class="footer-content">
             <div class="footer-links">
                 <a href="politica-de-privacidad.html">Política de Privacidad</a>
@@ -66,7 +53,7 @@
                 <p>&copy; 2024 Secure Track. Todos los derechos reservados.</p>
             </div>
         </div>
-    </footer>
+    </footer> -->
     <script src="js/main.js"></script>
     <script src="js/index--front.js"></script>
     <script>
