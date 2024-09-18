@@ -9,20 +9,12 @@ body {
     flex-direction: column;
     min-height: 100vh; 
     margin: 0;
-    border: 1px solid #ddd; 
+   background: linear-gradient(rgba(7, 9, 168, 1), rgba(0, 85, 192, 1));;
 }
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-     padding: 10px 5%;
-    background-color: rgba(243, 241, 241, 0.95);  
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    border: 10px;
-    border-radius: 12px;
-    padding: 15px;
-}
+
+/* .header-content{
+    display: inline
+} */
 
 .logo-titulo {
     display: flex;
@@ -31,15 +23,20 @@ header {
 
 #logo {
     margin-right: 20px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin-left: 5%;
 }
 
+.div-titulo {
+    display: flex;
+    justify-content: center;  
+    margin-bottom: 2%;
+}
+
+
 .titulo {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #3C6975; 
-    font-size: 60px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'K2D', sans-serif; 
+    color: rgb(255, 255, 255); 
+    font-size: 50px;
     margin-left: 20px;
 }
 
@@ -60,93 +57,29 @@ header {
     margin: 0 15px;
 }
 
-.textLi {
-    color: #333; 
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    border: none;
-}
-
-.textLi:hover {
-    text-decoration: underline;
-}
-
-
-.desplegableHeader {
-    position: relative;
-    display: inline-block;
-}
-
-.desplegable-contenido {
-    display: none;
-    position: absolute;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    background-color: white;
-}
-
-.desplegable-contenido a {
-    color: #333; /* Color de texto mÃ¡s neutro */
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
-}
-
-.desplegableHeader:hover .desplegable-contenido {
-    display: block;
-}
-
-.desplegable-contenido a:hover {
-    background-color: #f0f0f0;
-}
-footer {
-    background: #3C6975;
-    color: #fff;
-    /* padding: 20px; */
-    position: relative;
-    bottom: 0;
-    width: 93.9%;
-    /* margin: 40px 40px 5px 0; */
+.image-user {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    text-align: center; 
-    overflow: hidden;
+    justify-content: flex-end;
+    top: 6%; 
+    width: 100px;  
+    height: 100px;
+  }
+  
+ .image-user img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;  
+    border: 2px solid #fff;  
+    box-shadow: var(--main-shadow);
+  }
+
+  #profile-image:hover{
+   cursor: pointer;
+   /* una sombra aca */
 }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    text-align: center; 
-}
 
-.footer-links {
-    margin-bottom: 10px;
-}
-
-.footer-links a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 16px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-.footer-info {
-    text-align: center;
-}
-
- /* para que se vea bien bien en pc */
+ 
 @media (min-width: 768px) {
     header{
         padding: 30px ;
@@ -159,7 +92,6 @@ footer {
     }
 }
 
-/* mobile */
 @media (max-width: 768px) {
     .titulo{
         font-size: 40px;
@@ -169,23 +101,4 @@ footer {
     }
 }
 
-.image-user {
-    position: absolute;
-    top: 6%; 
-    right: 10px;  
-    width: 80px;  
-    height: 80px;
-  }
-  
- .image-user img {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;  
-    border: 2px solid #fff;  
-    box-shadow: var(--main-shadow);
-    padding: 10px;
-   
-  }
 
-  #profile-image:hover{
-   cursor: pointer;}

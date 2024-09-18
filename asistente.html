@@ -64,8 +64,8 @@
 
         async function cargarTransacciones() {
         try {
-            // Suponiendo que el backend devuelve un JSON con las transacciones
-            const response = await fetch('/api/transacciones'); // Cambia la URL según tu backend
+           
+            const response = await fetch('https://secure-track-db.vercel.app/asistentes/tokens'); 
             const transacciones = await response.json();
             
             // Selecciona el cuerpo de la tabla

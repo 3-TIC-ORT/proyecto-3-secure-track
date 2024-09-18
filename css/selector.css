@@ -1,6 +1,6 @@
 :root {
     --primary-bg: #618a96;
-    --hover-bg: #70aebe;
+    --hover-bg: #55a0b3;
     --button-bg: #5a8794;
     --text-color: white;
     --border-color: #061316;
@@ -127,30 +127,7 @@ button.confirmar:hover, button.devolucion:hover {
     cursor: pointer;
 }
 
-.loading-screen {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* .loading-screen-all{
+    filter: blur(4px);
+} */
 
-.loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid ;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}

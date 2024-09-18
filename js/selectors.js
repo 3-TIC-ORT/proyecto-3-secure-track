@@ -1,5 +1,5 @@
 import { getCarros } from "./repository.js";
-let usuario = sessionStorageStorage.getItem("userId");
+let usuario = sessionStorage.getItem("userId");
 
 let libertador = { "0": [], "1": [], "2": [], "3": [] };
 let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };

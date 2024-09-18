@@ -34,15 +34,15 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: black; /* Text color black */
+    color: white;
 }
 
 /* Colors for carousel items */
-.color1 { background-color: rgb(50, 151, 146); }
-.color2 { background-color: rgb(71, 160, 71); }
-.color3 { background-color: rgb(122, 122, 185); }
-.color4 { background-color: rgb(241, 203, 131); }
-.color5 { background-color: rgb(187, 59, 187); }
+.color1 { background-color: white }
+.color2 { background-color: rgb(204, 202, 202)}
+.color3 { background-color: rgb(178, 178, 180); }
+.color4 { background-color: rgb(85, 84, 83); }
+.color5 { background-color: rgb(153, 147, 153); }
 
 .controls {
     position: absolute;
