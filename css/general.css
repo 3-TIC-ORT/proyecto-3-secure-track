@@ -1,5 +1,10 @@
 :root{
-  --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
+  --body-background: linear-gradient(rgba(7, 9, 168, 1), rgba(0, 85, 192, 1));
+  --font-tittle: 'K2D', sans-serif; 
+--font-color-main: white;
+--main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
+--box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+--box-hover-scale: 1.1;
 }
 
 
@@ -9,12 +14,8 @@ body {
     flex-direction: column;
     min-height: 100vh; 
     margin: 0;
-   background: linear-gradient(rgba(7, 9, 168, 1), rgba(0, 85, 192, 1));;
+   background: var(--body-background);
 }
-
-/* .header-content{
-    display: inline
-} */
 
 .logo-titulo {
     display: flex;
@@ -22,6 +23,7 @@ body {
 }
 
 #logo {
+    filter:drop-shadow (var(--main-shadow));
     margin-right: 20px;
     margin-left: 5%;
 }
@@ -34,8 +36,8 @@ body {
 
 
 .titulo {
-    font-family: 'K2D', sans-serif; 
-    color: rgb(255, 255, 255); 
+    font-family: var(--font-tittle);
+    color:  var(--font-tittle);
     font-size: 50px;
     margin-left: 20px;
 }
@@ -63,6 +65,13 @@ body {
     top: 6%; 
     width: 100px;  
     height: 100px;
+  }
+  .image-user:hover{
+    transform: scale(var(--box-hover-scale));
+    filter:drop-shadow( var(--box-shadow-hover));
+    transition: var(--transition);
+    cursor: pointer;
+
   }
   
  .image-user img {
