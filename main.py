@@ -6,7 +6,6 @@ import serial
 
 arduino = serial.Serial(port='COM5', baudrate=9600, timeout=.1) 
 
-
 def sendRequest(data):
     payload={
         "TOKEN":data,
@@ -17,21 +16,34 @@ def sendRequest(data):
         if res.status_code==200:
             return res.json()
         else:
-            return res.status_code
+            return {
+                "type":"error"
+                }
     except Exception as e:
-        return(e) 
+        return {
+                "type":"error"
+                }
 
 def enviarArduino(data):
+    if data["type"]=="error":
+        return "error"
     if data["type"]=="unico":
         res=["0"]+data["slots"]
     elif data["type"]=="devMultiple":
         res=["1"]+data["slots"]
     elif data["type"]=="retMultiple":
         res=["2"]+data["slots"]
-    return (",".join(res))
+    return (",".join(res)+",")
 
 def enviarSerial(data):
     arduino.write(data.encode())
+    printf"data sended ${data}"
+    recived=arduino.readLine()
+    while(recived==""):
+        continue
+    if(recived=="done"):
+        print("done")
+
 
 capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
