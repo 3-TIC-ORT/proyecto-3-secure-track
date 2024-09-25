@@ -1,24 +1,35 @@
 :root {
-    --carousel-width: 70%;
+    --carousel-width: 75%;
     --carousel-height: 350px;
     --carousel-margin-top: 2%;
     --control-bg-color: transparent; 
     --control-border-color: black; 
-    --carousel-border-color: black; 
+    --carousel-border-color: linear-gradient(rgb(4, 5, 109),rgba(4, 67, 143, 0.8), rgb(47, 76, 163)); 
     --control-hover-bg-color: rgba(0, 0, 0, 0.2); 
+    --border-radius: 15%
 }
 
-/* Carousel */
-.carousel {
+
+
+.container {
+    background: var(--carousel-border-color);
     width: var(--carousel-width);
     height: var(--carousel-height);
-    margin-top: var(--carousel-margin-top);
-    overflow: hidden;
+    display: flex; /* Flexbox for easy centering */
+    justify-content: center; /* Center horizontally */
+    border-radius: var(--border-radius);
     position: relative;
     margin: auto;
-    border-radius: 7%;
-    border: 7px solid var(--carousel-border-color); 
 }
+
+.carousel {
+    width: 97%;
+    height: 335px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    align-self: center;
+}
+
 
 .carousel-inner {
     display: flex;
@@ -44,19 +55,57 @@
 .color4 { background-color: rgb(85, 84, 83); }
 .color5 { background-color: rgb(153, 147, 153); }
 
-.controls {
+/* .controls {
     position: absolute;
     top: 50%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
-    pointer-events: none; /* Ensure the buttons don't shift content */
+    pointer-events: none; 
 }
 
 .control {
     background-color: var(--control-bg-color);
-    border: none; /* Remove border */
+    border: none; 
+    pointer-events: all;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#prevBtn {
+    border: solid black;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    margin-left: 20px;
+}
+
+#nextBtn {
+    border: solid black;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    margin-right: 20px;
+} */ 
+
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    transform: translateY(-50%);
+    pointer-events: none; 
+}
+
+.control {
+    background-color: var(--control-bg-color);
+    border: none; 
     pointer-events: all;
     cursor: pointer;
     padding: 10px;

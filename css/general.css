@@ -1,6 +1,7 @@
 :root{
-  --body-background: linear-gradient(rgba(7, 9, 168, 1), rgba(0, 85, 192, 1));
+  --body-background: linear-gradient(rgba(7, 9, 168, 1),rgba(0, 85, 192, 0.8), rgba(68, 114, 255, 1));
   --font-tittle: 'K2D', sans-serif; 
+  --font-tittle-size: 55px;
 --font-color-main: white;
 --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
 --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -17,74 +18,51 @@ body {
    background: var(--body-background);
 }
 
-.logo-titulo {
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+}
+
+.logo-title {
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 #logo {
-    filter:drop-shadow (var(--main-shadow));
+    filter: drop-shadow(var(--box-shadow-hover));
+    border-radius: 50%;
     margin-right: 20px;
-    margin-left: 5%;
 }
-
-.div-titulo {
-    display: flex;
-    justify-content: center;  
-    margin-bottom: 2%;
-}
-
 
 .titulo {
     font-family: var(--font-tittle);
-    color:  var(--font-tittle);
-    font-size: 50px;
-    margin-left: 20px;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-}
-
-.menu ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu ul li {
-    margin: 0 15px;
+    color: var(--font-tittle);
+    font-size: var(--font-tittle-size);
 }
 
 .image-user {
-    display: flex;
-    justify-content: flex-end;
-    top: 6%; 
-    width: 100px;  
+    width: 100px;
     height: 100px;
-  }
-  .image-user:hover{
+    border-radius: 50%;  
+    border: 2px solid #fff;
+    overflow: hidden;
+}
+
+.image-user:hover {
     transform: scale(var(--box-hover-scale));
-    filter:drop-shadow( var(--box-shadow-hover));
+    filter: drop-shadow(var(--box-shadow-hover));
     transition: var(--transition);
     cursor: pointer;
+    box-shadow: var(--main-shadow);
+}
 
-  }
-  
- .image-user img {
+.image-user img {
     width: 100%;
     height: 100%;
-    border-radius: 100%;  
-    border: 2px solid #fff;  
-    box-shadow: var(--main-shadow);
-  }
-
-  #profile-image:hover{
-   cursor: pointer;
-   /* una sombra aca */
+    object-fit: cover;
 }
 
 
@@ -111,3 +89,19 @@ body {
 }
 
 
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}

@@ -96,7 +96,7 @@
     document.addEventListener("DOMContentLoaded", function () {
     const profilePhotoURL = sessionStorage.getItem("profilePhoto"); 
     if (profilePhotoURL) {
-      const profileImage = document.getElementById("profile-image");
+      const profileImage = document.getElementById("image-user");
       profileImage.src = profilePhotoURL; 
       profileImage.style.display = "block"; 
     }

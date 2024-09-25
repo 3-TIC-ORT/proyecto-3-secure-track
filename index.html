@@ -11,15 +11,18 @@
     <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 <body>
-    <header> 
-<div class="header-content"> 
-         <div class="div-titulo"><h1 class="titulo">¡BIENVENIDOS A SECURE TRACK!</h1></div>
-        <div class="image-user">
-   <a href="config.html"> <img id="profile-image" src="" alt="Foto de Perfil" style="display:none;" /></a>
+    <header class="header-container"> 
+        <a href="index.html" class="logo-title">
+            <img id="logo" src="img/logo.png" width="90px" height="90px">
+            <h1 class="titulo">¡BIENVENIDOS A SECURE TRACK!</h1>
+        </a> 
+        <div class="image-user" style="display: none;">
+            <a href="config.html"><img id="profile-image" src="" alt="Foto de Perfil"/></a>
         </div>
-</div>
-    </header>   
+    </header>
+    
  <main>
+          <div class="container">
             <div class="carousel">
                 <div class="carousel-inner" id="carousel">
                     <div class="carousel-item color1"><p>Slide 1</p></div>
@@ -33,6 +36,7 @@
                     <button class="control" id="nextBtn"></button>
                 </div>
             </div>
+        </div>
             
 
         <section class="welcome">
@@ -62,7 +66,7 @@
     document.addEventListener("DOMContentLoaded", function () {
     const profilePhotoURL = sessionStorage.getItem("profilePhoto"); 
     if (profilePhotoURL) {
-      const profileImage = document.getElementById("profile-image");
+      const profileImage = document.getElementById("image-user");
       profileImage.src = profilePhotoURL; 
       profileImage.style.display = "block"; 
     }
