@@ -33,10 +33,16 @@ box-sizing: border-box;
 .welcome-button:hover {
     text-decoration: underline;
 }
-
+.div-inicio{
+    background: linear-gradient(rgb(4, 5, 109),rgba(4, 67, 143, 0.8), rgb(47, 76, 163));
+    padding: 15px 35px; 
+    border-radius: 25px;
+    
+}
 .inicio {
+    width: 99%;
+    height: 99%;
     color: black;
-    border: 3px solid black; 
     border-radius: 25px;
     padding: 15px 35px; 
     background-color: white;
