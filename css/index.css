@@ -9,20 +9,17 @@ box-sizing: border-box;
     ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* #logo {
-    margin-right: 20px;
-    box-shadow: var(---main-shadow);
-    margin-left: 5%;
-} */
 
 
-.welcome {
+
+ .welcome {
     margin: 0.5%;
     display: flex;
     flex-direction: column; 
     justify-content: center;
     align-items: center;
 }
+
 
 .welcome-button {
     font-size: 80%;
@@ -33,15 +30,16 @@ box-sizing: border-box;
 .welcome-button:hover {
     text-decoration: underline;
 }
-.div-inicio{
-    background: linear-gradient(rgb(4, 5, 109),rgba(4, 67, 143, 0.8), rgb(47, 76, 163));
-    padding: 15px 35px; 
-    border-radius: 25px;
-    
+.button{
+    font-weight: bold; 
+    color: white; 
+    text-shadow: 0.3px 0.3px 0 rgba(0, 0, 0, 0.8); 
+    -webkit-text-stroke: 0.3px black; 
 }
+
+
 .inicio {
-    width: 99%;
-    height: 99%;
+    border: 5px solid #0709A8;
     color: black;
     border-radius: 25px;
     padding: 15px 35px; 

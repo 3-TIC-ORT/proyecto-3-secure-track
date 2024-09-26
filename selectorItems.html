@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
-    <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/selector.css">
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
     <link rel="icon" type="image/png" href="img/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
     
@@ -21,17 +21,15 @@
     <div class="loader"></div>
 </div>
 
-    <header> 
-        <nav class="menu"> 
-            <a href="index.html">
-                <img id="logo" src="img/logo.png" width="150px" height="150px">
-            </a> 
-            <h1 class="titulo">SECURE TRACK</h1>
-        </nav>
-<div class="image-user">
-    <img id="profile-image" src="" alt="Foto de Perfil" style="display:none;" />
-</div>
-    </header>   
+<header class="header-container"> 
+    <a href="index.html" class="logo-title">
+        <img id="logo" src="img/logo.png" width="90px" height="90px">
+        <h1 class="titulo">SECURE TRACK</h1>
+    </a> 
+    <div class="image-user" style="display: none;">
+        <a href="config.html"><img id="profile-image" src="" alt="Foto de Perfil"/></a>
+    </div>
+</header>
     <main>
         <div class="decision" id="decision">
             <p>Retirar una computadora del edificio:</p>
@@ -67,8 +65,8 @@
         </div>
     
         <div class="button-container">
-            <button class="confirmar" id="confirmButton" style="display: none;">Retiro Computadora</button>
-            <button class="devolucion" id="returnButton" style="display: none;">Devolución</button>
+            <button class="confirmar" id="confirmButton" style="display: none;">DESBLOQUEAR</button>
+            <button class="devolucion" id="returnButton" style="display: none;">DEVOLVER COMPUTADORA</button>
         </div>
     </main>
     
@@ -92,15 +90,15 @@
     </footer>
 
     <script src="js/selectors.js" type="module"></script> 
-  <script> 
-    document.addEventListener("DOMContentLoaded", function () {
-    const profilePhotoURL = sessionStorage.getItem("profilePhoto"); 
-    if (profilePhotoURL) {
-      const profileImage = document.getElementById("image-user");
-      profileImage.src = profilePhotoURL; 
-      profileImage.style.display = "block"; 
-    }
-  });
-  </script>   
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+        const profilePhotoURL = sessionStorage.getItem("profilePhoto"); 
+        if (profilePhotoURL) {
+          const profileImage = document.getElementById("image-user");
+          profileImage.src = profilePhotoURL; 
+          profileImage.style.display = "block"; 
+        }
+      });
+        </script>  
 </body>
 </html>

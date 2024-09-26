@@ -11,6 +11,12 @@
     --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
 }
 
+.titulo{
+    color: var(--text-color);
+ 
+}
+
+
 main {
     display: flex;
     flex-direction: column;

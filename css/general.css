@@ -1,8 +1,8 @@
 :root{
   --body-background: linear-gradient(rgba(7, 9, 168, 1),rgba(0, 85, 192, 0.8), rgba(68, 114, 255, 1));
   --font-tittle: 'K2D', sans-serif; 
-  --font-tittle-size: 55px;
---font-color-main: white;
+  --font-tittle-size: 60px;
+--font-color-main: rgb(255, 255, 255);
 --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
 --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
 --box-hover-scale: 1.1;
@@ -39,8 +39,9 @@ body {
 
 .titulo {
     font-family: var(--font-tittle);
-    color: var(--font-tittle);
-    font-size: var(--font-tittle-size);
+    font-size:var(--font-tittle-size);
+    text-shadow: 0.5px 0.5px 0 rgba(0, 0, 0, 0.8); 
+    -webkit-text-stroke: 0.5px black;
 }
 
 .image-user {
@@ -89,19 +90,3 @@ body {
 }
 
 
-.menu {
-    display: flex;
-    align-items: center;
-}
-
-.menu ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu ul li {
-    margin: 0 15px;
-}

@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track QR</title>
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/qr.css">
     <link rel="icon" type="image/png" href="img/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
@@ -19,35 +20,28 @@
     </style>
 </head>
 <body>
-    <header> 
-        <nav class="menu"> 
-            <a href="index.html">
-                <img id="logo" src="img/logo.png" width="110px" height="110px">
-            </a> 
-            <ul>
-                <li><h1 class="titulo">SECURE TRACK</h1></li>
-                <li><a href="index.html" class="textLi">INICIO</a></li> 
-                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
-                <li class="desplegableHeader">
-                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
-                     <div class="desplegable-contenido"> 
-                        <!--aca se tienen que cargar los carros que se pueden retirar (luego del log in) -->
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>   
+  
+<header class="header-container"> 
+    <a href="index.html" class="logo-title">
+        <img id="logo" src="img/logo.png" width="90px" height="90px">
+        <h1 class="titulo">SECURE TRACK</h1>
+    </a> 
+    <div class="image-user" style="display: none;">
+        <a href="config.html"><img id="profile-image" src="" alt="Foto de Perfil"/></a>
+    </div>
+</header>
+
     <main>
         <div class="qr-container">
             <div class="qr" id="qr"></div>
             <p id="text" class="text"></p>
-            <div id="timer">El QR estará disponible en <span id="time">5:00</span></div>
+            <div id="timer">El QR estará disponible por <span id="time">5:00</span></div>
         </div>
 
 
         <div id="modal" class="modal">
             <div class="modal-content" style="display: none;">
-                <p id="modal-message">Ya se acabo el timepo</p>
+                <p id="modal-message">Se acabo tu tiempo, por favor vuelve a elegir el carro deseado.</p>
                 <button class="close-btn" id="close-btn" onclick="closeModal()">Cerrar</button>
             </div>
         </div>
