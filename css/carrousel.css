@@ -4,7 +4,7 @@
     --carousel-margin-top: 2%;
     --control-bg-color: transparent; 
     --control-border-color: black; 
-    --carousel-border-color: linear-gradient(180deg, rgb(4, 5, 109), rgba(4, 67, 143, 0.8), rgb(47, 76, 163)); 
+    --carousel-border-color: linear-gradient(180deg,rgb(47, 76, 163),  rgba(4, 67, 143, 0.8), rgb(4, 5, 109), ); 
     --control-hover-bg-color: rgba(0, 0, 0, 0.2); 
     --border-radius: 15px;
 }
@@ -13,6 +13,7 @@
     width: var(--carousel-width);
     height: var(--carousel-height);
     border-radius: var(--border-radius);
+    background-color: var(--carousel-border-color);
     position: relative;
     margin: auto;
     display: flex; 

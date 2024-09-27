@@ -9,9 +9,6 @@ box-sizing: border-box;
     ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-
-
-
  .welcome {
     margin: 0.5%;
     display: flex;

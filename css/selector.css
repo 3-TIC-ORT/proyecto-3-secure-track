@@ -10,13 +10,9 @@
     --margin: 20px;
     --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
 }
-
 .titulo{
-    color: var(--text-color);
- 
+color: var(--text-color);
 }
-
-
 main {
     display: flex;
     flex-direction: column;
@@ -24,6 +20,13 @@ main {
     justify-content: center;
     padding: 20px;
 }
+
+ .build{
+    --body-background: linear-gradient(rgba(7, 9, 168, 1),rgba(0, 85, 192, 0.8), rgba(68, 114, 255, 1));
+    height: 30px;
+    width: 60px;
+    margin: 4%;
+} 
 
 .building-buttons {
     display: flex;
@@ -51,7 +54,8 @@ main {
 }
 #libertador:hover{
     padding: 14px 24px;
-}
+} */
+  */
 
 .selector-container, .classroom-container {
     width: 80%;

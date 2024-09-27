@@ -4,7 +4,7 @@
   --font-tittle-size: 40px;
 --font-color-main: rgb(255, 255, 255);
 --main-shadow:  0 0 5px rgba(0, 0, 0, 0.5);  
---box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+--box-shadow-hover: 0 4px 8px #00000033;
 --box-hover-scale: 1.1;
 }
 
