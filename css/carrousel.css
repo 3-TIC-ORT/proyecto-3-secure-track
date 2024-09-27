@@ -18,9 +18,9 @@
     display: flex; 
     justify-content: center; 
     align-items: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Adds a subtle shadow */
+    box-shadow: 0 0 15px rgba(0,0,0,0.3); 
     border: 5px solid transparent;
-    background-clip: padding-box; /* Required for the gradient border */
+    background-clip: padding-box; 
 }
 
 .container2 {
