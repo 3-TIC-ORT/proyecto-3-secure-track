@@ -4,43 +4,7 @@ let usuario = sessionStorage.getItem("userId");
 let libertador = { "0": [], "1": [], "2": [], "3": [] };
 let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
 
-function showModal() {
-    document.getElementById("modal").style.display = "block";
-}
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
-
-document.getElementById("closeModal").addEventListener("click", closeModal);
-
-const selectMonta = document.getElementById("select-monta");
-const selectLib = document.getElementById("select-libertador");
-const classrooms = document.getElementById("classrooms");
-const confirmButton = document.getElementById("confirmButton");
-const returnButton = document.getElementById("returnButton");
-const loadingScreen = document.getElementById("loadingScreen");
-
-document.getElementById("monta").addEventListener("click", showMonta);
-document.getElementById("libertador").addEventListener("click", showLibertador);
-
-function showMonta() {
-    document.querySelector(".select-libertador").classList.add("disactive");
-    document.querySelector(".select-monta").classList.remove("disactive");
-    classrooms.classList.add("disactive");
-    confirmButton.style.display = "none";
-    returnButton.style.display = "none";
-    classrooms.innerHTML = "";
-}
-
-function showLibertador() {
-    document.querySelector(".select-monta").classList.add("disactive");
-    document.querySelector(".select-libertador").classList.remove("disactive");
-    classrooms.classList.add("disactive");
-    confirmButton.style.display = "none";
-    returnButton.style.display = "none";
-    classrooms.innerHTML = "";
-}
 
 async function fetchClassrooms(building) {
     try {
@@ -54,7 +18,7 @@ async function fetchClassrooms(building) {
         const filteredData = data.filter(room => room.roomNumber.startsWith(building === "monta" ? "M" : "L"));
         return filteredData;
     } catch (error) {
-        console.error("Error al realizar el fetch:", error);
+        location.href("../error.html")
         return [];
     }
 }
@@ -214,7 +178,7 @@ async function initializeClassrooms() {
     } catch (error) {
         console.error("Error al inicializar las aulas:", error);
     } finally {
-        // Ocultar la pantalla de carga
+
         loadingScreen.style.display = "none";
     }
 }
