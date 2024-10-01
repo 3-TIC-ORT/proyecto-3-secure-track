@@ -1,10 +1,45 @@
 import { getCarros } from "./repository.js";
 let usuario = sessionStorage.getItem("userId");
-
 let libertador = { "0": [], "1": [], "2": [], "3": [] };
 let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
 
+function showModal() {
+    document.getElementById("modal").style.display = "block";
+}
 
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+document.getElementById("closeModal").addEventListener("click", closeModal);
+
+const selectMonta = document.getElementById("select-monta");
+const selectLib = document.getElementById("select-libertador");
+const classrooms = document.getElementById("classrooms");
+const confirmButton = document.getElementById("confirmButton");
+const returnButton = document.getElementById("returnButton");
+const loadingScreen = document.getElementById("loadingScreen");
+
+document.getElementById("monta").addEventListener("click", showMonta);
+document.getElementById("libertador").addEventListener("click", showLibertador);
+
+function showMonta() {
+    document.querySelector(".select-libertador").classList.add("disactive");
+    document.querySelector(".select-monta").classList.remove("disactive");
+    classrooms.classList.add("disactive");
+    confirmButton.style.display = "none";
+    returnButton.style.display = "none";
+    classrooms.innerHTML = "";
+}
+
+function showLibertador() {
+    document.querySelector(".select-monta").classList.add("disactive");
+    selectLib.classList.remove("disactive");
+    classrooms.classList.add("disactive");
+    confirmButton.style.display = "none";
+    returnButton.style.display = "none";
+    classrooms.innerHTML = "";
+}
 
 async function fetchClassrooms(building) {
     try {
@@ -14,7 +49,6 @@ async function fetchClassrooms(building) {
         }
         const data = await response.json();
 
-        // Filtra las aulas según el edificio
         const filteredData = data.filter(room => room.roomNumber.startsWith(building === "monta" ? "M" : "L"));
         return filteredData;
     } catch (error) {
@@ -30,6 +64,8 @@ async function updateClassroomsOptions(piso, edificio) {
     } else if (edificio === "libertador") {
         options = libertador[piso] || [];
     }
+   let sl= selectLib.value
+   sl= //options slice (1,2)
 
     classrooms.innerHTML = "";
 
@@ -69,6 +105,7 @@ selectLib.addEventListener("change", async () => {
     libertador[selectedFloor] = await fetchClassrooms("libertador");
     updateClassroomsOptions(selectedFloor, "libertador");
 });
+
 
 classrooms.addEventListener("change", checkAllSelected);
 
@@ -116,7 +153,6 @@ async function requestComputer() {
 }
 
 async function returnComputer() {
-    // Lógica de devolución de computadora
     console.log(
         JSON.stringify({
             userId: usuario,
@@ -147,28 +183,27 @@ async function returnComputer() {
 
 async function initializeClassrooms() {
     try {
-        // Mostrar la pantalla de carga
+    
         loadingScreen.style.display = "flex";
 
         const data = await getCarros();
         console.log("Datos recibidos del backend:", data);
 
-        // Limpia las estructuras antes de poblarlas
+      
         for (let key in libertador) libertador[key] = [];
         for (let key in monta) monta[key] = [];
 
         data.forEach((item) => {
-            const roomNumber = item.roomNumber; // Ej: "L001", "M002"
-            const building = roomNumber[0]; // "L" o "M"
-            const floor = roomNumber.slice(1, 2); // Extraer solo el primer dígito del piso (e.g., "1", "2", etc.)
+            const roomNumber = item.roomNumber; 
+            const building = roomNumber[0]; 
+            const floor = roomNumber.slice(1, 2);
 
-            // Asigna las aulas al edificio y piso correctos
             if (building === "M" && monta[floor] !== undefined) {
                 monta[floor].push(item);
             } else if (building === "L" && libertador[floor] !== undefined) {
                 libertador[floor].push(item);
             } else {
-                console.warn(`Piso no esperado: ${floor} para el edificio ${building}`);
+                console.log(`no hay`);
             }
         });
 
@@ -176,11 +211,14 @@ async function initializeClassrooms() {
         console.log("Aulas de Libertador:", libertador);
 
     } catch (error) {
-        console.error("Error al inicializar las aulas:", error);
+        location.href("./error.html")
     } finally {
-
         loadingScreen.style.display = "none";
     }
 }
 
 initializeClassrooms();
+
+
+
+

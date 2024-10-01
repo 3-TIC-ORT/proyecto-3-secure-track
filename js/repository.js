@@ -7,7 +7,6 @@ export const getCarros = async()=>{
             headers:{
                 "Content-Type":"application/json"
             },
-        
         }
     )
     let data = await response.json();

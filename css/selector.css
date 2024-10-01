@@ -15,18 +15,19 @@ main {
 }
 
 .building {
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 2px; 
-    background-color:  #618a96; 
+    padding: 17px 27px;
+    border-radius: 13px;
+    border: 4px solid rgb(1, 1, 138); 
+    background-color:  #ffffff; 
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 3%;
+    margin: 5%;
+    
 }
 
 .building:hover {
-    text-decoration: underline;
+    transform: scale(1.2);
 }
 
 .selector-container, .classroom-container {

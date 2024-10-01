@@ -29,7 +29,7 @@ function showMonta() {
 
 function showLibertador() {
     document.querySelector(".select-monta").classList.add("disactive");
-    document.querySelector(".select-libertador").classList.remove("disactive");
+    selectLib.classList.remove("disactive");
     classrooms.classList.add("disactive");
     confirmButton.style.display = "none";
     returnButton.style.display = "none";
