@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let hash = window.location.hash.substring(1);
     showTab(hash || "login");
 
-    document.getElementById("login-form").addEventListener("submit", function(event) {
+    document.getElementById("submit-login").addEventListener("click", function(event) {
         event.preventDefault();
         clearMessages();
         
@@ -50,11 +50,10 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("El DNI debe ser un número de 8 dígitos.");
             return;
         }
-
-        logueo_user({ username, password });
+        logueo_user({ username: username, password: password });
     });
 
-    document.getElementById("register-form").addEventListener("submit", function(event) {
+    document.getElementById("submit-register").addEventListener("click", function(event) {
         event.preventDefault();
         clearMessages();
 
@@ -65,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("El DNI debe ser un número de 8 dígitos.");
             return;
         }
-
-        register_user({ username: dni, password });
+        
+        register_user({ username: dni, password: password });
     });
 
     async function register_user(user) {
@@ -82,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
-                localStorage.setItem("userId", data.id);
+                sessionStorage.setItem("userId", data.id);
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
@@ -110,10 +109,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: JSON.stringify(user)
             });
             let data = await response.json();
-
+            console.log(data)
             if (response.status === 200) {
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
                 sessionStorage.setItem("userId", data.id);
+                console.log(data)
                 setTimeout(() => {
                     if (data.occupation === "Estudiante") {
                         location.href = "../selectorItems.html";

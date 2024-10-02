@@ -1,7 +1,11 @@
 import { getCarros } from "./repository.js";
 let usuario = sessionStorage.getItem("userId");
-let libertador = { "0": [], "1": [], "2": [], "3": [] };
-let monta = { "1": [], "2": [], "3": [], "4": [], "5": [] };
+if (!usuario {
+    window.location.href = "accesodenegado.html";
+}
+
+let libertador =  [  [],  [],  [],  [], [] ];
+let monta = [  [],  [],  [],  [], [] ];
 
 function showModal() {
     document.getElementById("modal").style.display = "block";
@@ -20,9 +24,14 @@ const confirmButton = document.getElementById("confirmButton");
 const returnButton = document.getElementById("returnButton");
 const loadingScreen = document.getElementById("loadingScreen");
 
-document.getElementById("monta").addEventListener("click", showMonta);
-document.getElementById("libertador").addEventListener("click", showLibertador);
+ const botonM= document.getElementById("monta");
+ const botonL = document.getElementById("libertador");
 
+ botonM.addEventListener("click", showMonta);
+ botonL.addEventListener("click", showLibertador);
+
+
+//aparecen los select y se cambia el color de fondo de los botones a rojo
 function showMonta() {
     document.querySelector(".select-libertador").classList.add("disactive");
     document.querySelector(".select-monta").classList.remove("disactive");
@@ -30,8 +39,10 @@ function showMonta() {
     confirmButton.style.display = "none";
     returnButton.style.display = "none";
     classrooms.innerHTML = "";
-}
+     botonL.style.background= ""
+    botonM.style.background= "grey"
 
+}
 function showLibertador() {
     document.querySelector(".select-monta").classList.add("disactive");
     selectLib.classList.remove("disactive");
@@ -39,6 +50,8 @@ function showLibertador() {
     confirmButton.style.display = "none";
     returnButton.style.display = "none";
     classrooms.innerHTML = "";
+botonM.style.background= ""
+     botonL.style.background= "grey"
 }
 
 async function fetchClassrooms(building) {
@@ -59,15 +72,14 @@ async function fetchClassrooms(building) {
 
 async function updateClassroomsOptions(piso, edificio) {
     let options = [];
+    console.log(edificio)
     if (edificio === "monta") {
         options = monta[piso] || [];
+        filterRooms()
     } else if (edificio === "libertador") {
         options = libertador[piso] || [];
+        filterRooms()
     }
-   let sl= selectLib.value
-   sl= //options slice (1,2)
-
-    classrooms.innerHTML = "";
 
     let classroomOption = document.createElement("option");
     classroomOption.textContent = "Selecciona un aula";
@@ -75,24 +87,27 @@ async function updateClassroomsOptions(piso, edificio) {
     classroomOption.selected = true;
     classrooms.appendChild(classroomOption);
 
-    options.forEach(room => {
-        let opt = document.createElement("option");
-        opt.value = room.id;
-        opt.textContent = room.roomNumber;
-        classrooms.appendChild(opt);
-    });
-
-    if (options.length > 0) {
-        classrooms.classList.remove("disactive");
-        confirmButton.style.display = "block";
-        returnButton.style.display = "block";
-    } else {
-        classrooms.classList.add("disactive");
-        confirmButton.style.display = "none";
-        returnButton.style.display = "none";
-        showModal();
+    function filterRooms (){
+        classrooms.innerHTML = ""
+        options.forEach(room => {
+            let opt = document.createElement("option");
+            opt.value = room.id;
+            opt.textContent = room.roomNumber;
+            classrooms.appendChild(opt);
+        });
+    
+        if (options.length > 0) {
+            classrooms.classList.remove("disactive");
+            confirmButton.style.display = "block";
+            returnButton.style.display = "block";
+        } else {
+            classrooms.classList.add("disactive");
+            confirmButton.style.display = "none";
+            returnButton.style.display = "none";
+            showModal();
+        }
     }
-}
+    }
 
 selectMonta.addEventListener("change", async () => {
     const selectedFloor = selectMonta.value.slice(1);
@@ -104,6 +119,7 @@ selectLib.addEventListener("change", async () => {
     const selectedFloor = selectLib.value.slice(1);
     libertador[selectedFloor] = await fetchClassrooms("libertador");
     updateClassroomsOptions(selectedFloor, "libertador");
+
 });
 
 
@@ -146,7 +162,7 @@ async function requestComputer() {
     );
 
     const res = JSON.stringify(await response.json());
-    if (response.status == 200) {
+    if (await response.status == 200) {
         sessionStorage.setItem("correctKey", res);
         location.href = "../qr.html";
     }

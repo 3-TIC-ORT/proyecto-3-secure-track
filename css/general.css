@@ -38,6 +38,7 @@ body {
 }
 
 .titulo {
+    color: var(--font-color-main);
     font-family: var(--font-tittle);
     font-size:var(--font-tittle-size);
     text-shadow: 0.5px 0.5px 0 rgba(0, 0, 0, 0.8); 
