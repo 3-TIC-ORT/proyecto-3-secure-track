@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             button.classList.remove("active");
         });
         document.getElementById("button-" + tabId).classList.add("active");
+        clearMessages()
     }
 
     function showError(message) {
@@ -86,18 +87,26 @@ document.addEventListener("DOMContentLoaded", function() {
                     location.href = "../selectorItems.html";
                 }, 2000);
             } else {
-                showError(data.message || "Error en el registro.");
+                showError(data.message || "Error en el registro");
             }
         } catch (error) {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
+    // let avatarSelect = document.getElementById("avatar");
+
+    // avatarSelect.addEventListener("change", function () {
+    //   const selectedAvatar = this.value;
+    //   sessionStorage.setItem("profilePhoto", selectedAvatar); 
+    // });
     let avatarSelect = document.getElementById("avatar");
 
-    avatarSelect.addEventListener("change", function () {
-      const selectedAvatar = this.value;
-      sessionStorage.setItem("profilePhoto", selectedAvatar); 
-    });
+
+avatarSelect.addEventListener("change", function () {
+    const selectedAvatar = this.value;
+    sessionStorage.setItem("profilePhoto", selectedAvatar)
+    localStorage.setItem("profilePhoto", selectedAvatar);
+});
     
     async function logueo_user(user) {
         try {
@@ -109,11 +118,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: JSON.stringify(user)
             });
             let data = await response.json();
-            console.log(data)
+           
             if (response.status === 200) {
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
                 sessionStorage.setItem("userId", data.id);
-                console.log(data)
+                
                 setTimeout(() => {
                     if (data.occupation === "Estudiante") {
                         location.href = "../selectorItems.html";

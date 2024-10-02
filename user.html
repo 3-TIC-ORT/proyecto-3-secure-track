@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
-    <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/login-registro.css">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,28 +20,26 @@
             <div id="login" class="content active">
                 <h2 class="title">Iniciar Sesión</h2>
                 <form id="login-form">
-                    <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="text" class="input" id="username" name="username" placeholder="usuario" required>
+                    <input type="password" class="input" id="password" name="password" placeholder="contraseña" required>
                     <button  class="submit" id="submit-login">Entrar</button>
                 </form>
             </div>
             <div id="register" class="content">
                 <h2 class="title">Registro</h2>
                 <form id="register-form">
-                    <label for="dni">DNI</label>
-                    <input type="text" id="dni" name="dni" required>
+                    
+                    <input type="text" class="input" id="dni"  name="dni" placeholder="DNI" required>
                 
-                    <label for="register-password">Contraseña</label>
-                    <input type="password" id="register-password" name="password" required>
+                    <input type="password" class="input" id="register-password" name="password" placeholder="contraseña">
 
                     <label for="avatar">Elige tu avatar de animal:</label>
 
                     <select  style="margin-bottom: 2%;" class="avatar" id="avatar" name="avatar">
                         <option value="" disabled selected>Selecciona tu avatar</option>
                       <option value="img/gato.jpg">🐈Gato🐈‍</option>
-                      <option value="img/panda.jpg">🐶Perro🐶</option>
+                      <option value="img/panda.jpg">🐼Panda🐼</option>
+                      <option value="img/perro.jpg">🐶Perro🐶</option>
                       <option value="img/tigre.jpg">🐯Tigre🐯</option>
                       <option value="img/zorro.jpg">🦊Zorro🦊</option>
                       <option value="img/conejo.jpg">🐰conejo🐰</option>

@@ -1,80 +1,117 @@
-/* From Uiverse.io by MUJTABA201566 */ 
 
-.div-log{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+:root{
+  --box-hover-scale: 1.1;
 }
-.Btn {
+
+
+/* .div-log{
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition-duration: 0.3s;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-    background-color: white;
-  }
-  
-  /* plus sign */
-  .sign {
-    width: 100%;
-    transition-duration: 0.3s;
-    display: flex;
-    align-items: center;
     justify-content: center;
-  }
-  
-  .sign svg {
-    width: 17px;
-  }
-  
-  .sign svg path {
-    fill: black;
-  }
-  /* text */
-  .text {
-    position: absolute;
-    right: 0%;
-    width: 0%;
-    opacity: 0;
-    color: white;
-    font-size: 1.2em;
-    font-weight: 600;
-    transition-duration: 0.3s;
-  }
-  /* hover effect on button width */
-  .Btn:hover {
-    background-color: black;
-    width: 125px;
-    border-radius: 40px;
-    transition-duration: 0.3s;
-  }
-  
-  .Btn:hover .sign {
-    width: 30%;
-    transition-duration: 0.3s;
-    padding-left: 20px;
-  }
-  
-  .Btn:hover .sign svg path {
-    fill: white;
-  }
-  
-  /* hover effect button's text */
-  .Btn:hover .text {
-    opacity: 1;
-    width: 70%;
-    transition-duration: 0.3s;
-    padding-right: 10px;
-  }
-  /* button click effect*/
-  .Btn:active {
-    transform: translate(2px, 2px);
-  }
-  
+} */
+.Btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s, background-color 0.3s, border-radius 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: white;
+}
+
+.sign {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s, padding-left 0.3s;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: black;
+}
+
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: opacity 0.3s, width 0.3s, padding-right 0.3s;
+}
+
+.Btn:hover {
+  background-color: black;
+  width: 125px; /* Aumenta el ancho al pasar el mouse */
+  border-radius: 40px; /* Cambia el radio de la esquina al pasar el mouse */
+}
+
+.Btn:hover .sign {
+  width: 30%; /* Ajusta el ancho del icono en hover */
+  padding-left: 20px; /* Espaciado a la izquierda */
+}
+
+.Btn:hover .sign svg path {
+  fill: white; /* Cambia el color del icono al pasar el mouse */
+}
+
+.Btn:hover .text {
+  opacity: 1; /* Muestra el texto al pasar el mouse */
+  width: 70%; /* Ajusta el ancho del texto al pasar el mouse */
+  padding-right: 10px; /* Espaciado a la derecha */
+}
+
+.Btn:active {
+  transform: translate(2px, 2px); /* Efecto de presionar */
+}
+
+
+  .user-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    height: 100vh; 
+    width: 30%; 
+    background-color: white;
+    position: fixed;
+    right: 0; 
+    top: 0; 
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    display: none; 
+}
+
+.information {
+    padding: 20px; 
+}
+
+.information p {
+    margin-bottom: 10px;
+}
+
+.div-log {
+    margin-top: auto;
+}
+
+.close-btn {
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  font-size: 40px; 
+  cursor: pointer; 
+  color: #333;
+  background: none; 
+  border: none; 
+}
+.close-btn:hover{
+  color: red;
+  transform: scale(var(--box-hover-scale));
+}

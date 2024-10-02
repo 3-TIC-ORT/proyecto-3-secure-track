@@ -1,6 +1,6 @@
 import { getCarros } from "./repository.js";
 let usuario = sessionStorage.getItem("userId");
-if (!usuario {
+if (!usuario) {
     window.location.href = "accesodenegado.html";
 }
 
