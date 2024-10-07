@@ -1,3 +1,16 @@
+:root {
+    --main-bg-color: #ffffff;
+    --border-color: rgb(1, 1, 138);
+    --button-hover-bg: #0e36a5;
+    --button-bg: #1242c7;
+    --text-color: white;
+    --font-size-base: 16px;
+    --padding-base: 12px;
+    --transition-duration: 0.3s;
+    --loader-border: #f3f3f3;
+    --loader-border-top: #3498db;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -5,9 +18,11 @@ main {
     justify-content: center;
     padding: 20px;
 }
-.titulo{
-    color: white;
+
+.titulo {
+    color: var(--text-color);
 }
+
 .building-buttons {
     display: flex;
     justify-content: space-around;
@@ -17,13 +32,12 @@ main {
 .building {
     padding: 17px 27px;
     border-radius: 13px;
-    border: 4px solid rgb(1, 1, 138); 
-    background-color:  #ffffff; 
-    font-size: 16px;
+    border: 4px solid var(--border-color);
+    background-color: var(--main-bg-color);
+    font-size: var(--font-size-base);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-duration) ease;
     margin: 5%;
-    
 }
 
 .building:hover {
@@ -38,27 +52,27 @@ main {
 
 select {
     width: 100%;
-    padding: 12px;
+    padding: var(--padding-base);
     border-radius: 8px;
-    border: 2px solid  #3C6975; ;
-    font-size: 16px;
+    border: 2px solid var(--button-hover-bg);
+    font-size: var(--font-size-base);
 }
 
 button.confirmar, button.devolucion {
     width: 80%;
-    padding: 12px;
+    padding: var(--padding-base);
     margin-top: 20px;
     border-radius: 8px;
     border: none;
-    background-color: #00bcd4;
-    color: white;
-    font-size: 16px;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    font-size: var(--font-size-base);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-duration) ease;
 }
 
 button.confirmar:hover, button.devolucion:hover {
-    background-color:  #3C6975; ;
+    background-color: var(--button-hover-bg);
 }
 
 .disactive {
@@ -85,12 +99,12 @@ button.confirmar:hover, button.devolucion:hover {
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
+    background-color: var(--main-bg-color);
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
-    max-width: 500px; 
+    max-width: 500px;
     text-align: center;
 }
 
@@ -108,9 +122,9 @@ button.confirmar:hover, button.devolucion:hover {
     text-decoration: none;
     cursor: pointer;
 }
-/* Pantalla de carga */
+
 .loading-screen {
-    display: none; /* Oculta la pantalla de carga por defecto */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -123,10 +137,9 @@ button.confirmar:hover, button.devolucion:hover {
     justify-content: center;
 }
 
-/* Estilo del loader */
 .loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
+    border: 16px solid var(--loader-border);
+    border-top: 16px solid var(--loader-border-top);
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -137,4 +150,3 @@ button.confirmar:hover, button.devolucion:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-

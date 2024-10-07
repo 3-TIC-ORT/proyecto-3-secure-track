@@ -1,13 +1,8 @@
-
 :root{
   --box-hover-scale: 1.1;
+  --border:2px solid #080000;
 }
 
-
-/* .div-log{
-    display: flex;
-    justify-content: center;
-} */
 .Btn {
   width: 45px;
   height: 45px;
@@ -50,27 +45,27 @@
 
 .Btn:hover {
   background-color: black;
-  width: 125px; /* Aumenta el ancho al pasar el mouse */
-  border-radius: 40px; /* Cambia el radio de la esquina al pasar el mouse */
+  width: 125px; 
+  border-radius: 40px; 
 }
 
 .Btn:hover .sign {
-  width: 30%; /* Ajusta el ancho del icono en hover */
-  padding-left: 20px; /* Espaciado a la izquierda */
+  width: 30%;
+  padding-left: 20px; 
 }
 
 .Btn:hover .sign svg path {
-  fill: white; /* Cambia el color del icono al pasar el mouse */
+  fill: white; 
 }
 
 .Btn:hover .text {
-  opacity: 1; /* Muestra el texto al pasar el mouse */
-  width: 70%; /* Ajusta el ancho del texto al pasar el mouse */
-  padding-right: 10px; /* Espaciado a la derecha */
+  opacity: 1; 
+  width: 70%;
+  padding-right: 10px; 
 }
 
 .Btn:active {
-  transform: translate(2px, 2px); /* Efecto de presionar */
+  transform: translate(2px, 2px); 
 }
 
 
@@ -98,7 +93,8 @@
 }
 
 .div-log {
-    margin-top: auto;
+    margin-top: 20%;
+
 }
 
 .close-btn {
@@ -114,4 +110,25 @@
 .close-btn:hover{
   color: red;
   transform: scale(var(--box-hover-scale));
+}
+
+.user-info{
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;  
+  border: var(--border);
+  overflow: hidden;
+}
+.div-dni{
+  display: block;
+}
+.user{
+  padding: 10px;
+  border: var(--border);
+  border-radius: 40px;
 }

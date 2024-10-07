@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    function showTab(tabId) {
+function showTab(tabId) {
         document.querySelectorAll(".content").forEach(tab => {
             tab.classList.remove("active");
         });
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             button.classList.remove("active");
         });
         document.getElementById("button-" + tabId).classList.add("active");
-        clearMessages()
+        clearMessages();
     }
 
     function showError(message) {
@@ -51,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("El DNI debe ser un número de 8 dígitos.");
             return;
         }
+
+        sessionStorage.setItem("username", username); // Guardar el username correctamente
         logueo_user({ username: username, password: password });
     });
 
@@ -65,7 +66,8 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("El DNI debe ser un número de 8 dígitos.");
             return;
         }
-        
+
+        sessionStorage.setItem("dni", dni); // Asegúrate de usar "dni" en minúsculas
         register_user({ username: dni, password: password });
     });
 
@@ -93,21 +95,14 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
-    // let avatarSelect = document.getElementById("avatar");
 
-    // avatarSelect.addEventListener("change", function () {
-    //   const selectedAvatar = this.value;
-    //   sessionStorage.setItem("profilePhoto", selectedAvatar); 
-    // });
     let avatarSelect = document.getElementById("avatar");
+    avatarSelect.addEventListener("change", function () {
+        const selectedAvatar = this.value;
+        sessionStorage.setItem("profilePhoto", selectedAvatar);
+        localStorage.setItem("profilePhoto", selectedAvatar);
+    });
 
-
-avatarSelect.addEventListener("change", function () {
-    const selectedAvatar = this.value;
-    sessionStorage.setItem("profilePhoto", selectedAvatar)
-    localStorage.setItem("profilePhoto", selectedAvatar);
-});
-    
     async function logueo_user(user) {
         try {
             let response = await fetch(`https://secure-track-db.vercel.app/users/login`, {
@@ -139,4 +134,4 @@ avatarSelect.addEventListener("change", function () {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
-});
+

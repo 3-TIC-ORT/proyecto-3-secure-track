@@ -40,7 +40,7 @@ function showMonta() {
     returnButton.style.display = "none";
     classrooms.innerHTML = "";
      botonL.style.background= ""
-    botonM.style.background= "grey"
+    botonM.style.background= "#d4ece5"
 
 }
 function showLibertador() {
@@ -51,7 +51,7 @@ function showLibertador() {
     returnButton.style.display = "none";
     classrooms.innerHTML = "";
 botonM.style.background= ""
-     botonL.style.background= "grey"
+     botonL.style.background= "#d4ece5"
 }
 
 async function fetchClassrooms(building) {
