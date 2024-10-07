@@ -6,9 +6,27 @@ import serial
 
 arduino = serial.Serial(port='COM5', baudrate=9600, timeout=.1) 
 
-def sendRequest(data):
+def sendRequestQR(data):
     payload={
         "TOKEN":data,
+        "CARRO_ID":7
+    }
+    try:        
+        res=req.put("https://secure-track-db.vercel.app/computers/withdrawal",json=payload, headers={'content-type': 'application/json'})
+        if res.status_code==200:
+            return res.json()
+        else:
+            return {
+                "type":"error"
+                }
+    except Exception as e:
+        return {
+                "type":"error"
+                }
+
+def sendRequestRFID(data):
+    payload={
+        "RFID":data,
         "CARRO_ID":7
     }
     try:        
@@ -55,8 +73,16 @@ while capture.isOpened():
     data, bbox, rectifiedImage = qrDetector.detectAndDecode(frame)
     if len(data) > 0:
         print(f"QR Code detected: {data}")
-        print(enviarSerial(enviarArduino(sendRequest(data))))
+        print(enviarSerial(enviarArduino(sendRequestQR(data))))
         time.sleep(2)
     time.sleep(0.02)
+    if arduino.in_waiting > 0:
+            data = arduino.readline().decode('utf-8').strip()  # Lee los datos y decodifica
+            rfidResponse=sendRequestRFID(data)
+            if(rfidResponse[valid]==True){
+                enviarSerial(rfidResponse[slot])
+            }else{
+                enviarSerial("error")
+            }
 capture.release()
 cv2.destroyAllWindows()
