@@ -1,25 +1,34 @@
-:root{
+:root {
     --tamaño-lineal: 190px;
     --tamaño-white: 170px;
     --radious: 30px;
     --shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    --hover-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
 }
-main{
+
+body {
+    overflow-x: hidden; /*barra horizontal oculta */
+    margin: 0; 
+}
+
+main {
+    display: flex;
     align-items: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-    }
-.lineal-qr{
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lineal-qr {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(68, 114, 255, 1),rgba(0, 85, 192, 0.8),rgba(7, 9, 168, 1));
-   height: var(--tamaño-lineal);
-   width: var(--tamaño-lineal);
-   border-radius: var(--radious);
+    background: linear-gradient(rgba(68, 114, 255, 1), rgba(0, 85, 192, 0.8), rgba(7, 9, 168, 1));
+    height: var(--tamaño-lineal);
+    width: var(--tamaño-lineal);
+    border-radius: var(--radious);
 }
-.white-qr{
+
+.white-qr {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,17 +37,79 @@ main{
     height: var(--tamaño-white);
     width: var(--tamaño-white);
 }
-    .qr{
-        display: flex;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        background-color: white;
-        border-radius: var(--radious);
+
+.qr {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+    border-radius: var(--radious);
+}
+
+.text {
+    font-weight: bold;
+    font-size: 20px; 
+    color: white; 
+    text-shadow: var(--shadow);
+}
+
+.div-button {
+    margin: 2%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+    flex-wrap: wrap; 
+}
+
+.button {
+    padding: 15px 25px;
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+    background: rgba(68, 114, 255, 1);
+    font-size: 16px; 
+    text-align: center;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+.button:hover {
+    text-decoration: none;
+    transform: scale(1.1); 
+    box-shadow: var(--hover-shadow);
+}
+
+
+@media (max-width: 768px) {
+    :root {
+        --tamaño-lineal: 250px; /* Tamaño ajustado para pantallas pequeñas */
+        --tamaño-white: 230px; /* Tamaño ajustado para pantallas pequeñas */
+        --radious: 20px; /* Radios de borde reducido */
     }
+
     .text {
-        font-weight: bold;
-        font-size: 20px; 
-        color: white; 
-        text-shadow:var(--shadow);
+        font-size: 18px; /* Tamaño de fuente más pequeño */
     }
-    
+
+    .button {
+        padding: 12px 20px; /* Ajuste del padding */
+        font-size: 14px; 
+    }
+
+    .div-button {
+        margin: 5%; 
+        flex-direction: column; 
+    }
+
+    main {
+        padding: 10px; 
+    }
+
+    .qr {
+        margin-top: 10px; /* Espacio entre QR */
+        margin-bottom: 10px; /* Espacio entre QR */
+        width: 100%; /* Asegura que el QR use el 100% del contenedor */
+    }
+}

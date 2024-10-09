@@ -68,6 +68,7 @@ body {
 }
 
 .modal-content {
+    display: none;
     background-color: var(--main-bg-color);
     margin: 15% auto;
     padding: 15px 10px;

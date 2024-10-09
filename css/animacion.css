@@ -1,26 +1,7 @@
-<div class="div-fade">
-    <h1 class="fade">
-        <span>S</span>
-        <span>E</span>
-        <span>C</span>
-        <span>U</span>
-        <span>R</span>
-        <span>E</span>
-        <span>&nbsp;</span>
-        <span>T</span>
-        <span>R</span>
-        <span>A</span>
-        <span>C</span>
-        <span>K</span>
-    </h1>
-</div>
-<div class="prueba"></div>
-<style> 
-
 :root {
     --font-tittle: 'K2D', sans-serif; 
-    --font-tittle-size: 120px;
-    --font-color-main: rgb(255, 255, 255);
+    --font-size: 120px;
+    --font-color-main: rgb(255, 229, 229);
     --main-shadow: 0 0 5px rgba(0, 0, 0, 0.5);  
     --box-shadow-hover: 0 4px 8px #00000033;
     --box-hover-scale: 1.1;
@@ -42,7 +23,7 @@
   .fade span {
       display: inline-block;
       font-family: var(--font-tittle);
-      font-size: var(--font-tittle-size);
+      font-size: var(--font-size);
       color: var(--font-color-main);
       text-shadow: 0.5px 0.5px 0 rgba(0, 0, 0, 0.8); 
       animation: fade 3s linear infinite;
@@ -61,15 +42,17 @@
       50% { opacity: 0; }
       100% { opacity: 1; }
   }
-  
- 
-  .prueba{
-    height: 300px;
-    background-color: red;
-    width: 500px;
-     z-index: 100;
+  main,footer{
+    z-index: 100;
   }
-  
-  
-</style>
-
+.modal{
+    z-index: 1000;
+}
+@media (max-width: 768px) {
+    .div-fade{
+        margin: 1%;
+    }
+.fade span{
+    font-size: 45px;
+}
+}
