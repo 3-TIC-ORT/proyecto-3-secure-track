@@ -6,6 +6,7 @@
     <title>Secure Track</title>
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/asist.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +24,10 @@
         </div>
     </header>
  <main>
+    <div class="div-search">
+        <input class="input" id="search" type="search" placeholder="buscar">
+    </div>
+   
 <table id="transaccionesTable">
     <thead>
         <tr>
@@ -52,9 +57,9 @@
     </footer>
     <script src="js/main.js"></script>
     <script>
-        if (!sessionStorage.getItem("asist-Key")) {
-            window.location.href = "accesodenegado.html";
-        }
+        // if (!sessionStorage.getItem("asist-Key")) {
+        //     window.location.href = "accesodenegado.html";
+        // }
 
         async function cargarTransacciones() {
         try {
@@ -62,13 +67,13 @@
             const response = await fetch('https://secure-track-db.vercel.app/asistentes/tokens'); 
             const transacciones = await response.json();
             
-            // Selecciona el cuerpo de la tabla
+       
             const tbody = document.querySelector('#transaccionesTable tbody');
             
-            // Limpia cualquier fila previa
+            
             tbody.innerHTML = '';
             
-            // Itera sobre las transacciones y crea filas dinámicas
+           
             transacciones.forEach(transaccion => {
                 const fila = document.createElement('tr');
                 

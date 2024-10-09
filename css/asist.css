@@ -1,3 +1,13 @@
+.div-search{
+ display: flex;
+ justify-content: flex-end;
+ margin-right: 2%;
+ margin-bottom: 2%;
+}
+.input{
+    border-radius: 20%;
+    padding: 10px 20px;
+}
 table {
     width: 100%;
     border-collapse: collapse;

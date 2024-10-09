@@ -12,8 +12,8 @@ main{
     }
 .lineal-qr{
     display: flex;
-justify-content: center;
-align-items: center;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(rgba(68, 114, 255, 1),rgba(0, 85, 192, 0.8),rgba(7, 9, 168, 1));
    height: var(--tamaño-lineal);
    width: var(--tamaño-lineal);

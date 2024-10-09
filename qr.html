@@ -65,15 +65,18 @@
           
         <p id="text" class="text"></p>
         <div class="text" id="timer">El QR estará disponible por <span id="time">5:00</span></div>
+        <button id="finalizar">FInalizar</button>
         
 
-        <div id="modal" class="modal">
-            <div class="modal-content" style="display: none;">
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <span class="close-button" id="closeModal">&times;</span>
                 <p id="modal-message">Se acabo tu tiempo, por favor vuelve a elegir el carro deseado.</p>
-                <button class="close-btn" id="close-btn" onclick="closeModal()">Cerrar</button>
+                <div class="div-img">
+                    <img src="img/logo.png" alt="logo" height="80px" width="80px">
+                </div>
             </div>
         </div>
-
     </main>
     <footer>
         <div class="footer-content">

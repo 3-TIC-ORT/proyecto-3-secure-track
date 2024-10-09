@@ -141,10 +141,10 @@ label[for="avatar"] {
     cursor: pointer; 
     transition: all 0.3s ease; 
     appearance: none; 
-    /* background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 5%22%3E%3Cpath fill=%22%231f6374%22 d=%22M2 0L0 2h4z%22/%3E%3C/svg%3E'); /* 
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 5%22%3E%3Cpath fill=%22%231f6374%22 d=%22M2 0L0 2h4z%22/%3E%3C/svg%3E'); 
     background-repeat: no-repeat; 
     background-position: right 15px center;  
-    background-size: 12px;*/
+    background-size: 12px;
 }
 
 

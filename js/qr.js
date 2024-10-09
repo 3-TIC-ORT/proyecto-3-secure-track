@@ -3,8 +3,27 @@ const user = sessionStorage.getItem("correctKey");
 const qr = document.getElementById("qr");
 const timerDisplay = document.getElementById("time"); 
 const parsedRes = JSON.parse(user);
-const check = setInterval(checkEscaneado, 2000); 
+const finalizar = document.getElementById("finalizar")
 
+
+finalizar.addEventListener("click",async()=>{
+    let data = await fetch(`https://secure-track-db.vercel.app/verificar`,{
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:{
+            token: JSON.parse(user).tokenId
+        }
+     })
+
+     if (await data.json().verificado) {
+        location.href = "../selectorItems.html"
+     }else{
+        console.log("No")
+     }
+})
 
 function startTimer(duration, display, callback) {
     let timer = duration, minutes, seconds;
@@ -30,23 +49,6 @@ function onTimerFinish() {
 }
 
 
-function checkEscaneado() {
-    if (user) {
-        const parseUser = JSON.parse(user);
-        
-        fetch(`https://secure-track-db.vercel.app/qr/${parseUser.tokenId}`) //poner la real
-            .then(response => response.json())
-            .then(data => {
-                if (data.scanned) {
-                    alert("Escaneaste el código QR. Ahora puedes devolverlo cuando quieras desde el mismo lugar de donde lo sacaste.");
-                    clearInterval(check); 
-                }
-            })
-            .catch(error => {
-                console.log("Error verificando el escaneo del QR:", error);
-            });
-    }
-}
 
 
 function iniciarQrTimer() {
@@ -59,7 +61,7 @@ function iniciarQrTimer() {
 
         text.innerText = `El slot para el retiro es el ${parsedRes.slot}`;
 
-        let tiempo = 3; // segundos
+        let tiempo = 3000; // segundos
         startTimer(tiempo, timerDisplay, onTimerFinish);
     } else {
         text.innerText = "No se ha encontrado un slot disponible.";

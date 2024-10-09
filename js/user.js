@@ -9,7 +9,7 @@ const username = sessionStorage.getItem("username")
 const p_user = document.getElementById("dni")
 
     if (profilePhotoURL) {
-        profileImage.src = profilePhotoURL; 
+        profileImage.src = `./img/${profilePhotoURL}.jpg`; 
         div.style.display = "block"; 
         profileImage.style.display = "block";
     }
@@ -38,7 +38,7 @@ function close() {
     }
 
     if (avatar) {
-        avatar.src = profilePhotoURL; 
+        avatar.src = `./img/${profilePhotoURL}.jpg`; 
     }
     if (username) {
         p_user.innerHTML = `<p>${username}</p>`;

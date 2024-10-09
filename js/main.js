@@ -68,7 +68,7 @@ function showTab(tabId) {
         }
 
         sessionStorage.setItem("dni", dni); // Asegúrate de usar "dni" en minúsculas
-        register_user({ username: dni, password: password });
+        register_user({ username: dni, password: password, avatar: avatarSelect.value });
     });
 
     async function register_user(user) {
@@ -100,7 +100,6 @@ function showTab(tabId) {
     avatarSelect.addEventListener("change", function () {
         const selectedAvatar = this.value;
         sessionStorage.setItem("profilePhoto", selectedAvatar);
-        localStorage.setItem("profilePhoto", selectedAvatar);
     });
 
     async function logueo_user(user) {

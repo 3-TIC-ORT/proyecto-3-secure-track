@@ -7,8 +7,17 @@ box-sizing: border-box;
 }
 :root{
     ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    --hover-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
 }
-
+.div-titulo{
+    display: flex;
+    justify-content: center;
+}
+.titulo{
+    font-size: 50px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8); 
+    -webkit-text-stroke: 2px black; 
+}
  .welcome {
     margin: 0.5%;
     display: flex;
@@ -32,19 +41,25 @@ box-sizing: border-box;
     color: white; 
     text-shadow: 0.3px 0.3px 0 rgba(0, 0, 0, 0.8); 
     -webkit-text-stroke: 0.3px black; 
+
 }
 
 
 .inicio {
-    border: 5px solid #0709A8;
-    color: black;
+    width: 300px;
+    color: rgb(255, 255, 255);
     border-radius: 25px;
     padding: 15px 35px; 
-    background-color: white;
+     background: rgba(68, 114, 255, 1);
     font-size: 16px; 
     text-align: center;
     display: inline-block;
     text-decoration: none;
+    box-shadow: var(---main-shadow);
 }
-
+.inicio:hover{
+    text-decoration: none;
+    scale: 1.1;
+    box-shadow: var(--hover-shadow) ;
+}
 

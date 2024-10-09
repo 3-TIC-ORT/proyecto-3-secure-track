@@ -67,6 +67,35 @@ body {
     object-fit: cover;
 }
 
+.modal-content {
+    background-color: var(--main-bg-color);
+    margin: 15% auto;
+    padding: 15px 10px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 500px;
+    text-align: center;
+}
+.div-img{
+    display: flex;
+    justify-content: center;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
  
 @media (min-width: 768px) {

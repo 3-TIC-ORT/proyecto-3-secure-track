@@ -101,11 +101,15 @@ button.confirmar:hover, button.devolucion:hover {
 .modal-content {
     background-color: var(--main-bg-color);
     margin: 15% auto;
-    padding: 20px;
+    padding: 15px 10px;
     border: 1px solid #888;
     width: 80%; 
     max-width: 500px;
     text-align: center;
+}
+.div-img{
+    display: flex;
+    justify-content: center;
 }
 
 .close-button {
