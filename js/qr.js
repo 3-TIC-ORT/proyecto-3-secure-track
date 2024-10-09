@@ -1,9 +1,10 @@
-const text = document.getElementById("text")    
-const res = sessionStorage.getItem("correctKey")
+const text = document.getElementById("text");
+const user = sessionStorage.getItem("correctKey");
 const qr = document.getElementById("qr");
-const timerDisplay = document.getElementById("time");
-const result = await response.json();
-const modalMessage = document.getElementById("modal-message")
+const timerDisplay = document.getElementById("time"); 
+const parsedRes = JSON.parse(user);
+const check = setInterval(checkEscaneado, 2000); 
+
 
 function startTimer(duration, display, callback) {
     let timer = duration, minutes, seconds;
@@ -18,47 +19,52 @@ function startTimer(duration, display, callback) {
 
         if (--timer < 0) {
             clearInterval(interval);
-            callback(); // Ejecutar la función cuando el tiempo llegue a 0
+            callback(); 
         }
     }, 1000);
 }
 
+function onTimerFinish() {
+    alert("Se ha acabado tu tiempo, por favor vuelve a seleccionar");
+    location.href = "../selectorItems.html"; 
+}
 
-async function onTimerFinish() {
-    try {
-        const response = await fetch(
-            `https://secure-track-db.vercel.app/computers/delete`,
-            {
-                method: "DELETE",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    token: JSON.parse(res).tokenId,
-                }),
-            }
-        );
-        modalMessage.innerText = `Se termino tu timepo, por favor selecciona nuevamente tus preferencias :)`;
-        modal.style.display = "flex"; 
-    } catch (error) {
-        modalMessage.innerText = `Error: ${error.message}`;
-        modal.style.display = "flex"; 
+
+function checkEscaneado() {
+    if (user) {
+        const parseUser = JSON.parse(user);
+        
+        fetch(`https://secure-track-db.vercel.app/qr/${parseUser.tokenId}`) //poner la real
+            .then(response => response.json())
+            .then(data => {
+                if (data.scanned) {
+                    alert("Escaneaste el código QR. Ahora puedes devolverlo cuando quieras desde el mismo lugar de donde lo sacaste.");
+                    clearInterval(check); 
+                }
+            })
+            .catch(error => {
+                console.log("Error verificando el escaneo del QR:", error);
+            });
     }
 }
-document.getElementById("close-btn").addEventListener("click", closeModal)
-function closeModal() {
-    modal.style.display = "none";
+
+
+function iniciarQrTimer() {
+    if (user) {
+        const parsedRes = JSON.parse(user); 
+
+        let img = document.createElement("img");
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(parsedRes.tokenId)}`;
+        qr.appendChild(img);
+
+        text.innerText = `El slot para el retiro es el ${parsedRes.slot}`;
+
+        let tiempo = 3; // segundos
+        startTimer(tiempo, timerDisplay, onTimerFinish);
+    } else {
+        text.innerText = "No se ha encontrado un slot disponible.";
+    }
 }
 
-
-
 window.onload = function () {
-    let fiveMinutes = 3;
-    startTimer(fiveMinutes, timerDisplay, onTimerFinish);
-};
-
-let img = document.createElement("img")
-img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(JSON.parse(res).tokenId)}`
-qr.appendChild(img)
-text.innerText = `El slot para el retiro es el ${JSON.parse(res).slot}`
+    iniciarQrTimer();}

@@ -11,6 +11,7 @@
     --success-color: green;
     --error-color: red;
     --tran-hover:  scale(1.05);
+    
 
    
     --font-family: 'K2D', Arial, sans-serif;
@@ -176,7 +177,7 @@ select.avatar option {
     font-size: var(--font-size-base);
     width: 100%;
     margin-top: 20px;
-    box-shadow: 0 0 15px var(--box-shadow);
+    box-shadow: 0 5 15px var(--box-shadow);
 }
 
 .submit:hover {
