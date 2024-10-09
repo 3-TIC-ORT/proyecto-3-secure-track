@@ -4,7 +4,9 @@ import requests as req
 import json
 import serial
 
-arduino = serial.Serial(port='COM5', baudrate=9600, timeout=.1) 
+
+arduino = serial.Serial(port='COM5', baudrate=9600, timeout=.1)
+
 
 def sendRequestQR(data):
     payload={
@@ -24,6 +26,7 @@ def sendRequestQR(data):
                 "type":"error"
                 }
 
+
 def sendRequestRFID(data):
     payload={
         "RFID":data,
@@ -42,6 +45,7 @@ def sendRequestRFID(data):
                 "type":"error"
                 }
 
+
 def enviarArduino(data):
     if data["type"]=="error":
         return "error"
@@ -53,6 +57,7 @@ def enviarArduino(data):
         res=["2"]+data["slots"]
     return (",".join(res)+",")
 
+
 def enviarSerial(data):
     arduino.write(data.encode())
     printf"data sended ${data}"
@@ -61,7 +66,6 @@ def enviarSerial(data):
         continue
     if(recived=="done"):
         print("done")
-
 
 capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
