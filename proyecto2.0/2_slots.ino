@@ -16,6 +16,7 @@
 #define btnGral1 22
 #define buzzer 48
 #define electroIman 41
+#define led_rojo 10
 
 LiquidCrystal_I2C lcd(0x27,20,4);
 MFRC522 rfid(RFID_SS_PIN,RFID_RST_PIN);
@@ -43,6 +44,7 @@ void setup() {
   servoSlot2.attach(3);
   pinMode(ledSlot1, OUTPUT);
   pinMode(ledSlot2, OUTPUT);
+  pinMode(led_rojo, OUTPUT);
   pinMode(btnSlot1, INPUT_PULLUP);
   pinMode(btnSlot2, INPUT_PULLUP);
   pinMode(btnGral1, INPUT_PULLUP);
@@ -64,8 +66,6 @@ List<String> listTranslate(String input){
         temp+=String(input[i]);
     }
   }
-
-
   return lista;
 }
 
@@ -131,8 +131,6 @@ void unico(List<String> lista){
             lcd.clear();
             lcd.print("slot 2 abierto");
             while(stateStart==digitalRead(btnSlot2)){
-
-
             }
             timeStart=millis();
             lcd.clear();
@@ -181,10 +179,10 @@ void multiple(List<String> lista){
     while(!(digitalRead(btnGral1))){
       if(timeStart+40000<=millis()){
         digitalWrite(buzzer, HIGH);
-        lcd.print("por favor cierre la puerta")
+        lcd.print("por favor cierre la puerta");
       }
     }
-    lcd.clear()
+    lcd.clear();
     slot1(false);
     slot2(false);
     digitalWrite(buzzer, LOW);
@@ -197,6 +195,56 @@ void devolucion(String rfid){
 
   }
   serialString=Serial.readStringUntil('\n');
+  if (serialString=="1"){
+    stateStart=digitalRead(btnSlot1);
+            slot1(true);
+            puertaGeneral(true);
+            lcd.clear();
+            lcd.print("slot 1 abierto");
+            while(stateStart==digitalRead(btnSlot1)){
+
+            }
+            timeStart=millis();
+            lcd.clear();
+            lcd.print("por favor cierre la puerta");
+            while(digitalRead(btnGral1)){
+                if (millis()>timeStart+30000){
+                    digitalWrite(buzzer, HIGH);
+                }else{
+                    digitalWrite(buzzer, LOW);
+                }
+            }
+            puertaGeneral(false);
+  }else if(serialString=="2"){
+    stateStart=digitalRead(btnSlot2);
+            slot2(true);
+            puertaGeneral(true);
+            lcd.clear();
+            lcd.print("slot 2 abierto");
+            while(stateStart==digitalRead(btnSlot2)){
+
+
+            }
+            timeStart=millis();
+            lcd.clear();
+            lcd.print("por favor cierre la puerta");
+            while(digitalRead(btnGral1)){
+                if (millis()>timeStart+30000){
+                    digitalWrite(buzzer, HIGH);
+                }else{
+                    digitalWrite(buzzer, LOW);
+                }
+            }
+            puertaGeneral(false);
+  }else{
+    lcd.print("computadora no reconozida");
+    digitalWrite(buzzer, HIGH);
+    delay(2000);
+  }
+  lcd.clear();
+  digitalWrite(buzzer, LOW);
+  slot1(false);
+  slot2(false);
   // analizar la respuesta de back
 }
 
@@ -207,7 +255,7 @@ void loop(){
     serialString=Serial.readStringUntil('\n');
     inputList=listTranslate(serialString);
     if(inputList[0]=="0"){
-      unico(inpuList);
+      unico(inputList);
     }else if(inputList[0]=="1"){
       multiple(inputList);
     }
