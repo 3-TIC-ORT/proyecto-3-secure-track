@@ -11,7 +11,7 @@ arduino = serial.Serial(port='COM5', baudrate=9600, timeout=.1)
 def sendRequestQR(data):
     payload={
         "TOKEN":data,
-        "CARRO_ID":7
+        "CARRO_ID":59
     }
     try:        
         res=req.put("https://secure-track-db.vercel.app/computers/withdrawal",json=payload, headers={'content-type': 'application/json'})
@@ -30,7 +30,7 @@ def sendRequestQR(data):
 def sendRequestRFID(data):
     payload={
         "RFID":data,
-        "CARRO_ID":7
+        "CARRO_ID":59
     }
     try:        
         res=req.put("https://secure-track-db.vercel.app/computers/withdrawal",json=payload, headers={'content-type': 'application/json'})
@@ -51,16 +51,14 @@ def enviarArduino(data):
         return "error"
     if data["type"]=="unico":
         res=["0"]+data["slots"]
-    elif data["type"]=="devMultiple":
+    elif data["type"]=="multiple":
         res=["1"]+data["slots"]
-    elif data["type"]=="retMultiple":
-        res=["2"]+data["slots"]
     return (",".join(res)+",")
 
 
 def enviarSerial(data):
     arduino.write(data.encode())
-    printf"data sended ${data}"
+    printf("data sended ${data}")
     recived=arduino.readLine()
     while(recived==""):
         continue
@@ -83,10 +81,9 @@ while capture.isOpened():
     if arduino.in_waiting > 0:
             data = arduino.readline().decode('utf-8').strip()  # Lee los datos y decodifica
             rfidResponse=sendRequestRFID(data)
-            if(rfidResponse[valid]==True){
+            if rfidResponse[valid]==True:
                 enviarSerial(rfidResponse[slot])
-            }else{
+            else:
                 enviarSerial("error")
-            }
 capture.release()
 cv2.destroyAllWindows()
