@@ -51,22 +51,51 @@ function onTimerFinish() {
 
 
 
-function iniciarQrTimer() {
-    if (user) {
-        const parsedRes = JSON.parse(user); 
+async function onTimer() {
+    loadingScreen.style.display = "flex";
 
-        let img = document.createElement("img");
-        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(parsedRes.tokenId)}`;
-        qr.appendChild(img);
+let data = await fetch("https://secure-track-db.vercel.app/computers/time",
+{
+    method: "POST",
+    mode: "cors",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        token: JSON.parse(res).tokenId,
+    }),
+}
+)
+loadingScreen.style.display = "none";
 
-        text.innerText = `El slot para el retiro es el ${parsedRes.slot}`;
+if ((await data).status === 200) {
+    let horario = await data.json();
+    console.log(horario)
+    horario = 300 - horario.time
+    startTimer(horario, timerDisplay, ()=>{onTimer(); location.href = "../selectorItems.html"});
+}else if ((await data).status === 201) {
+    
 
-        let tiempo = 3000; // segundos
-        startTimer(tiempo, timerDisplay, onTimerFinish);
-    } else {
-        text.innerText = "No se ha encontrado un slot disponible.";
-    }
+    let horario = await data.json();
+    timer.innerText = horario
+    
+}else{
+    location.href = "../selectorItems.html"
 }
 
-window.onload = function () {
-    iniciarQrTimer();}
+}
+
+// Iniciar el temporizador con 5 minutos
+window.onload = async function () {
+if (!user) {
+location.href = "../user.html"
+}
+onTimer()
+};
+
+let img = document.createElement("img")
+img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(JSON.parse(res).tokenId)}`
+qr.appendChild(img)
+text.innerText = `El slot para el retiro es el ${JSON.parse(res).slot}`
+
+
