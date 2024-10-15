@@ -62,24 +62,37 @@ async function fetchClassrooms(building) {
         }
         const data = await response.json();
 
-        const filteredData = data.filter(room => room.roomNumber.startsWith(building === "monta" ? "M" : "L"));
+        const filteredData = data.filter(room => room.room.roomNumber.startsWith(building === "monta" ? "M" : "L"));
         return filteredData;
     } catch (error) {
         location.href("../error.html")
         return [];
     }
 }
+document.getElementById("select-monta").addEventListener("change", () => {
+    updateClassroomsOptions((document.getElementById("select-monta").value), "monta");
+})
+
+document.getElementById("select-libertador").addEventListener("change", () => {
+    updateClassroomsOptions((document.getElementById("select-libertador").value), "libertador");
+})
 
 async function updateClassroomsOptions(piso, edificio) {
     let options = [];
-    console.log(edificio)
+    console.log(edificio);
+    
+    // Aquí accedes al array correcto de acuerdo al edificio y piso seleccionados
     if (edificio === "monta") {
-        options = monta[piso] || [];
-        filterRooms()
+        options = monta[piso] || []; // Si no hay aulas, deja el array vacío
     } else if (edificio === "libertador") {
-        options = libertador[piso] || [];
-        filterRooms()
+        options = libertador[piso] || []; // Lo mismo aquí para Libertador
+    }else{
+        console.log("no hay")
     }
+    console.log(options);
+
+    // Asegúrate de limpiar el contenido previo del selector de aulas
+    classrooms.innerHTML = "";
 
     let classroomOption = document.createElement("option");
     classroomOption.textContent = "Selecciona un aula";
@@ -87,40 +100,29 @@ async function updateClassroomsOptions(piso, edificio) {
     classroomOption.selected = true;
     classrooms.appendChild(classroomOption);
 
-    function filterRooms (){
-        classrooms.innerHTML = ""
+    // Si hay aulas disponibles, las agregamos al selector
+    if (options.length > 0) {
         options.forEach(room => {
             let opt = document.createElement("option");
             opt.value = room.id;
-            opt.textContent = room.roomNumber;
+            opt.textContent = room.room.roomNumber; // El número de aula
             classrooms.appendChild(opt);
         });
-    
-        if (options.length > 0) {
-            classrooms.classList.remove("disactive");
-            confirmButton.style.display = "block";
-            returnButton.style.display = "block";
-        } else {
-            classrooms.classList.add("disactive");
-            confirmButton.style.display = "none";
-            returnButton.style.display = "none";
-            showModal();
-        }
+        classrooms.classList.remove("disactive");
+        confirmButton.style.display = "block";
+        returnButton.style.display = "block";
+    } else {
+        // Si no hay aulas, mostramos el modal
+        classrooms.classList.add("disactive");
+        confirmButton.style.display = "none";
+        returnButton.style.display = "none";
+        showModal();
     }
-    }
+}
 
-selectMonta.addEventListener("change", async () => {
-    const selectedFloor = selectMonta.value.slice(1);
-    monta[selectedFloor] = await fetchClassrooms("monta");
-    updateClassroomsOptions(selectedFloor, "monta");
-});
 
-selectLib.addEventListener("change", async () => {
-    const selectedFloor = selectLib.value.slice(1);
-    libertador[selectedFloor] = await fetchClassrooms("libertador");
-    updateClassroomsOptions(selectedFloor, "libertador");
 
-});
+
 
 
 classrooms.addEventListener("change", checkAllSelected);
@@ -160,6 +162,7 @@ async function requestComputer() {
             }),
         }
     );
+    console.log(await response.json());
 
     const res = JSON.stringify(await response.json());
     if (await response.status == 200) {
@@ -210,7 +213,7 @@ async function initializeClassrooms() {
         for (let key in monta) monta[key] = [];
 
         data.forEach((item) => {
-            const roomNumber = item.roomNumber; 
+            const roomNumber = item.room.roomNumber; 
             const building = roomNumber[0]; 
             const floor = roomNumber.slice(1, 2);
 
