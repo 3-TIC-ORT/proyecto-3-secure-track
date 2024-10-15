@@ -43,24 +43,28 @@
     </header>
     
     <main>
+
+        <div class="cont">
         <div class="qr-container">
             <div class="lineal-qr">
                 <div class="white-qr">
                     <div class="qr" id="qr"></div>
                 </div>
             </div>
+        </div>
+
             <p id="text" class="text"></p>
             <div class="text" id="timer">El QR estará disponible por <span id="time">5:00</span></div>
             <div class="div-button">
-                <button class="button" id="finalizar" aria-label="Finalizar proceso">Finalizar (ya escaneaste)</button>
-                <button class="button" aria-label="Seleccionar otra opción">Otro</button>
+                <button class="button" id="finalizar" aria-label="Finalizar proceso">Ya escanee</button>
+                <button class="button cancelar" aria-label="Seleccionar otra opción">Cancelar</button>
             </div>
         </div>
 
         <div class="modal" id="modal">
             <div class="modal-content">
                 <span class="close-button" id="closeModal">&times;</span>
-                <p id="modal-message">Se acabó tu tiempo, por favor vuelve a elegir el carro deseado.</p>
+                <p id="modal-message">Por favor, utiliza el qr que te proporcionamos!!</p>
                 <div class="div-img">
                     <img src="img/logo.png" alt="logo" height="80px" width="80px">
                 </div>

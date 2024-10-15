@@ -5,6 +5,8 @@ const qr = document.getElementById("qr");
 const timerDisplay = document.getElementById("time"); 
 const parsedRes = JSON.parse(user);
 const finalizar = document.getElementById("finalizar")
+const modal= document.getElementById("modal")
+const closeModal= document.getElementById("closeModal")
 
 
 finalizar.addEventListener("click",async()=>{
@@ -23,9 +25,14 @@ finalizar.addEventListener("click",async()=>{
      if (await data.status === 200) {
         location.href = "../selectorItems.html"
      }else{
-        console.log("No")
+        modal.style.display = "block"
      }
 })
+closeModal.addEventListener("click", close)
+
+function close() {
+    modal.style.display = "none";
+}
 
 function startTimer(duration, display, callback) {
     let timer = duration, minutes, seconds;
@@ -90,7 +97,7 @@ if ((await data).status === 200) {
 // Iniciar el temporizador con 5 minutos
 window.onload = async function () {
 if (!user) {
-location.href = "../user.html"
+location.href = "../accesodenegado.html"
 }
 onTimer()
 };

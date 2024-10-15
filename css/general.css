@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; 
+    overflow-x: hidden; /*barra horizontal oculta */
     margin: 0;
    background: var(--body-background);
 }
@@ -67,8 +68,12 @@ body {
     object-fit: cover;
 }
 
+.modal{
+display: none;
+align-items: center;
+justify-content: center;
+}
 .modal-content {
-    display: none;
     background-color: var(--main-bg-color);
     margin: 15% auto;
     padding: 15px 10px;

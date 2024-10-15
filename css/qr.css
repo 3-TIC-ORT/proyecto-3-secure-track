@@ -18,6 +18,7 @@ main {
     flex-direction: column;
 }
 
+
 .lineal-qr {
     display: flex;
     justify-content: center;
@@ -86,15 +87,15 @@ main {
     :root {
         --tamaño-lineal: 250px; /* Tamaño ajustado para pantallas pequeñas */
         --tamaño-white: 230px; /* Tamaño ajustado para pantallas pequeñas */
-        --radious: 20px; /* Radios de borde reducido */
+        --radious: 20px;
     }
 
     .text {
-        font-size: 18px; /* Tamaño de fuente más pequeño */
+        font-size: 18px; 
     }
 
     .button {
-        padding: 12px 20px; /* Ajuste del padding */
+        padding: 12px 20px; 
         font-size: 14px; 
     }
 
