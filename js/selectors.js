@@ -162,10 +162,11 @@ async function requestComputer() {
             }),
         }
     );
-    console.log(await response.json());
+    
 
     const res = JSON.stringify(await response.json());
-    if (await response.status == 200) {
+    console.log(await res);
+    if (response.status == 200) {
         sessionStorage.setItem("correctKey", res);
         location.href = "../qr.html";
     }

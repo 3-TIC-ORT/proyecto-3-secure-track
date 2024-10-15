@@ -1,5 +1,6 @@
 const text = document.getElementById("text");
-const user = sessionStorage.getItem("correctKey");
+const res = sessionStorage.getItem("correctKey");
+const user = sessionStorage.getItem("userId");
 const qr = document.getElementById("qr");
 const timerDisplay = document.getElementById("time"); 
 const parsedRes = JSON.parse(user);
@@ -7,18 +8,19 @@ const finalizar = document.getElementById("finalizar")
 
 
 finalizar.addEventListener("click",async()=>{
+
     let data = await fetch(`https://secure-track-db.vercel.app/verificar`,{
         method: "POST",
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
         },
-        body:{
-            token: JSON.parse(user).tokenId
-        }
+        body:JSON.stringify({
+            token: (JSON.parse(res).tokenId)
+        })
      })
 
-     if (await data.json().verificado) {
+     if (await data.status === 200) {
         location.href = "../selectorItems.html"
      }else{
         console.log("No")
