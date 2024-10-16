@@ -3,9 +3,8 @@
         // 
         const tbody = document.querySelector('#transaccionesTable tbody');
 
-let go = document.getElementById("go")
-let input = document.getElementById("input")
-go.addEventListener("click", ()=>filtrarTransacciones())
+
+
 async function cargarTransacciones() {
     try {
        
@@ -51,21 +50,69 @@ cargarTransacciones();
     tbody.appendChild(fila);
 }
 
-const alumno= document.getElementById("alumno")
-const ocupacion = document.getElementById("ocupacion")
-const computadora= document.getElementById("aula")
-const estado = document.getElementById("estado")
-const horario = document.getElementById("horario")
-const buscar = document.getElementById("go")
+// const alumno= document.getElementById("alumno")
+// const ocupacion = document.getElementById("ocupacion")
+// const computadora= document.getElementById("aula")
+// const estado = document.getElementById("estado")
+// const horario = document.getElementById("horario")
+// const buscar = document.getElementById("go")
 
-// || ocupacion.value.length > 0 || aula.value.length > 0 || estado.value.length > 0 || horario.value.length > 0 
-alumno.addEventListener("change",()=>{
+// // || ocupacion.value.length > 0 || aula.value.length > 0 || estado.value.length > 0 || horario.value.length > 0 
+// alumno.addEventListener("change",()=>{
     
-        tb.innerHTML=""
-        ocupacion.setAttribute("disabled",true)  
-})
+//         tb.innerHTML=""
+//         ocupacion.setAttribute("disabled",true)  
+// })
 
+// const alumno = document.getElementById("alumno");
+// const ocupacion = document.getElementById("ocupacion");
+// const computadora = document.getElementById("aula");
+// const estado = document.getElementById("estado");
+// const horario = document.getElementById("horario");
 
+// function checkValues() {
+//   // Si alguno de los campos tiene un valor mayor que 0 o no está vacío
+//   if (alumno.value.length > 0 || ocupacion.value.length > 0 || computadora.value.length > 0 || estado.value.length > 0 || horario.value.length > 0) {
+//     if (alumno.value.length > 0) {
+//       ocupacion.setAttribute("disabled", true);
+//       computadora.setAttribute("disabled", true);
+//       estado.setAttribute("disabled", true);
+//       horario.setAttribute("disabled", true);
+//     } else if (ocupacion.value.length > 0) {
+//       alumno.setAttribute("disabled", true);
+//       computadora.setAttribute("disabled", true);
+//       estado.setAttribute("disabled", true);
+//       horario.setAttribute("disabled", true);
+//     } else if (computadora.value.length > 0) {
+//       alumno.setAttribute("disabled", true);
+//       ocupacion.setAttribute("disabled", true);
+//       estado.setAttribute("disabled", true);
+//       horario.setAttribute("disabled", true);
+//     } else if (estado.value.length > 0) {
+//       alumno.setAttribute("disabled", true);
+//       ocupacion.setAttribute("disabled", true);
+//       computadora.setAttribute("disabled", true);
+//       horario.setAttribute("disabled", true);
+//     } else if (horario.value.length > 0) {
+//       alumno.setAttribute("disabled", true);
+//       ocupacion.setAttribute("disabled", true);
+//       computadora.setAttribute("disabled", true);
+//       estado.setAttribute("disabled", true);
+//     }
+//   } else {
+//     alumno.removeAttribute("disabled");
+//     ocupacion.removeAttribute("disabled");
+//     computadora.removeAttribute("disabled");
+//     estado.removeAttribute("disabled");
+//     horario.removeAttribute("disabled");
+//   }
+// }
+
+// alumno.addEventListener("change", checkValues);
+// ocupacion.addEventListener("change", checkValues);
+// computadora.addEventListener("change", checkValues);
+// estado.addEventListener("change", checkValues);
+// horario.addEventListener("change", checkValues);
 
 
 
@@ -100,4 +147,3 @@ async function filtrado() {
     }
 }
 
-//solo escribir en ub 
