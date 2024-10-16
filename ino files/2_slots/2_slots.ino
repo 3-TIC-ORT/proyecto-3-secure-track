@@ -1,18 +1,18 @@
 #include<Servo.h>
-#include <List.hpp>
+#include <LinkedList.h>
+#include<Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include<SPI.h>
 #include<MFRC522.h>
-
 
 #define RFID_RST_PIN 49
 #define RFID_SS_PIN 53
 #define maxValores 5
 #define ledSlot1 34
 #define ledSlot2 36
-#define btnSlot1 31
-#define btnSlot2 33
+#define btnSlot1 29
+#define btnSlot2 31
 #define btnGral1 22
 #define buzzer 48
 #define electroIman 41
@@ -23,8 +23,7 @@ MFRC522 rfid(RFID_SS_PIN,RFID_RST_PIN);
 Servo servoSlot1;
 Servo servoSlot2;
 
-
-List<String> inputList;
+LinkedList<String> inputList = LinkedList<String>();
 int timeStart;
 bool stateStart;
 String uidString="";
@@ -42,6 +41,8 @@ void setup() {
   rfid.PCD_Init();
   servoSlot1.attach(2);
   servoSlot2.attach(3);
+  servoSlot1.write(0);
+  servoSlot2.write(0);
   pinMode(ledSlot1, OUTPUT);
   pinMode(ledSlot2, OUTPUT);
   pinMode(led_rojo, OUTPUT);
@@ -50,11 +51,12 @@ void setup() {
   pinMode(btnGral1, INPUT_PULLUP);
   pinMode(buzzer, OUTPUT);
   pinMode(electroIman, OUTPUT);
+  lcd.print("podes escanear");
 }
 
 
-List<String> listTranslate(String input){
-  List<String> lista;
+LinkedList<String>& listTranslate(String input){
+  LinkedList<String> lista=LinkedList<String>();
   String temp="";
   for(int i=0;i<input.length();i++){
     if(input[i]=="," && temp==""){
@@ -101,8 +103,8 @@ void puertaGeneral(bool state){
 }
 
 
-void unico(List<String> lista){
-    switch(lista[1]){
+void unico(LinkedList<String> &lista){
+    switch(lista.get(1).toInt()){
         case 1:
             stateStart=digitalRead(btnSlot1);
             slot1(true);
@@ -155,24 +157,26 @@ void unico(List<String> lista){
     }
     lcd.clear();
     digitalWrite(buzzer, LOW);
+    puertaGeneral(false);
+    lcd.print("podes escanear");
     slot1(false);
     slot2(false);
 }
 
-void multiple(List<String> lista){
+void multiple(LinkedList<String> &lista){
     puertaGeneral(true);
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("Slots abiertos:");
-    if(lista[1]==1){
+    if(lista.get(1).toInt()==1){
       slot1(true);
       listMsgLcd+="1 ";
-    }if(lista[2]==1){
+    }if(lista.get(2).toInt()==1){
       slot2(true);
       listMsgLcd+="2 ";
     }
     lcd.print(listMsgLcd);
-    while((digitalRead(btnSlot1)==HIGH||lista[1]==1)||(digitalRead(btnSlot2)==HIGH||lista[2]==1)){
+    while((digitalRead(btnSlot1)==HIGH||lista.get(1)=="1")||(digitalRead(btnSlot2)==HIGH||lista.get(2)=="1")){
       
     }
     timeStart=millis();
@@ -187,6 +191,7 @@ void multiple(List<String> lista){
     slot2(false);
     digitalWrite(buzzer, LOW);
     puertaGeneral(false);
+    lcd.print("podes escanear");
 }
 
 void devolucion(String rfid){
@@ -242,6 +247,8 @@ void devolucion(String rfid){
     delay(2000);
   }
   lcd.clear();
+  puertaGeneral(false);
+  lcd.print("podes escanear");
   digitalWrite(buzzer, LOW);
   slot1(false);
   slot2(false);
@@ -251,12 +258,13 @@ void devolucion(String rfid){
 
 void loop(){
   digitalWrite(led_rojo, HIGH);
+  puertaGeneral(false);
   if(Serial.available()>0){
     serialString=Serial.readStringUntil('\n');
     inputList=listTranslate(serialString);
-    if(inputList[0]=="0"){
+    if(inputList.get(0)=="0"){
       unico(inputList);
-    }else if(inputList[0]=="1"){
+    }else if(inputList.get(0)=="1"){
       multiple(inputList);
     }
   }if(rfid.PICC_IsNewCardPresent()){
@@ -268,4 +276,4 @@ void loop(){
       }
       devolucion(uidString);
   digitalWrite(led_rojo, LOW);
-}
+}}}
