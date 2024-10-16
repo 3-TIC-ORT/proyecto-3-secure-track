@@ -103,7 +103,7 @@ function showTab(tabId) {
         sessionStorage.setItem("profilePhoto", selectedAvatar);
     });
 
-    async function logueo_user(user) {
+    async function  logueo_user(user) {
         try {
             let response = await fetch(`https://secure-track-db.vercel.app/users/login`, {
                 method: "POST",
