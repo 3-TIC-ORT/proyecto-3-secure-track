@@ -55,20 +55,24 @@ main {
 }
 
 .decision-tab {
+    display: flex;
+    justify-content: space-around;
+   height: 100%;
     width: 100%;
-    margin-bottom: 10px;
-}
 
+}
 .decision-button {
+    font-family: var(--font-family);
+    font-size: 20px;
     flex: 1;
-    padding: var(--button-padding);
-    background-color: var(--secondary-color);
+    border-radius: 20px;
+    padding: 15px 15px;
+    background-color: #458797; 
     border: none;
+    outline: none;
     cursor: pointer;
     color: #fff;
     transition: background-color 0.3s;
-    font-size: var(--font-size-base);
-    border-radius: var(--border-radius);
 }
 
 .decision-button.active {
@@ -78,7 +82,6 @@ main {
 .decision-button:hover {
     background-color: var(--hover-color);
 }
-
 .content {
     display: none;
     width: 100%;

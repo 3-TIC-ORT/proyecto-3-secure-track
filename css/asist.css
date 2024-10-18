@@ -29,9 +29,7 @@ th, td {
 th {
     color: white;
 }
-tr:hover {
-  text-decoration: underline; 
-}
+
 .container{
 display: flex;
 }

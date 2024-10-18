@@ -18,6 +18,18 @@ main {
     flex-direction: column;
 }
 
+.cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta según tu diseño para centrar verticalmente */
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .lineal-qr {
     display: flex;
@@ -41,10 +53,12 @@ main {
 
 .qr {
     display: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     border-radius: var(--radious);
+    height: 90%; /* Ajusta para que ocupe un 90% del espacio de .white-qr */
+    width: 90%; /* Ajusta para que ocupe un 90% del espacio de .white-qr */
 }
 
 .text {
@@ -81,7 +95,6 @@ main {
     transform: scale(1.1); 
     box-shadow: var(--hover-shadow);
 }
-
 
 @media (max-width: 768px) {
     :root {

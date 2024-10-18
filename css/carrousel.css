@@ -93,3 +93,11 @@
     transition: background-color 0.3s;
 }
 
+@media (max-width: 768px) {
+    .carousel{
+      margin: 60px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    
+}

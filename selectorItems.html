@@ -17,10 +17,6 @@
 </head>
 <body>
     
-<div class="loading-screen" id="loadingScreen">
-    <div class="loader"></div>
-</div>
-
 <header class="header-container"> 
     <a href="index.html" class="logo-title">
         <img id="logo" src="img/logo.png" width="90px" height="90px">
@@ -62,21 +58,27 @@
     </div>
 </section>
 
-
+<div class="loader" id="loadingScreen">
+    <div class="slider">
+        <img src="img/logo.png" alt="loading" class="loading-image">
+    </div>
+</div>
 
 
     <main>
         <div class="decision" id="decision">
-            <div class="building-buttons">
-                <!-- <div class="build"> -->
-                <button class="building" id="monta">MONTAÑESES</button> 
-            <!-- </div> -->
-            <!-- <div class="build"> -->
-                <button class="building" id="libertador">LIBERTADOR</button>
-            <!-- </div> -->
-            </div>
+           
+            <div class="hola">
+                <button class="building" id="monta"><b>MONTAÑESES </b></button> 
+           </div>
+                <div class="hola">
+                <button class="building" id="libertador"> <b>LIBERTADOR</b></button>
+           </div>
+                
         </div>
     
+
+
         <div class="selector-container">
             <select class="select-libertador disactive" id="select-libertador" >
                 <option value="" disabled selected>Selecciona el piso de Libertador</option>
@@ -102,8 +104,8 @@
         </div>
     
         <div class="button-container">
-            <button class="confirmar" id="confirmButton" style="display: none;">DESBLOQUEAR</button>
-            <button class="devolucion" id="returnButton" style="display: none;">DEVOLVER COMPUTADORA</button>
+            <button class="confirmar des" id="confirmButton" style="display: none;">DESBLOQUEAR</button>
+            <button class="devolucion des" id="returnButton" style="display: none;">DEVOLVER COMPUTADORA</button>
         </div>
     </main>
     

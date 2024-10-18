@@ -231,7 +231,7 @@ async function initializeClassrooms() {
         console.log("Aulas de Libertador:", libertador);
 
     } catch (error) {
-        location.href("./error.html")
+        location.href("./error500.html")
     } finally {
         loadingScreen.style.display = "none";
     }

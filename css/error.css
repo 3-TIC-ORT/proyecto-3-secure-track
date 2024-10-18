@@ -1,0 +1,44 @@
+:root{
+    --font-tittle: 'K2D', sans-serif; 
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.cont {
+    display: block;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: 150px; 
+    font-family: var(--font-tittle);
+    margin-bottom: 0px; 
+}
+
+.div-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 0px;
+}
+
+.letras {
+    font-size: 160px; 
+    color: transparent;
+    /* text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);  */
+    -webkit-text-stroke: 7px black; 
+    font-family: var(--font-tittle);
+}
+
+
+@media (max-width: 768px) {
+    h1{
+        font-size: 100px;
+    }
+}

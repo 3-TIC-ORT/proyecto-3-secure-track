@@ -6,8 +6,8 @@ box-sizing: border-box;
     color: white;
 }
 :root{
-    ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    --hover-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+    ---main-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+    --hover-shadow:6px 6px 9px rgba(0, 0, 0, 0.3);
 }
 .div-titulo{
     display: flex;
@@ -63,3 +63,16 @@ box-sizing: border-box;
     box-shadow: var(--hover-shadow) ;
 }
 
+@media (max-width: 768px) {
+    .titulo{
+        font-size: 30px;
+        text-shadow: 0.5px 0.5px 0 rgba(0, 0, 0, 0.8); 
+    -webkit-text-stroke: 0.5px black; 
+    }
+    #logo{ 
+      display: none;
+    }
+    .button{
+font-size: 20px;
+    }
+}

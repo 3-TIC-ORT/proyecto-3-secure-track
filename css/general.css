@@ -17,6 +17,7 @@ body {
     overflow-x: hidden; /*barra horizontal oculta */
     margin: 0;
    background: var(--body-background);
+   background-repeat: no-repeat;
 }
 
 .header-container {
@@ -124,5 +125,4 @@ justify-content: center;
         font-size: 12px;
     }
 }
-
 
