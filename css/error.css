@@ -2,6 +2,13 @@
     --font-tittle: 'K2D', sans-serif; 
 }
 
+body{
+    background: linear-gradient(rgba(7, 9, 168, 1),rgba(0, 85, 192, 0.8), rgba(68, 114, 255, 1));
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; 
+    /* background-repeat: no-repeat; */
+}
 section {
     display: flex;
     justify-content: center;
@@ -17,6 +24,7 @@ h1 {
     color: white;
     font-size: 150px; 
     font-family: var(--font-tittle);
+    margin-top: 0px;
     margin-bottom: 0px; 
 }
 
@@ -36,9 +44,19 @@ h1 {
     font-family: var(--font-tittle);
 }
 
+.text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
 
 @media (max-width: 768px) {
     h1{
         font-size: 100px;
+    }
+    .letras{
+        font-size: 120px;
+    }
+    .text{
+        font-size: 16px;
     }
 }
