@@ -64,8 +64,19 @@ box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
+    /* .div-titulo{
+       display: flex; 
+       justify-content: center;
+       align-items: center;
+    } */
+    .header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7px 3%;
+    }
     .titulo{
-        font-size: 30px;
+        font-size: 35px;
         text-shadow: 0.5px 0.5px 0 rgba(0, 0, 0, 0.8); 
     -webkit-text-stroke: 0.5px black; 
     }

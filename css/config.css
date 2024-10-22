@@ -1,6 +1,6 @@
 :root{
   --box-hover-scale: 1.1;
-  --border:2px solid #080000;
+  --border:2px solid  black;
 }
 
 .Btn {
@@ -29,7 +29,7 @@
 }
 
 .sign svg path {
-  fill: black;
+  fill: rgb(67, 32, 224);
 }
 
 .text {
@@ -44,7 +44,7 @@
 }
 
 .Btn:hover {
-  background-color: black;
+  background-color:  rgb(67, 32, 224);
   width: 125px; 
   border-radius: 40px; 
 }
@@ -131,4 +131,44 @@
   padding: 10px;
   border: var(--border);
   border-radius: 40px;
+}
+
+@media (max-width: 768px) {
+
+  .user-settings {
+    width: 100%; 
+    height: 100vh;
+  }
+
+  /* .information {
+    padding: 20px;
+  } */
+
+  .close-btn {
+    font-size: 40px; 
+    top: 5px; 
+    right: 5px;
+  }
+
+  .user-info {
+    /* flex-direction: column; 
+    align-items: center;  */
+    margin-top: 5%; 
+  }
+
+
+  .div-dni {
+    margin-top: 10px; 
+    text-align: center; 
+  }
+
+  .user {
+    padding: 5px; 
+    font-size: 1em; 
+  }
+
+  .div-log {
+    margin-top: 10%; 
+  }
+
 }

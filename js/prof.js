@@ -1,5 +1,5 @@
 // if (!sessionStorage.getItem("Prof-Key")) {
-//     window.location.href = "../selectorItems.html";
+//     window.location.href = "../accesoDenegado.html";
 // }
 
 
@@ -66,6 +66,7 @@ async function requestComputer() {
             body: JSON.stringify({
                 userId: usuario,
                 cartId: parseInt(classrooms.value),
+                quanti: cantidad.value
             }),
         }
     );

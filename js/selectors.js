@@ -31,7 +31,7 @@ const loadingScreen = document.getElementById("loadingScreen");
  botonL.addEventListener("click", showLibertador);
 
 
-//aparecen los select y se cambia el color de fondo de los botones a rojo
+
 function showMonta() {
     document.querySelector(".select-libertador").classList.add("disactive");
     document.querySelector(".select-monta").classList.remove("disactive");
