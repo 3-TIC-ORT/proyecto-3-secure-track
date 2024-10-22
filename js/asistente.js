@@ -48,7 +48,7 @@ cargarTransacciones();
         <td>${data.token.cart.room.roomNumber}</td>
         <td>${data.computerId}</td>
         <td>${data.token.status}</td>
-        <td>${data.token.createdAt.toString()}</td>
+        <td>${(data.token.createdAt).toString().slice(0,10)}</td>
     `;
     
     tbody.appendChild(fila);
