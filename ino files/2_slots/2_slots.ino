@@ -1,10 +1,9 @@
-#include<Servo.h>
-#include <LinkedList.h>
-#include<Arduino.h>
+#include <Servo.h>
+#include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-#include<SPI.h>
-#include<MFRC522.h>
+#include <SPI.h>
+#include <MFRC522.h>
 
 #define RFID_RST_PIN 49
 #define RFID_SS_PIN 53
@@ -17,26 +16,46 @@
 #define buzzer 48
 #define electroIman 41
 #define led_rojo 10
+#define waitTime 5
 
-LiquidCrystal_I2C lcd(0x27,20,4);
-MFRC522 rfid(RFID_SS_PIN,RFID_RST_PIN);
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+MFRC522 rfid(RFID_SS_PIN, RFID_RST_PIN);
 Servo servoSlot1;
 Servo servoSlot2;
 
-LinkedList<String> inputList = LinkedList<String>();
-int timeStart;
+String inputList[4];
 bool stateStart;
-String uidString="";
-String serialString="";
-String listMsgLcd="";
+String uidString = "";
+String serialString = "";
+String listMsgLcd = "";
+
+void listTranslate(String input, String outputArray[]) {
+  String temp = "";
+  int count = 0;
+  for (int i = 0; i < input.length(); i++) {
+    if (input[i] == ',') {
+      if (count < 3) {
+        outputArray[count] = temp;
+        count++;
+      }
+      temp = "";
+    } else {
+      temp += input[i];
+    }
+  }
+  if (temp != "" && count < 3) {
+    outputArray[count] = temp;
+  }
+}
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   lcd.init();
-  lcd.begin(16,2);
+  lcd.begin(16, 2);
   lcd.backlight();
-  lcd.setCursor(0,0);
+  lcd.setCursor(0, 0);
   SPI.begin();
   rfid.PCD_Init();
   servoSlot1.attach(2);
@@ -55,193 +74,157 @@ void setup() {
 }
 
 
-LinkedList<String>& listTranslate(String input){
-  LinkedList<String> lista=LinkedList<String>();
-  String temp="";
-  for(int i=0;i<input.length();i++){
-    if(input[i]=="," && temp==""){
-      continue;
-    }else if(input[i]==","){
-      lista.add(temp);
-      temp="";
-    }else{
-        temp+=String(input[i]);
-    }
-  }
-  return lista;
-}
 
-
-void slot1(bool state){
-  if(state){
+void slot1(bool state) {
+  if (state) {
     servoSlot1.write(90);
     digitalWrite(ledSlot1, HIGH);
-  }else{
+  } else {
     servoSlot1.write(0);
     digitalWrite(ledSlot1, LOW);
-
-
   }
 }
-void slot2(bool state){
-  if(state){
+void slot2(bool state) {
+  if (state) {
     servoSlot2.write(90);
     digitalWrite(ledSlot2, HIGH);
-  }else{
+  } else {
     servoSlot2.write(0);
     digitalWrite(ledSlot2, LOW);
   }
 }
 
 
-void puertaGeneral(bool state){
-  if(state){
+void puertaGeneral(bool state) {
+  if (state) {
     digitalWrite(electroIman, HIGH);
-  }else{
+  } else {
     digitalWrite(electroIman, LOW);
   }
 }
 
 
-void unico(LinkedList<String> &lista){
-    switch(lista.get(1).toInt()){
-        case 1:
-            stateStart=digitalRead(btnSlot1);
-            slot1(true);
-            puertaGeneral(true);
-            lcd.clear();
-            lcd.print("slot 1 abierto");
-            while(stateStart==digitalRead(btnSlot1)){
-
-            }
-            timeStart=millis();
-            lcd.clear();
-            lcd.print("por favor cierre la puerta");
-            while(digitalRead(btnGral1)){
-                if (millis()>timeStart+30000){
-                    digitalWrite(buzzer, HIGH);
-                }else{
-                    digitalWrite(buzzer, LOW);
-                }
-            }
-            puertaGeneral(false);
-            break;
-        case 2:
-            stateStart=digitalRead(btnSlot2);
-            slot2(true);
-            puertaGeneral(true);
-            lcd.clear();
-            lcd.print("slot 2 abierto");
-            while(stateStart==digitalRead(btnSlot2)){
-            }
-            timeStart=millis();
-            lcd.clear();
-            lcd.print("por favor cierre la puerta");
-            while(digitalRead(btnGral1)){
-                if (millis()>timeStart+30000){
-                    digitalWrite(buzzer, HIGH);
-                }else{
-                    digitalWrite(buzzer, LOW);
-                }
-            }
-            puertaGeneral(false);
-            break;
-        default:
-            lcd.clear();
-            lcd.print("numero de slot no disponible");
-            digitalWrite(buzzer, HIGH);
-            delay(1000);
-            digitalWrite(buzzer, LOW);
-            lcd.clear();
-            break;
-    }
-    lcd.clear();
-    digitalWrite(buzzer, LOW);
-    puertaGeneral(false);
-    lcd.print("podes escanear");
-    slot1(false);
-    slot2(false);
+void unico(String lista[4]) {
+  switch (lista[1].toInt()) {
+    case 1:
+      stateStart = digitalRead(btnSlot1);
+      slot1(true);
+      puertaGeneral(true);
+      lcd.clear();
+      lcd.print("slot 1 abierto");
+      while (stateStart == digitalRead(btnSlot1)) {
+      }
+      lcd.clear();
+      lcd.print("por favor cierre la puerta");
+      while (digitalRead(btnGral1)) {
+        
+      }
+      puertaGeneral(false);
+      break;
+    case 2:
+      stateStart = digitalRead(btnSlot2);
+      slot2(true);
+      puertaGeneral(true);
+      lcd.clear();
+      lcd.print("slot 2 abierto");
+      while (stateStart == digitalRead(btnSlot2)) {
+      }
+      lcd.clear();
+      lcd.print("por favor cierre la puerta");
+      while (digitalRead(btnGral1)) {
+        
+      }
+      puertaGeneral(false);
+      break;
+    default:
+      lcd.clear();
+      lcd.print("numero de slot no disponible");
+      digitalWrite(buzzer, HIGH);
+      delay(1000);
+      digitalWrite(buzzer, LOW);
+      lcd.clear();
+      break;
+  }
+  lcd.clear();
+  digitalWrite(buzzer, LOW);
+  puertaGeneral(false);
+  lcd.print("podes escanear");
+  slot1(false);
+  slot2(false);
 }
 
-void multiple(LinkedList<String> &lista){
+void multiple(String lista[4]) {
+  puertaGeneral(true);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  listMsgLcd="";
+  lcd.print("Slots:");
+  if (lista[1].toInt() == 1) {
+    slot1(true);
+    listMsgLcd += "1 ";
+  }
+  if (lista[2].toInt() == 1) {
+    slot2(true);
+    listMsgLcd += "2 ";
+  }
+  lcd.print(listMsgLcd);
+  while (true) {
+    if(digitalRead(btnSlot1)==LOW || lista[1]=="0"){
+      if(digitalRead(btnSlot2)==LOW || lista[2]=="0"){
+        break;
+      } 
+    }
+  }
+  lcd.clear();
+  lcd.print("por favor cierre la puerta");
+  while (digitalRead(btnGral1)) {
+    
+  }
+  lcd.clear();
+  slot1(false);
+  slot2(false);
+  digitalWrite(buzzer, LOW);
+  puertaGeneral(false);
+  lcd.print("podes escanear");
+}
+
+void devolucion(String rfid) {
+  Serial.println(rfid);
+  lcd.clear();
+  lcd.print("procesando ...");
+  while (Serial.available() == 0) {
+  }
+  serialString = Serial.readStringUntil('\n');
+  if (serialString == "1") {
+    stateStart = digitalRead(btnSlot1);
+    slot1(true);
     puertaGeneral(true);
     lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print("Slots abiertos:");
-    if(lista.get(1).toInt()==1){
-      slot1(true);
-      listMsgLcd+="1 ";
-    }if(lista.get(2).toInt()==1){
-      slot2(true);
-      listMsgLcd+="2 ";
-    }
-    lcd.print(listMsgLcd);
-    while((digitalRead(btnSlot1)==HIGH||lista.get(1)=="1")||(digitalRead(btnSlot2)==HIGH||lista.get(2)=="1")){
-      
-    }
-    timeStart=millis();
-    while(!(digitalRead(btnGral1))){
-      if(timeStart+40000<=millis()){
-        digitalWrite(buzzer, HIGH);
-        lcd.print("por favor cierre la puerta");
-      }
+    lcd.print("slot 1 abierto");
+    while (stateStart == digitalRead(btnSlot1)) {
     }
     lcd.clear();
-    slot1(false);
-    slot2(false);
-    digitalWrite(buzzer, LOW);
+    lcd.print("por favor cierre la puerta");
+    while (digitalRead(btnGral1)) {
+      
+    }
     puertaGeneral(false);
-    lcd.print("podes escanear");
-}
+  } else if (serialString == "2") {
+    stateStart = digitalRead(btnSlot2);
+    slot2(true);
+    puertaGeneral(true);
+    lcd.clear();
+    lcd.print("slot 2 abierto");
+    while (stateStart == digitalRead(btnSlot2)) {
 
-void devolucion(String rfid){
-  Serial.print(rfid);
-  while(Serial.available()==0){
-
-  }
-  serialString=Serial.readStringUntil('\n');
-  if (serialString=="1"){
-    stateStart=digitalRead(btnSlot1);
-            slot1(true);
-            puertaGeneral(true);
-            lcd.clear();
-            lcd.print("slot 1 abierto");
-            while(stateStart==digitalRead(btnSlot1)){
-
-            }
-            timeStart=millis();
-            lcd.clear();
-            lcd.print("por favor cierre la puerta");
-            while(digitalRead(btnGral1)){
-                if (millis()>timeStart+30000){
-                    digitalWrite(buzzer, HIGH);
-                }else{
-                    digitalWrite(buzzer, LOW);
-                }
-            }
-            puertaGeneral(false);
-  }else if(serialString=="2"){
-    stateStart=digitalRead(btnSlot2);
-            slot2(true);
-            puertaGeneral(true);
-            lcd.clear();
-            lcd.print("slot 2 abierto");
-            while(stateStart==digitalRead(btnSlot2)){
-
-
-            }
-            timeStart=millis();
-            lcd.clear();
-            lcd.print("por favor cierre la puerta");
-            while(digitalRead(btnGral1)){
-                if (millis()>timeStart+30000){
-                    digitalWrite(buzzer, HIGH);
-                }else{
-                    digitalWrite(buzzer, LOW);
-                }
-            }
-            puertaGeneral(false);
-  }else{
+    }
+    lcd.clear();
+    lcd.print("por favor cierre la puerta");
+    while (digitalRead(btnGral1)) {
+      
+    }
+    puertaGeneral(false);
+  } else {
     lcd.print("computadora no reconozida");
     digitalWrite(buzzer, HIGH);
     delay(2000);
@@ -252,28 +235,34 @@ void devolucion(String rfid){
   digitalWrite(buzzer, LOW);
   slot1(false);
   slot2(false);
-  // analizar la respuesta de back
 }
 
 
-void loop(){
+void loop() {
+  serialString="";
+  for(int i=0;i<4;i++){
+    inputList[i]="";
+  }
   digitalWrite(led_rojo, HIGH);
   puertaGeneral(false);
-  if(Serial.available()>0){
-    serialString=Serial.readStringUntil('\n');
-    inputList=listTranslate(serialString);
-    if(inputList.get(0)=="0"){
+  if (Serial.available() > 0) {
+    serialString = Serial.readStringUntil('\n');
+    listTranslate(serialString, inputList);
+    if (inputList[0] == "0") {
       unico(inputList);
-    }else if(inputList.get(0)=="1"){
+    } else if (inputList[0] == "1") {
       multiple(inputList);
     }
-  }if(rfid.PICC_IsNewCardPresent()){
-    if(rfid.PICC_ReadCardSerial()){
-      uidString="";
+  }
+  if (rfid.PICC_IsNewCardPresent()) {
+    if (rfid.PICC_ReadCardSerial()) {
+      uidString = "";
       for (byte i = 0; i < rfid.uid.size; i++) {
         uidString += String(rfid.uid.uidByte[i] < 0x10 ? "0" : "");
         uidString += String(rfid.uid.uidByte[i], HEX);
       }
       devolucion(uidString);
-  digitalWrite(led_rojo, LOW);
-}}}
+      digitalWrite(led_rojo, LOW);
+    }
+  }
+}
