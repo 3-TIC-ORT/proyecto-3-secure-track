@@ -7,7 +7,7 @@
 }
 
 body {
-    overflow-x: hidden; /*barra horizontal oculta */
+    overflow-x: hidden; 
     margin: 0; 
 }
 
@@ -22,7 +22,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ajusta según tu diseño para centrar verticalmente */
+    height: 100vh; 
 }
 
 .qr-container {
@@ -57,8 +57,8 @@ main {
     align-items: center;
     background-color: white;
     border-radius: var(--radious);
-    height: 90%; /* Ajusta para que ocupe un 90% del espacio de .white-qr */
-    width: 90%; /* Ajusta para que ocupe un 90% del espacio de .white-qr */
+    height: 90%; 
+    width: 90%; 
 }
 
 .text {
@@ -74,7 +74,8 @@ main {
     justify-content: center; 
     align-items: center; 
     gap: 10px;
-    flex-wrap: wrap; 
+    flex-direction: column;
+    /* flex-wrap: wrap;  */
 }
 
 .button {
@@ -98,8 +99,8 @@ main {
 
 @media (max-width: 768px) {
     :root {
-        --tamaño-lineal: 250px; /* Tamaño ajustado para pantallas pequeñas */
-        --tamaño-white: 230px; /* Tamaño ajustado para pantallas pequeñas */
+        --tamaño-lineal: 250px;
+        --tamaño-white: 230px;
         --radious: 20px;
     }
 
@@ -122,8 +123,8 @@ main {
     }
 
     .qr {
-        margin-top: 10px; /* Espacio entre QR */
-        margin-bottom: 10px; /* Espacio entre QR */
-        width: 100%; /* Asegura que el QR use el 100% del contenedor */
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+        width: 100%; 
     }
 }

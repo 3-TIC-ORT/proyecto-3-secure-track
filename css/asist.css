@@ -9,7 +9,16 @@
     --box-shadow: rgba(0, 0, 0, 0.1);
     --box-shadow-focus: rgba(0, 0, 0, 0.15);
 }
-
+/* .div-titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.titulo{
+    font-size: 60px;
+    text-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.8); 
+    -webkit-text-stroke: 1.5px black;
+}
 main{
     color: var(--main-color);
 }
@@ -56,7 +65,9 @@ justify-content: space-around;
     padding: 5px;
     font-size: 16px;
     width: 100%;
-
+font-size: 16px;
+font-family: var(--font-tittle);
+text-align: justify;
     background-color: var(--input-background);
     box-shadow: inset 2px 5px 10px var(--box-shadow);
     transition: all 300ms ease-in-out;
