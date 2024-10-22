@@ -29,10 +29,13 @@ th, td {
 th {
     color: white;
 }
+.special::selection{
+    color: black;
+    background-color: #ddd;
+}
 
 .container{
 display: flex;
-
 }
 
 .div-input{
