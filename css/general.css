@@ -18,6 +18,7 @@ body {
     margin: 0;
    background: var(--body-background);
    background-repeat: no-repeat;
+   background-size: cover;
 }
 
 .header-container {
@@ -115,6 +116,10 @@ justify-content: center;
     .footer-links a {
         margin: 0 15px;
     }
+    .image-user {
+        width: 90px;
+        height: 90px;}
+
 }
 
 @media (max-width: 768px) {

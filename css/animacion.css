@@ -36,6 +36,9 @@
   .fade span:nth-child(even) {
       animation-delay: 0.2s;
   }
+  .disactive{
+    display: none;
+  }
   
   @keyframes fade {
       0% { opacity: 1; }
@@ -49,10 +52,21 @@
     z-index: 1000;
 }
 @media (max-width: 768px) {
-    .div-fade{
-        margin: 1%;
+    .div-fade {
+        margin: 0;
+        width: 100%; 
+        overflow: hidden;
     }
-.fade span{
-    font-size: 45px;
-}
+    
+    .fade span {
+        font-size: 40px; 
+    }
+    
+    .fade h1 {
+        word-spacing: 0.2em; 
+    }
+    
+    .phone {
+        display: block;
+    }
 }

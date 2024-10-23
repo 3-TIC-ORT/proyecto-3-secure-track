@@ -133,11 +133,14 @@ color: black;
   display: block;
 }
 .user{
-  padding: 10px;
+  padding:  3px 10px;
   border: var(--border);
-  border-radius: 40px;
+  border-radius: 30px;
 }
 
+.user:hover, .avatar:hover{
+border-color: blue;
+}
 @media (max-width: 768px) {
 
   .user-settings {
