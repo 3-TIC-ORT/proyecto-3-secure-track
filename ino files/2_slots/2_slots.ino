@@ -105,6 +105,7 @@ void puertaGeneral(bool state) {
 
 
 void unico(String lista[4]) {
+  int timeStart;
   switch (lista[1].toInt()) {
     case 1:
       stateStart = digitalRead(btnSlot1);
@@ -116,8 +117,11 @@ void unico(String lista[4]) {
       }
       lcd.clear();
       lcd.print("por favor cierre la puerta");
+      timeStart=millis();
       while (digitalRead(btnGral1)) {
-        
+        if (millis() - timeStart > 5000) {
+          digitalWrite(buzzer, HIGH);
+        }
       }
       puertaGeneral(false);
       break;
@@ -131,8 +135,11 @@ void unico(String lista[4]) {
       }
       lcd.clear();
       lcd.print("por favor cierre la puerta");
+      timeStart=millis();
       while (digitalRead(btnGral1)) {
-        
+        if (millis() - timeStart > 5000) {
+          digitalWrite(buzzer, HIGH);
+        }
       }
       puertaGeneral(false);
       break;
@@ -154,6 +161,7 @@ void unico(String lista[4]) {
 }
 
 void multiple(String lista[4]) {
+  int timeStart;
   puertaGeneral(true);
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -177,9 +185,12 @@ void multiple(String lista[4]) {
   }
   lcd.clear();
   lcd.print("por favor cierre la puerta");
-  while (digitalRead(btnGral1)) {
-    
-  }
+  timeStart=millis();
+      while (digitalRead(btnGral1)) {
+        if (millis() - timeStart > 5000) {
+          digitalWrite(buzzer, HIGH);
+        }
+      }
   lcd.clear();
   slot1(false);
   slot2(false);
@@ -189,6 +200,7 @@ void multiple(String lista[4]) {
 }
 
 void devolucion(String rfid) {
+  int timeStart;
   Serial.println(rfid);
   lcd.clear();
   lcd.print("procesando ...");
@@ -205,9 +217,12 @@ void devolucion(String rfid) {
     }
     lcd.clear();
     lcd.print("por favor cierre la puerta");
-    while (digitalRead(btnGral1)) {
-      
-    }
+    timeStart=millis();
+      while (digitalRead(btnGral1)) {
+        if (millis() - timeStart > 5000) {
+          digitalWrite(buzzer, HIGH);
+        }
+      }
     puertaGeneral(false);
   } else if (serialString == "2") {
     stateStart = digitalRead(btnSlot2);
@@ -220,9 +235,12 @@ void devolucion(String rfid) {
     }
     lcd.clear();
     lcd.print("por favor cierre la puerta");
-    while (digitalRead(btnGral1)) {
-      
-    }
+    timeStart=millis();
+      while (digitalRead(btnGral1)) {
+        if (millis() - timeStart > 5000) {
+          digitalWrite(buzzer, HIGH);
+        }
+      }
     puertaGeneral(false);
   } else {
     lcd.print("computadora no reconozida");
@@ -252,6 +270,10 @@ void loop() {
       unico(inputList);
     } else if (inputList[0] == "1") {
       multiple(inputList);
+    }else if(inputList[0]=="5"){
+      lcd.print(inputList[1]);
+      delay(3000);
+      lcd.clear();
     }
   }
   if (rfid.PICC_IsNewCardPresent()) {

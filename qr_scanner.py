@@ -4,8 +4,8 @@ import requests as req
 import json
 import serial
 
-arduino = serial.Serial(port='COM10', baudrate=9600, timeout=.1)
-carro=1
+arduino = serial.Serial(port='COM8', baudrate=9600, timeout=.1)
+carro=73 #  M 110
 def sendRequestQR(data):
     payload = {
         "token": data,
@@ -17,10 +17,9 @@ def sendRequestQR(data):
         if res.status_code == 200: 
             return res.json()
         else:
-            return {"type": "error"} 
+            return res.json()
     except Exception as e:
-        print(f"Error en la petición QR: {e}")
-        return {"type": "error"}
+        print(e)
 
 def sendRequestRFID(data):
     payload = {
@@ -33,13 +32,13 @@ def sendRequestRFID(data):
         if res.status_code == 200:
             return res.json() 
         else:
+            return res.json()
     except Exception as e:
-        print(f"Error en la petición RFID: {e}")
-        return {"type": "error"}
+        print(e)
 
 def traducirArduino(data):
     if data["type"]=="error":
-        return "error"
+        res=["5"]+data["error"]
     if data["type"]=="unico":
         res=["0"]+data["slots"]
     elif data["type"]=="multiple":
@@ -57,6 +56,7 @@ capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
 
 while capture.isOpened():
+    ret, frame = capture.read()
     cv2.imshow("webcam", frame) 
     
     if cv2.waitKey(1) == ord("q"):
