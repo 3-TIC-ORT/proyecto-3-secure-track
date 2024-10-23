@@ -116,7 +116,7 @@ function showTab(tabId) {
            
             if (response.status === 200) {
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
-                sessionStorage.setItem("userId", data.id);
+                sessionStorage.setItem("userId", data);
                 sessionStorage.setItem("profilePhoto", data.avatar);
                 console.log(data.avatar)
                 setTimeout(() => {

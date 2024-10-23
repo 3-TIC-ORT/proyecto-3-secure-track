@@ -142,26 +142,50 @@ confirmButton.addEventListener("click", () => requestComputer());
 returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
-    console.log(
-        JSON.stringify({
-            userId: usuario,
-            cartId: parseInt(classrooms.value),
-        })
-    );
-    const response = await fetch(
-        `https://secure-track-db.vercel.app/computers/request`,
-        {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                userId: usuario,
+    if (usuario.occupation === "Estudiante") {
+        console.log(
+            JSON.stringify({
+                userId: usuario.id,
                 cartId: parseInt(classrooms.value),
-            }),
-        }
-    );
+            })
+        );
+        const response = await fetch(
+            `https://secure-track-db.vercel.app/computers/request`,
+            {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: usuario.id,
+                    cartId: parseInt(classrooms.value),
+                }),
+            }
+        );
+    }else if(usuario.occupation === "Profesor"){
+        console.log(
+            JSON.stringify({
+                userId: usuario.id,
+                cartId: parseInt(classrooms.value),
+            })
+        );
+        const response = await fetch(
+            `https://secure-track-db.vercel.app/professor/request`,
+            {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: usuario.id,
+                    cartId: parseInt(classrooms.value),
+                }),
+            }
+        );
+
+    }
     
 
     const res = JSON.stringify(await response.json());
@@ -175,7 +199,7 @@ async function requestComputer() {
 async function returnComputer() {
     console.log(
         JSON.stringify({
-            userId: usuario,
+            userId: usuario.id,
             cartId: parseInt(classrooms.value),
         })
     );
@@ -188,7 +212,7 @@ async function returnComputer() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: usuario,
+                userId: usuario.id,
                 cartId: parseInt(classrooms.value),
             }),
         }
