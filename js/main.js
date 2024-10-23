@@ -115,8 +115,10 @@ function showTab(tabId) {
             let data = await response.json();
            
             if (response.status === 200) {
+                console.log(data)
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
-                sessionStorage.setItem("userId", data);
+                sessionStorage.setItem("userId", data.id);
+                sessionStorage.setItem("occupation", data.occupation)
                 sessionStorage.setItem("profilePhoto", data.avatar);
                 console.log(data.avatar)
                 setTimeout(() => {
@@ -125,7 +127,7 @@ function showTab(tabId) {
                     } else if (data.occupation === "Asistente") {
                         location.href = "../asistente.html";
                     } else if (data.occupation === "Profesor") {
-                        location.href = "../profesor.html";
+                        location.href = "../selectorItems.html";
                     }
                 }, 2000);
             } else {

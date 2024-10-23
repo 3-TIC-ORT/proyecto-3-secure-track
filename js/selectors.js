@@ -1,5 +1,6 @@
 import { getCarros } from "./repository.js";
-let usuario = sessionStorage.getItem("userId");
+let usuario = (sessionStorage.getItem("userId"));
+let occupation = sessionStorage.getItem("occupation")
 if (!usuario) {
     window.location.href = "accesodenegado.html";
 }
@@ -142,7 +143,7 @@ confirmButton.addEventListener("click", () => requestComputer());
 returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
-    if (usuario.occupation === "Estudiante") {
+    if (occupation === "Estudiante") {
         console.log(
             JSON.stringify({
                 userId: usuario.id,
@@ -163,10 +164,16 @@ async function requestComputer() {
                 }),
             }
         );
-    }else if(usuario.occupation === "Profesor"){
+        const res = JSON.stringify(await response.json());
+        console.log(await res);
+        if (response.status == 200) {
+            sessionStorage.setItem("correctKey", res);
+            location.href = "../qr.html";
+        }
+    }else if(occupation === "Profesor"){
         console.log(
             JSON.stringify({
-                userId: usuario.id,
+                userId: usuario,
                 cartId: parseInt(classrooms.value),
             })
         );
@@ -179,21 +186,23 @@ async function requestComputer() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    userId: usuario.id,
+                    userId: usuario,
                     cartId: parseInt(classrooms.value),
                 }),
             }
         );
-
+        const res = JSON.stringify(await response.json());
+        console.log(await res);
+        if (response.status == 200) {
+            sessionStorage.setItem("correctKey", res);
+            location.href = "../qr.html";
+        }
+    }else{
+        console.log("No")
     }
     
 
-    const res = JSON.stringify(await response.json());
-    console.log(await res);
-    if (response.status == 200) {
-        sessionStorage.setItem("correctKey", res);
-        location.href = "../qr.html";
-    }
+
 }
 
 async function returnComputer() {

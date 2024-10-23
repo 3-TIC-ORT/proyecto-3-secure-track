@@ -83,6 +83,9 @@
     z-index: 1000; 
     display: none; 
 }
+.div-dni{
+color: black;
+}
 
 .information {
     padding: 20px; 

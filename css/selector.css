@@ -50,7 +50,7 @@ main {
 .building {
     font-family: var(--font-tittle);
     padding: 10px 19px;
-    border-radius: 13px; 
+    border-radius: 15px; 
     background-color: var(--main-bg-color);
     font-size: var(--font-size-base);
     cursor: pointer;
@@ -65,10 +65,14 @@ main {
 }
 
 select {
+    text-align: center;
+    font-family: var(--font-tittle);
+    font-size: 25px;
+   font-weight: bold;
     width: 100%;
     padding: var(--padding-base);
     border-radius: 8px;
-    border: 2px solid var(--button-hover-bg);
+    border: 3px solid var(--border-color);
     font-size: var(--font-size-base);
 }
 

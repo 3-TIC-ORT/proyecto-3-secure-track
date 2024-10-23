@@ -99,8 +99,8 @@ main {
 
 @media (max-width: 768px) {
     :root {
-        --tamaño-lineal: 250px;
-        --tamaño-white: 230px;
+        --tamaño-lineal: 230px;
+        --tamaño-white: 200px;
         --radious: 20px;
     }
 

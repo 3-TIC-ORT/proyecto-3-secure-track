@@ -6,6 +6,7 @@
     <title>Secure Track</title>
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/asist.css">
+    <link rel="stylesheet" href="css/config.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/loading.css">
     <link rel="icon" type="image/png" href="img/logo.png">
@@ -21,15 +22,44 @@
     </div>
     
     
-    <header class="header-container"> 
-        <a href="index.html" class="logo-title">
-            <img id="logo" src="img/logo.png" width="90px" height="90px">
-
-            <div class="div-titulo">
-            <h1 class="titulo">SECURE TRACK</h1>
+  <header class="header-container"> 
+    <a href="index.html" class="logo-title">
+        <img id="logo" src="img/logo.png" width="130px" height="130px">
+        <h1 class="titulo">SECURE TRACK</h1>
+    </a> 
+    <div class="image-user" id="div-image" style="display: none;">
+       <img id="image-user" style="display: none;" alt="Profile Photo" />
+    </div>
+</header>
+<section id="userSettings" class="user-settings">
+    <button class="close-btn" id="closeBtn">&times;</button> 
+    <div class="information">
+        <div class="user-info">
+            <div class="div-dni">
+                <p class="user">USUARIO</p>
+                <p class="dni" id="dni"></p>
+            </div>
+            <img src="" alt="avatar" class="avatar" id="avatar"> 
         </div>
-        </a> 
-    </header>
+
+        <details>
+            <summary class="ver-transecciones">Ver mis transacciones pasadas</summary>
+            <p class="p-transecciones">Aquí aparecerán sus transacciones</p>
+        </details>
+        
+
+        <div class="div-log">
+            <button class="Btn" id="logoutBtn">
+                <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                </div>
+                <div class="text"></div>
+            </button>
+        </div>
+    </div>
+</section>
  <main>
     
 
@@ -37,12 +67,13 @@
 
 
        <div class="div-input">
-        <input type="text" placeholder="Alumno" class="input" id="alumno">
-        <input type="text" placeholder="Ocupacion" class="input" id="ocupacion">
-        <input type="text" placeholder="Aula" class="input" id="aula">
         <input type="text" placeholder="N° de Computadora" class="input" id="computadora">
-        <input type="text" placeholder="Estado" class="input" id="estado">
+        <input type="text" placeholder="Ocupacion" class="input" id="ocupacion">
+        <input type="text" placeholder="Usuario" class="input" id="alumno">
+        <input type="text" placeholder="Aula" class="input" id="aula">
         <input type="date" placeholder="Horario" class="input" id="horario">
+        <input type="text" placeholder="Estado" class="input" id="estado">
+     
         <button class="search-button" id="go"> Buscar </button>
     </div>
 
@@ -76,5 +107,6 @@
         </div>
     </footer>
     <script src="js/asistente.js"></script>
+    <script src="js/user.js"></script>
 </body>
 </html>
