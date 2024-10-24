@@ -1,0 +1,103 @@
+:root {
+    --carousel-width: 75%;
+    --carousel-height: 350px;
+    --carousel-margin-top: 2%;
+    --control-bg-color: transparent; 
+    --control-border-color: black; 
+    --carousel-border-color: linear-gradient(180deg,rgb(47, 76, 163),  rgba(4, 67, 143, 0.8), rgb(4, 5, 109), ); 
+    --control-hover-bg-color: rgba(0, 0, 0, 0.2); 
+    --border-radius: 15px;
+}
+
+.container {
+    width: var(--carousel-width);
+    height: var(--carousel-height);
+    border-radius: var(--border-radius);
+    background-color: var(--carousel-border-color);
+    position: relative;
+    margin: auto;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3); 
+    border: 5px solid transparent;
+    background-clip: padding-box; 
+}
+
+.container2 {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+}
+
+.carousel {
+    width: 95%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.carousel-inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: black;
+    border-radius: var(--border-radius); 
+}
+
+/* Colors for carousel items */
+.color1 { background-color: white; }
+.color2 { background-color: rgb(204, 202, 202); }
+.color3 { background-color: rgb(178, 178, 180); }
+.color4 { background-color: rgb(85, 84, 83); }
+.color5 { background-color: rgb(153, 147, 153); }
+
+/* Control styles */
+.control {
+    background-color: transparent;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#prevBtn, #nextBtn {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px;
+}
+
+#prevBtn img, #nextBtn img {
+    width: 40px; /* Adjust arrow size */
+    height: 40px;
+}
+
+.control:hover {
+    background-color: var(--control-hover-bg-color);
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+@media (max-width: 768px) {
+    .carousel{
+      margin: 60px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    
+}

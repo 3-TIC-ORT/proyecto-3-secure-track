@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    function showTab(tabId) {
+function showTab(tabId) {
         document.querySelectorAll(".content").forEach(tab => {
             tab.classList.remove("active");
         });
@@ -9,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             button.classList.remove("active");
         });
         document.getElementById("button-" + tabId).classList.add("active");
+        clearMessages();
     }
 
     function showError(message) {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let hash = window.location.hash.substring(1);
     showTab(hash || "login");
 
-    document.getElementById("login-form").addEventListener("submit", function(event) {
+    document.getElementById("submit-login").addEventListener("click", function(event) {
         event.preventDefault();
         clearMessages();
         
@@ -51,10 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        logueo_user({ username, password });
+        sessionStorage.setItem("username", username); // Guardar el username correctamente
+        logueo_user({ username: username, password: password });
     });
 
-    document.getElementById("register-form").addEventListener("submit", function(event) {
+    document.getElementById("submit-register").addEventListener("click", function(event) {
         event.preventDefault();
         clearMessages();
 
@@ -66,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        register_user({ username: dni, password });
+        sessionStorage.setItem("dni", dni); // Asegúrate de usar "dni" en minúsculas
+        register_user({ username: dni, password: password, avatar: avatarSelect.value });
     });
 
     async function register_user(user) {
@@ -82,19 +84,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
-                localStorage.setItem("userId", data.id);
+                sessionStorage.setItem("userId", data.id);
+                sessionStorage.setItem("occupation", "Estudiante");
+                sessionStorage.setItem("profilePhoto", data.avatar);
+               
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
             } else {
-                showError(data.message || "Error en el registro.");
+                showError(data.message || "Error en el registro");
             }
         } catch (error) {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
 
-    async function logueo_user(user) {
+    let avatarSelect = document.getElementById("avatar");
+    avatarSelect.addEventListener("change", function () {
+        const selectedAvatar = this.value;
+        sessionStorage.setItem("profilePhoto", selectedAvatar);
+    });
+
+    async function  logueo_user(user) {
         try {
             let response = await fetch(`https://secure-track-db.vercel.app/users/login`, {
                 method: "POST",
@@ -104,19 +115,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: JSON.stringify(user)
             });
             let data = await response.json();
-
+           
             if (response.status === 200) {
+                console.log(data)
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
-                localStorage.setItem("userId", data.id);
-                setTimeout(() => {
+                sessionStorage.setItem("userId", data.id);
+                sessionStorage.setItem("occupation", data.occupation)
+                sessionStorage.setItem("profilePhoto", data.avatar);
+                sessionStorage.setItem("status", data.status);
+                console.log(data.avatar)
+                
                     if (data.occupation === "Estudiante") {
                         location.href = "../selectorItems.html";
                     } else if (data.occupation === "Asistente") {
                         location.href = "../asistente.html";
                     } else if (data.occupation === "Profesor") {
-                        location.href = "../profesor.html";
+                        location.href = "../selectorItems.html";
                     }
-                }, 2000);
+              
             } else {
                 showError(data.message || "Usuario o contraseña incorrectos.");
             }
@@ -124,4 +140,4 @@ document.addEventListener("DOMContentLoaded", function() {
             showError("Error en el servidor. Inténtelo de nuevo.");
         }
     }
-});
+

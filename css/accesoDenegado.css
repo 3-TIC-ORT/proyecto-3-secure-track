@@ -1,0 +1,140 @@
+:root {
+    --font-family: 'Arial', sans-serif;
+    --background-color: #e8f5f5;
+    --container-width: 700px;
+    --container-padding: 20px;
+    --container-bg-color: #fff;
+    --container-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --container-border-radius: 8px;
+    --monitor-border-color: #ccc;
+    --monitor-border-width: 5px;
+    --monitor-bg-color: #f9f9f9;
+    --monitor-border-radius: 10px;
+    --text-color-light: #666;
+    --header-font-size: 14px;
+    --screen-padding: 30px;
+    --stop-sign-font-size: 60px;
+    --heading-font-size: 32px;
+    --heading-color: #dc3545;
+    --description-font-size: 16px;
+    --button-padding: 10px 20px;
+    --button-font-size: 16px;
+    --button-border-radius: 5px;
+    --button-text-color: white;
+    --secup-bg-color: #28a745;
+    --stop-bg-color: #dc3545;
+    --guard-width: 100px;
+    --guard-height: 200px;
+    --guard-bg-color: #004085;
+    --guard-border-radius: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    position: relative;
+    width: var(--container-width);
+    padding: var(--container-padding);
+    background-color: var(--container-bg-color);
+    box-shadow: var(--container-shadow);
+    border-radius: var(--container-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.monitor {
+    width: 100%;
+    border: var(--monitor-border-width) solid var(--monitor-border-color);
+    border-radius: var(--monitor-border-radius);
+    background-color: var(--monitor-bg-color);
+    padding: var(--screen-padding);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--header-font-size);
+    color: var(--text-color-light);
+    margin-bottom: 10px;
+}
+
+.screen {
+    padding: var(--screen-padding);
+}
+
+.stop-sign {
+    font-size: var(--stop-sign-font-size);
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: var(--heading-font-size);
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: var(--description-font-size);
+    color: var(--text-color-light);
+    margin-bottom: 30px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.secup-btn, .stop-btn {
+    padding: var(--button-padding);
+    font-size: var(--button-font-size);
+    border: none;
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    color: var(--button-text-color);
+}
+
+.secup-btn {
+    text-decoration: none;
+    background-color: var(--secup-bg-color);
+}
+
+.stop-btn {
+    text-decoration: none;
+    background-color: var(--stop-bg-color);
+}
+
+.stop-btn:hover, .secup-btn:hover {
+    transform: scale(1.1);
+}
+
+.guards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.guard {
+    width: var(--guard-width);
+    height: var(--guard-height);
+    background-color: var(--guard-bg-color);
+    border-radius: var(--guard-border-radius);
+}

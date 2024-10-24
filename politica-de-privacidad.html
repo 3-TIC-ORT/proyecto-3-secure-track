@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/png" href="img/logo.png">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <style>
         .politica-de-privacidad{
             width: 80%;
@@ -31,27 +35,48 @@
     </style>
 </head>
 <body>
-    <header> 
-        <nav class="menu"> 
-            <a href="index.html">
-                <img id="logo" src="logo.png" width="90px" height="90px">
-            </a> 
-            <ul>
-                <li><h1 class="titulo">SECURE TRACK</h1></li>
-                <li><a href="index.html" class="textLi">INICIO</a></li> 
-                <li><a href="sobre-nosotros.html" class="textLi">SOBRE NOSOTROS</a></li>          
-                <li class="desplegableHeader">
-                    <a href="javascript:void(0)" class="textLi">CARROS</a>
-                    <div class="desplegable-contenido">
-                        <a href="#">RETIRAR CARROS</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+    <header class="header-container"> 
+        <a href="index.html" class="logo-title">
+            <img id="logo" src="img/logo.png" width="90px" height="90px">
+            <h1 class="titulo">SECURE TRACK</h1>
+        </a> 
+        <div class="image-user" id="div-image" style="display: none;">
+            <img id="image-user" style="display: none;" alt="Profile Photo" />
+         </div>
     </header>
+
+    <section id="userSettings" class="user-settings">
+        <button class="close-btn" id="closeBtn">&times;</button> 
+        <div class="information">
+            <div class="user-info">
+                <div class="div-dni">
+                    <p class="user"><b>USUARIO</b></p>
+                    <p class="dni" id="dni"></p>
+                </div>
+                <img src="" alt="avatar" class="avatar" id="avatar"> 
+            </div>
+    
+            <details>
+                <summary class="ver-transecciones">Ver mis transacciones pasadas</summary>
+                <p class="p-transecciones">Aquí aparecerán sus transacciones</p>
+            </details>
+            
+    
+            <div class="div-log">
+                <button class="Btn" id="logoutBtn">
+                    <div class="sign">
+                        <svg viewBox="0 0 512 512">
+                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                        </svg>
+                    </div>
+                    <div class="text"></div>
+                </button>
+            </div>
+        </div>
+    </section>
     <div class="politica-de-privacidad">
         <h1>Política de Privacidad de Secure Track</h1>
-        <p><strong>Última actualización:</strong> [Fecha]</p>
+        <p><strong>Última actualización:</strong> 23/10/2024</p>
 
         <p>Bienvenido a Secure Track. Nos comprometemos a proteger y respetar tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando utilizas nuestro sitio web y nuestros servicios.</p>
 
@@ -61,7 +86,7 @@
         <p>Cuando te registras en Secure Track, recopilamos la siguiente información personal:</p>
         <ul>
             <li>Nombre</li>
-            <li>Dirección de correo electrónico</li>
+            <li>Documento Nacional de Identidad</li>
             <li>Contraseña</li>
         </ul>
 
@@ -99,13 +124,13 @@
             <li><strong>Eliminación:</strong> Solicitar la eliminación de tu información personal bajo ciertas condiciones.</li>
             <li><strong>Oposición:</strong> Oponerte al procesamiento de tu información en determinadas circunstancias.</li>
         </ul>
-        <p>Para ejercer estos derechos, contáctanos a través de <a href="mailto:[dirección de correo electrónico de contacto]">[dirección de correo electrónico de contacto]</a>.</p>
+        <p>Para ejercer estos derechos, contáctanos a través de  <a href="mailto:secureTrack@gmail.com">secureTrack@gmail.com</a>.</p>
 
         <h2>6. Cambios en la Política de Privacidad</h2>
         <p>Podemos actualizar esta Política de Privacidad de vez en cuando. Publicaremos cualquier cambio en esta página y, si los cambios son significativos, te notificaremos por correo electrónico o mediante un aviso prominente en el sitio web.</p>
 
         <h2>7. Contacto</h2>
-        <p>Si tienes alguna pregunta o inquietud sobre esta Política de Privacidad, por favor contáctanos a:  <a href="mailto:[dirección de correo electrónico]">[dirección de correo electrónico]</a></p>
+        <p>Si tienes alguna pregunta o inquietud sobre esta Política de Privacidad, por favor contáctanos a:  <a href="mailto:secureTrack@gmail.com">secureTrack@gmail.com</a></p>
            </div>
            <footer>
             <div class="footer-content">
@@ -118,6 +143,6 @@
                 </div>
             </div>
         </footer>
-        <script src="js/main.js"></script>
+        <script src="js/user.js"></script> 
 </body>
 </html>

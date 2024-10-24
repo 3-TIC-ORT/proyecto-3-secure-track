@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Secure Track</title>
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/config.css">
+        <link rel="stylesheet" href="css/aboutUs.css">
+        <link rel="icon" type="image/png" href="img/logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <header class="header-container"> 
+        <a href="index.html" class="logo-title">
+            <img id="logo" src="img/logo.png" width="90px" height="90px">
+            <h1 class="titulo">SECURE TRACK</h1>
+        </a> 
+        <div class="image-user" id="div-image" style="display: none;">
+           <img id="image-user" style="display: none;" alt="Profile Photo" />
+        </div>
+    </header>
+    <section id="userSettings" class="user-settings">
+        <button class="close-btn" id="closeBtn">&times;</button> 
+        <div class="information">
+            <div class="user-info">
+                <div class="div-dni">
+                    <p class="user"><b>USUARIO</b></p>
+                    <p class="dni" id="dni"></p>
+                </div>
+                <img src="" alt="avatar" class="avatar" id="avatar"> 
+            </div>
+    
+            <details>
+                <summary class="ver-transecciones">Ver mis transacciones pasadas</summary>
+                <p class="p-transecciones">Aquí aparecerán sus transacciones</p>
+            </details>
+    
+            <div class="div-log">
+                <button class="Btn" id="logoutBtn">
+                    <div class="sign">
+                        <svg viewBox="0 0 512 512">
+                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                        </svg>
+                    </div>
+                    <div class="text"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <h1>Proyecto Secure Track</h1>
+    
+        <p>Secure Track es un innovador sistema diseñado para resolver el problema de la pérdida de computadoras en entornos educativos, gestionando de manera segura su retiro desde carritos ubicados en distintos edificios. El sistema permite a los usuarios retirar una computadora escaneando un código QR personalizado, que se genera según las decisiones del usuario sobre el edificio (Libertador o Montañeses) y el piso donde se encuentra el carrito.</p>
+    
+        <h2>Equipo de trabajo</h2>
+    
+        <p>Nuestro equipo está compuesto por cuatro miembros, cada uno con un rol clave en el desarrollo de Secure Track:</p>
+    
+        <ul>
+            <li><strong>UI/UX:</strong> El diseño de la experiencia de usuario y la interfaz visual fue desarrollado principalmente en <em>Figma</em>, donde se creó el diseño de la página web. Posteriormente, se trabajó en <em>Tinkercad</em> para crear la maqueta física del carrito, que luego fue impresa utilizando una impresora 3D. La idea fue crear una experiencia clara, visualmente atractiva y funcional para todos los usuarios.</li>
+    
+            <li><strong>Frontend:</strong> El desarrollo del frontend fue implementado utilizando tecnologías como HTML, CSS y JavaScript. Esta parte del proyecto gestiona la interacción del usuario, permitiendo la selección de edificio, piso y la generación del QR que otorga acceso a las computadoras.</li>
+    
+            <li><strong>Backend:</strong> En cuanto al backend, se utilizó <em>Vessel</em> para gestionar la lógica del servidor, la seguridad de los datos y la generación de los códigos QR personalizados. El backend maneja todas las solicitudes del sistema, garantizando que todo funcione de manera segura y eficiente.</li>
+    
+            <li><strong>Hardware:</strong> En el aspecto de hardware, se integraron arduinos para controlar la apertura y cierre de los carritos una vez que el QR ha sido escaneado y validado. Para futuras versiones, planeamos incorporar una CPU para mejorar el rendimiento del sistema.</li>
+        </ul>
+    
+        <h2>Origen del proyecto</h2>
+
+        <p>Secure Track surgió en el colegio ORT Belgrano durante nuestro tercer año, y contó con el apoyo de profesores y profesionales externos, quienes nos brindaron su valiosa ayuda para llevar adelante este proyecto. Su apoyo fue crucial para convertir nuestra idea en una solución real.</p>
+    
+        <p>Esta solución ha demostrado ser eficaz para resolver el problema de la pérdida de computadoras, brindando un sistema controlado y seguro que facilita la gestión de estos dispositivos en los entornos educativos.</p>
+    </main>
+    <div class="div-inicio">
+        <a href="index.html" class="welcome-button inicio">VOLVER AL MENU</a>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="politica-de-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 Secure Track  Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

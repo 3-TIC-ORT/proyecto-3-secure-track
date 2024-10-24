@@ -4,73 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/carrousel.css">
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header> 
-        <nav class="menu"> 
-            <a href="index.html">
-                <img id="logo" src="img/logo.png" width="110px" height="110px" alt="Secure Track Logo">
-            </a> 
-            <ul>
-                <li><h1 class="titulo">SECURE TRACK</h1></li>
-                <li><a href="index.html" class="textLi">INICIO</a></li> 
-                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
-                <li class="desplegableHeader">
-                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
-                    <div class="desplegable-contenido"> 
-                        <!-- Aquí se cargarán los carros que se pueden retirar (luego del log in) -->
+    <header class="header-container"> 
+        <a href="index.html" class="logo-title">
+            <img id="logo" src="img/logo.png" width="120px" height="120px">
+            <div class="div-titulo">
+            <h1 class="titulo">¡BIENVENIDOS A SECURE TRACK!</h1>
+        </div>
+        </a> 
+        <div class="image-user" id="div-image" style="display: none;">
+            <img id="image-user" style="display: none;" alt="Profile Photo" />
+         </div>
+    </header>
+   
+    <section id="userSettings" class="user-settings">
+        <button class="close-btn" id="closeBtn">&times;</button> 
+        <div class="information">
+            <div class="user-info">
+                <div class="div-dni">
+                    <p class="user"><b>USUARIO</b></p>
+                    <p class="dni" id="dni"></p>
+                </div>
+                <img src="" alt="avatar" class="avatar" id="avatar"> 
+            </div>
+    
+            <details>
+                <summary class="ver-transecciones">Ver mis transacciones pasadas</summary>
+                <p class="p-transecciones">Aquí aparecerán sus transacciones</p>
+            </details>
+    
+            <div class="div-log">
+                <button class="Btn" id="logoutBtn">
+                    <div class="sign">
+                        <svg viewBox="0 0 512 512">
+                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                        </svg>
                     </div>
-                </li>
-            </ul>
-        </nav>
-    </header>   
-    <main>
-        <section class="welcome">
-            <p class="slogan" id="slogan">BIENVENID@S/ WELCOME / ברוג'ים הבאים</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum accusamus consequuntur, quas reiciendis veritatis exercitationem deleniti est ea animi. Voluptatum, perferendis laudantium possimus quibusdam a ad culpa vitae. Ea, nesciunt!</p>
-            <a href="user.html#login" class="welcome-button">Iniciar Sesión</a>
-            <a href="user.html#register" class="welcome-button">Registrarse</a>
-        </section>
+                    <div class="text"></div>
+                </button>
+            </div>
+        </div>
+    </section>
 
-    <section class="hero-section">
-        <p class="slogan" id="slogan">RETIRA UNA COMPUTADORA SIN PROBLEMA</p>
-        <div class="content-wrapper">
-            <img src="" alt="grafico" class="left-content"> 
-            <p class="right-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
+ <main>
+     <div class="container2">
+        <img src="img/izq.png" class="control" id="prevBtn"></img>
+            <div class="carousel">
+                <div class="carousel-inner" id="carousel">
+                    <div class="carousel-item color1"><p>Slide 1</p></div>
+                    <div class="carousel-item color2"><p>Slide 2</p></div>
+                    <div class="carousel-item color3"><p>Slide 3</p></div>
+                    <div class="carousel-item color4"><p>Slide 4</p></div>
+                    <div class="carousel-item color5"><p>Slide 5</p></div>
+                </div>
+            </div>
+      
+        <img src="img/derecha.png" class="control" id="nextBtn"></img>
+    </div> 
+            
+
+        <section class="welcome">
+
+            <div class="div-inicio">
+            <a href="user.html#login" class="welcome-button inicio">INICIAR SESIÓN</a>
         </div>
-        <div class="content-wrapper">
-            <p class="left-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
-            <img src="" alt="gente sacando compus" class="right-content"> 
-        </div>
-    </section>
-    <section class="hero-section">
-        <p class="slogan" id="slogan">COMO FUNCIONA?</p>
-        <div class="content-wrapper">
-            <img src="" alt="trabitas" class="left-content"> 
-            <p class="right-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
-        </div>
-        <div class="content-wrapper">
-            <p class="left-content">Lorem
-                
-                 ipsum dolor sit amet, consectetur adipisicing elit. Rem suscipit accusantium beatae magnam qui. Quisquam illum exercitationem sapiente facilis perspiciatis nihil reprehenderit, optio atque? Exercitationem quam quaerat quia tempora quasi!</p>
-            <img src="" alt="explicacion del backend" class="right-content"> 
-        </div>
-    </section>
+
+            <a href="user.html#register" class="welcome-button button">REGISTRARSE</a>
+          
+            <a href="aboutus.html" class="welcome-button button">¿QUÉ ES SECURE TRACK?</a>
+        </section>
 </main>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="politica-de-privacidad.html">Política de Privacidad</a>
-                <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
-            </div>
-            <div class="footer-info">
-                <p>&copy; 2024 Secure Track. Todos los derechos reservados.</p>
-            </div>
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="politica-de-privacidad.html">Política de Privacidad</a>
+            <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
         </div>
-    </footer>
-    <script src="js/main.js"></script>
+        <div class="footer-info">
+            <p>&copy; 2024 Secure Track Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="js/index--front.js"></script>
+    <script src="js/user.js"></script> 
 </body>
 </html>
+
+
+

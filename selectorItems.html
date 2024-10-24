@@ -4,58 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
-    <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/selector.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/config.css">
     <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
-    <!-- Pantalla de carga -->
-<div class="loading-screen" id="loadingScreen">
-    <div class="loader"></div>
+    
+
+<div class="loader" id="loadingScreen">
+    <div class="slider">
+        <img src="img/logo.png" alt="loading" class="loading-image">
+    </div>
 </div>
 
-    <header> 
-        <nav class="menu"> 
-            <a href="index.html">
-                <img id="logo" src="img/logo.png" width="110px" height="110px">
-            </a> 
-            <ul>
-                <li><h1 class="titulo">SECURE TRACK</h1></li>
-                <li><a href="index.html" class="textLi">INICIO</a></li> 
-                <li><a href="#" class="textLi">SOBRE NOSOTROS</a></li>                  
-                <li class="desplegableHeader">
-                    <a href="javascript:void(0)" class="textLi" id="textLi-carros">CARROS</a>
-                     <div class="desplegable-contenido"></div>
-                </li>
-            </ul>
-        </nav>
-    </header>   
+
+    
+<header class="header-container"> 
+    <a href="index.html" class="logo-title">
+        <img id="logo" src="img/logo.png" width="90px" height="90px">
+        <h1 class="titulo">SECURE TRACK</h1>
+    </a> 
+    <div class="image-user" id="div-image" style="display: none;">
+       <img id="image-user" style="display: none;" alt="Profile Photo" />
+    </div>
+</header>
+
+
+<section id="userSettings" class="user-settings">
+    <button class="close-btn" id="closeBtn">&times;</button> 
+    <div class="information">
+        <div class="user-info">
+            <div class="div-dni">
+                <p class="user" id="dni"></p>
+            </div>
+            <img src="" alt="avatar" class="avatar" id="avatar"> 
+        </div>
+
+        <details>
+            <summary class="ver-transecciones">Ver mis transacciones pasadas</summary>
+            <p class="p-transecciones">Aquí aparecerán sus transacciones</p>
+        </details>
+        
+
+        <div class="div-log">
+            <button class="Btn" id="logoutBtn">
+                <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                </div>
+                <div class="text"></div>
+            </button>
+        </div>
+    </div>
+</section>
     <main>
         <div class="decision" id="decision">
-            <p>Retirar una computadora del edificio:</p>
-            <div class="building-buttons">
-                <button class="building" id="monta">MONTAÑESES</button> 
-                <button class="building" id="libertador">LIBERTADOR</button>
-            </div>
+           
+            <div class="hola">
+                <button class="building" id="monta">MONTAÑESES </button> 
+           </div>
+                <div class="hola">
+                <button class="building" id="libertador"> LIBERTADOR</button>
+           </div>
+                
         </div>
     
-        <div class="selector-container">
-            <select class="select-libertador disactive" id="select-libertador">
+
+
+    <div class="selector-container">
+            <select class="select-libertador disactive" id="select-libertador" >
                 <option value="" disabled selected>Selecciona el piso de Libertador</option>
-                <option class="option-select" value="L0">Libertador Planta baja</option>
-                <option class="option-select" value="L1">Libertador Primer piso</option>
-                <option class="option-select" value="L2">Libertador Segundo piso</option>
-                <option class="option-select" value="L3">Libertador Tercer piso</option>
+                <option class="option-select" value="0">Planta baja</option>
+                <option class="option-select" value="1"> Primer piso </option>
+                <option class="option-select" value="2"> Segundo piso</option>
+                <option class="option-select" value="3"> Tercer piso</option>
             </select>
     
             <select class="select-monta disactive" id="select-monta">
                 <option value="" disabled selected>Selecciona el piso de Montañeses</option>
-                <option class="option-select" value="M1">Montañeses Primer piso</option>
-                <option class="option-select" value="M2">Montañeses Segundo piso</option>
-                <option class="option-select" value="M3">Montañeses Tercer piso</option>
-                <option class="option-select" value="M4">Montañeses Cuarto piso</option>
-                <option class="option-select" value="M5">Montañeses Quinto piso</option>
+                <option class="option-select" value="1">Primer piso</option>
+                <option class="option-select" value="2"> Segundo piso</option>
+                <option class="option-select" value="3">Tercer piso</option>
+                <option class="option-select" value="4">Cuarto piso</option>
             </select>
         </div>
     
@@ -66,8 +104,8 @@
         </div>
     
         <div class="button-container">
-            <button class="confirmar" id="confirmButton" style="display: none;">Retiro Computadora</button>
-            <button class="devolucion" id="returnButton" style="display: none;">Devolución</button>
+            <button class="confirmar des" id="confirmButton" style="display: none;">DESBLOQUEAR</button>
+            <button class="devolucion des" id="returnButton" style="display: none;">DEVOLVER COMPUTADORA</button>
         </div>
     </main>
     
@@ -75,6 +113,9 @@
         <div class="modal-content">
             <span class="close-button" id="closeModal">&times;</span>
             <p id="modal-message">No hay aulas disponibles en este piso, por favor seleccione otra. ¡Gracias por comprender!</p>
+            <div class="div-img">
+                <img src="img/logo.png" alt="logo" height="80px" width="80px">
+            </div>
         </div>
     </div>
     
@@ -91,5 +132,6 @@
     </footer>
 
     <script src="js/selectors.js" type="module"></script> 
+    <script src="js/user.js"></script> 
 </body>
 </html>

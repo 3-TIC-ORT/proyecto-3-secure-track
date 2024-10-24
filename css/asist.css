@@ -1,3 +1,37 @@
+
+:root{
+    --main-color: white;
+    --font-tittle: 'K2D', sans-serif; 
+    ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    --hover-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+    --input-background: #e1e2e3;
+    --input-focus-background: #ffffff;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+    --box-shadow-focus: rgba(0, 0, 0, 0.15);
+}
+/* .div-titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+ .header-container{
+   margin-left: 5%;
+   margin-right: 10%;
+    display: flex;
+    justify-content: space-around;
+ }
+.titulo{
+    font-size: 90px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8); 
+    -webkit-text-stroke: 2px black;
+}
+main{
+    color: var(--main-color);
+}
+.tabla{
+    margin: 2%;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -8,9 +42,73 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 th {
-    background-color: #3C6975;
     color: white;
 }
-tr:hover {
-    background-color: #f1f1f1;
+.special::selection{
+    color: black;
+    background-color: #ddd;
+}
+
+.container{
+display: flex;
+}
+
+.div-input{
+    height: 100%;
+    width: 100%;
+    display: flex;
+justify-content: space-around;
+    padding: 10px 20px;
+
+}
+
+
+.input {
+    margin: 2px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 100%;
+font-size: 16px;
+font-family: var(--font-tittle);
+text-align: justify;
+    background-color: var(--input-background);
+    box-shadow: inset 2px 5px 10px var(--box-shadow);
+    transition: all 300ms ease-in-out;
+    /* text-align: center; */
+}
+
+
+
+.input:focus {
+    outline: none;
+    background-color: var(--input-focus-background);
+    transform: var(--tran-hover);
+    box-shadow: 0px 10px 20px var(--box-shadow-focus), 0px -5px 10px rgba(255, 255, 255, 0.3); 
+}
+
+
+
+
+.search-button {
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+    padding: 15px 20px; 
+    background: rgba(68, 114, 255, 1);
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: var(---main-shadow);
+    margin-left: 1%;
+}
+
+
+.search-button:hover {
+    text-decoration: none;
+    scale: 1.1;
+    box-shadow: var(--hover-shadow);
 }

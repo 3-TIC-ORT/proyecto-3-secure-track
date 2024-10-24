@@ -1,0 +1,182 @@
+:root{
+  --box-hover-scale: 1.1;
+  --border:2px solid  black;
+}
+
+.Btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s, background-color 0.3s, border-radius 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: white;
+}
+
+.sign {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s, padding-left 0.3s;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: black;
+}
+
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: opacity 0.3s, width 0.3s, padding-right 0.3s;
+}
+
+.Btn:hover {
+  background-color:  black;
+  width: 125px; 
+  border-radius: 40px; 
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  padding-left: 20px; 
+}
+
+.Btn:hover .sign svg path {
+  fill: white; 
+}
+
+.Btn:hover .text {
+  opacity: 1; 
+  width: 70%;
+  padding-right: 10px; 
+}
+
+.Btn:active {
+  transform: translate(2px, 2px); 
+}
+
+
+  .user-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    height: 100vh; 
+    width: 30%; 
+    background-color: white;
+    position: fixed;
+    right: 0; 
+    top: 0; 
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    display: none; 
+}
+.div-dni{
+color: black;
+}
+
+.information {
+    padding: 20px; 
+}
+
+.information p {
+    margin-bottom: 10px;
+}
+
+.div-log {
+  display: flex;
+  justify-content: flex-end;
+    margin-top: 50%;
+
+}
+
+.close-btn {
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  font-size: 40px; 
+  cursor: pointer; 
+  color: #333;
+  background: none; 
+  border: none; 
+}
+.close-btn:hover{
+  color: red;
+  transform: scale(var(--box-hover-scale));
+}
+
+.user-info{
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;  
+  border: var(--border);
+  overflow: hidden;
+}
+.div-dni{
+  display: block;
+}
+.user{
+  padding:  3px 10px;
+  border: var(--border);
+  border-radius: 30px;
+}
+
+.user:hover, .avatar:hover{
+border-color: blue;
+}
+@media (max-width: 768px) {
+
+  .user-settings {
+    width: 100%; 
+    height: 100vh;
+  }
+
+  /* .information {
+    padding: 20px;
+  } */
+
+  .close-btn {
+    font-size: 40px; 
+    top: 5px; 
+    right: 5px;
+  }
+
+  .user-info {
+    /* flex-direction: column; 
+    align-items: center;  */
+    margin-top: 5%; 
+  }
+
+
+  .div-dni {
+    margin-top: 10px; 
+    text-align: center; 
+  }
+
+  .user {
+    padding: 5px; 
+    font-size: 1em; 
+  }
+
+  .div-log {
+    margin-top: 10%; 
+  }
+
+}
