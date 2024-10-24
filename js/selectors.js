@@ -257,7 +257,9 @@ async function initializeClassrooms() {
     } finally {
         loadingScreen.style.display = "none";
     }
+    
 }
+
 
 initializeClassrooms();
 
