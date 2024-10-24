@@ -85,7 +85,9 @@ function showTab(tabId) {
             if (response.status === 200) {
                 showSuccess("Registro exitoso. Redirigiendo...");
                 sessionStorage.setItem("userId", data.id);
+                sessionStorage.setItem("occupation", "Estudiante");
                 sessionStorage.setItem("profilePhoto", data.avatar);
+               
                 setTimeout(() => {
                     location.href = "../selectorItems.html";
                 }, 2000);
@@ -120,8 +122,9 @@ function showTab(tabId) {
                 sessionStorage.setItem("userId", data.id);
                 sessionStorage.setItem("occupation", data.occupation)
                 sessionStorage.setItem("profilePhoto", data.avatar);
+                sessionStorage.setItem("status", data.status);
                 console.log(data.avatar)
-                setTimeout(() => {
+                
                     if (data.occupation === "Estudiante") {
                         location.href = "../selectorItems.html";
                     } else if (data.occupation === "Asistente") {
@@ -129,7 +132,7 @@ function showTab(tabId) {
                     } else if (data.occupation === "Profesor") {
                         location.href = "../selectorItems.html";
                     }
-                }, 2000);
+              
             } else {
                 showError(data.message || "Usuario o contraseña incorrectos.");
             }

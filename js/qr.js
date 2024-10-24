@@ -23,6 +23,13 @@ finalizar.addEventListener("click",async()=>{
      })
 
      if (await data.status === 200) {
+        sessionStorage.removeItem("correctKey")
+        if (sessionStorage.getItem("status") === "En proceso") {
+            sessionStorage.setItem("status", "Retirada")
+            
+        }else{
+            sessionStorage.setItem("status", "Devuelta")
+        }
         location.href = "../selectorItems.html"
      }else{
         modal.style.display = "block"

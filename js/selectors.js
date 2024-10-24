@@ -1,6 +1,7 @@
 import { getCarros } from "./repository.js";
 let usuario = (sessionStorage.getItem("userId"));
 let occupation = sessionStorage.getItem("occupation")
+
 if (!usuario) {
     window.location.href = "accesodenegado.html";
 }
@@ -55,21 +56,7 @@ botonM.style.background= ""
      botonL.style.background= "#cac8c8"
 }
 
-async function fetchClassrooms(building) {
-    try {
-        const response = await fetch(`https://secure-track-db.vercel.app/rooms`);
-        if (!response.ok) {
-            throw new Error("Error al obtener aulas");
-        }
-        const data = await response.json();
 
-        const filteredData = data.filter(room => room.room.roomNumber.startsWith(building === "monta" ? "M" : "L"));
-        return filteredData;
-    } catch (error) {
-        location.href("../error.html")
-        return [];
-    }
-}
 document.getElementById("select-monta").addEventListener("change", () => {
     updateClassroomsOptions((document.getElementById("select-monta").value), "monta");
 })
@@ -146,7 +133,7 @@ async function requestComputer() {
     if (occupation === "Estudiante") {
         console.log(
             JSON.stringify({
-                userId: usuario.id,
+                userId: usuario,
                 cartId: parseInt(classrooms.value),
             })
         );
@@ -159,7 +146,7 @@ async function requestComputer() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    userId: usuario.id,
+                    userId: usuario,
                     cartId: parseInt(classrooms.value),
                 }),
             }
@@ -167,6 +154,7 @@ async function requestComputer() {
         const res = JSON.stringify(await response.json());
         console.log(await res);
         if (response.status == 200) {
+            sessionStorage.setItem("status", "En proceso");
             sessionStorage.setItem("correctKey", res);
             location.href = "../qr.html";
         }
@@ -208,7 +196,7 @@ async function requestComputer() {
 async function returnComputer() {
     console.log(
         JSON.stringify({
-            userId: usuario.id,
+            userId: usuario,
             cartId: parseInt(classrooms.value),
         })
     );
@@ -221,7 +209,7 @@ async function returnComputer() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId: usuario.id,
+                userId: usuario,
                 cartId: parseInt(classrooms.value),
             }),
         }
@@ -229,6 +217,7 @@ async function returnComputer() {
 
     const res = JSON.stringify(await response.json());
     if (response.status == 200) {
+        sessionStorage.setItem("status", "En proceso devolucion");
         sessionStorage.setItem("correctKey", res);
         location.href = "../qr.html";
     }
