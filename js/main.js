@@ -51,7 +51,7 @@ function showTab(tabId) {
             return;
         }
 
-        sessionStorage.setItem("username", username); // Guardar el username correctamente
+        sessionStorage.setItem("username", username); 
         logueo_user({ username: username, password: password });
     });
 
@@ -67,7 +67,7 @@ function showTab(tabId) {
             return;
         }
 
-        sessionStorage.setItem("dni", dni); // Asegúrate de usar "dni" en minúsculas
+        sessionStorage.setItem("dni", dni); 
         register_user({ username: dni, password: password, avatar: avatarSelect.value });
     });
 
@@ -141,3 +141,22 @@ function showTab(tabId) {
         }
     }
 
+
+
+//     let crear = document.getElementById("crear")
+//     crear.addEventListener("click", nfc)
+// async function name(params) {
+//     let data = await fetch("https://secure-track-db.vercel.app/qr/nfc",
+//         {
+//             method: "POST",
+//             mode: "cors",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 token: JSON.parse(res).tokenId,
+//             }),
+//         }
+// location.href="./qr.html"
+//         ) 
+// }
