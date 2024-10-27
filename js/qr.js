@@ -96,7 +96,9 @@ if ((await data).status === 200) {
     timer.innerText = horario
     
 }else{
-    location.href = "../selectorItems.html"
+    if (parseInt(res.tokenId)=== null) {
+          location.href = "../selectorItems.html"
+    }
 }
 
 }

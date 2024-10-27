@@ -7,6 +7,9 @@ const avatar = document.getElementById("avatar")
 const dni= sessionStorage.getItem("dni")
 const username = sessionStorage.getItem("username")
 const p_user = document.getElementById("dni")
+const nfc = document.getElementById("nfc")
+const user = sessionStorage.getItem("userId")
+const datalist = document.getElementsByTagName("datalist")
 
     if (profilePhotoURL) {
         profileImage.src = `./img/${profilePhotoURL}.jpg`; 
@@ -48,3 +51,31 @@ function close() {
 
         p_user.innerHTML = `<p>hola</p>`;
     }
+
+    nfc.addEventListener("click" ,crear)
+
+ async function crear() {
+    
+sessionStorage.setItem("correctKey", JSON.stringify({tokenId:user,slots:[]}))
+location.href="./qr.html"
+ }
+
+ async function cargarTransacciones() {
+    try {
+
+        const response = await fetch('https://secure-track-db.vercel.app/user/transactions',{
+            method: "POST",
+            mode: "cors",
+            body:"userId",
+            headers: {
+                "Content-Type": "application/json",
+            },
+           
+         }); 
+        const transacciones = await response.json();
+        console.log(transacciones)
+       
+    } catch (error) {
+        location.href("./error500.html")
+    }
+}
