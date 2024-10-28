@@ -64,30 +64,28 @@ location.href="./qr.html"
  async function cargarTransacciones() {
     try {
         const response = await fetch('https://secure-track-db.vercel.app/user/transactions', {
-            method: "POST",
+            method: "GET",
             mode: "cors",
             body: JSON.stringify({ userId: user }),
             headers: {
                 "Content-Type": "application/json",
             },
         });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
         const transacciones = await response.json();
         const datalist = document.getElementById("transacciones");
-
-  
         datalist.innerHTML = '';
 
-        transacciones.forEach(transaccion => {
-            const transaccionP = document.createElement("p");
-            transaccionP.classList.add("transaction-item"); 
-            transaccionP.textContent = `hora: ${transaccion.data.token.createdAt} - Aula: ${data.token.cart.room.roomNumber}`; 
-            datalist.appendChild(transaccionP);
-        });
+        if (!transacciones === null) {
+            transacciones.forEach(transaccion => {
+                const transaccionP = document.createElement("p");
+                transaccionP.classList.add("transaction-item"); 
+                transaccionP.textContent = `hora: ${transaccion.data.token.createdAt} - Aula: ${data.token.cart.room.roomNumber}`; 
+                datalist.appendChild(transaccionP);
+            });
+        } else {
+           console.log("no hay") 
+        }
+      
 
     } catch (error) {
         location.href = "./error500.html";
