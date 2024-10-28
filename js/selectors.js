@@ -130,7 +130,6 @@ confirmButton.addEventListener("click", () => requestComputer());
 returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
-    if (occupation === "Estudiante") {
         console.log(
             JSON.stringify({
                 userId: usuario,
@@ -158,36 +157,7 @@ async function requestComputer() {
             sessionStorage.setItem("correctKey", res);
             location.href = "../qr.html";
         }
-    }else if(occupation === "Profesor"){
-        console.log(
-            JSON.stringify({
-                userId: usuario,
-                cartId: parseInt(classrooms.value),
-            })
-        );
-        const response = await fetch(
-            `https://secure-track-db.vercel.app/professor/request`,
-            {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId: usuario,
-                    cartId: parseInt(classrooms.value),
-                }),
-            }
-        );
-        const res = JSON.stringify(await response.json());
-        console.log(await res);
-        if (response.status == 200) {
-            sessionStorage.setItem("correctKey", res);
-            location.href = "../qr.html";
-        }
-    }else{
-        console.log("No")
-    }
+   
     
 
 
