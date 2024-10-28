@@ -1,6 +1,6 @@
 :root {
     --font-family: 'Arial', sans-serif;
-    --background-color: #e8f5f5;
+    --background-color:  rgba(68, 114, 255, 1);
     --container-width: 700px;
     --container-padding: 20px;
     --container-bg-color: #fff;
@@ -27,6 +27,8 @@
     --guard-height: 200px;
     --guard-bg-color: #004085;
     --guard-border-radius: 10px;
+    ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    --hover-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -107,6 +109,7 @@ h1 {
     border-radius: var(--button-border-radius);
     cursor: pointer;
     color: var(--button-text-color);
+    box-shadow: var(---main-shadow);
 }
 
 .secup-btn {
@@ -121,6 +124,7 @@ h1 {
 
 .stop-btn:hover, .secup-btn:hover {
     transform: scale(1.1);
+    box-shadow: var(--hover-shadow);
 }
 
 .guards {
