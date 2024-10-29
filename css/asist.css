@@ -21,13 +21,14 @@
     justify-content: space-around;
  }
 .titulo{
-    font-size: 90px;
+    font-size: 70px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8); 
     -webkit-text-stroke: 2px black;
 }
 main{
     color: var(--main-color);
 }
+
 .tabla{
     margin: 2%;
 }

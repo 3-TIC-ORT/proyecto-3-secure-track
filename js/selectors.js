@@ -93,7 +93,8 @@ async function updateClassroomsOptions(piso, edificio) {
         options.forEach(room => {
             let opt = document.createElement("option");
             opt.value = room.id;
-            opt.textContent = room.room.roomNumber; // El número de aula
+            // opt.textContent = room.room.roomNumber ;
+            opt.textContent = `ID: ${room.id} - Aula: ${room.room.roomNumber}`; 
             classrooms.appendChild(opt);
         });
         classrooms.classList.remove("disactive");
