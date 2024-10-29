@@ -18,16 +18,20 @@
                 <button class="decision-button active" id="button-login">Iniciar Sesión</button>
                 <button class="decision-button" id="button-register">Registrarse</button>
             </div>
+            <div class="cont">
             <div id="login" class="content active">
                 <form id="login-form">
+                    <h1 class="name"> INICIAR SESIÓN </h1>
                     <input type="text" class="input" id="username" name="username" placeholder="usuario" required>
                     <input type="password" class="input" id="password" name="password" placeholder="contraseña" required>
                     <button  class="submit" id="submit-login">Entrar</button>
                 </form>
             </div>
+            
             <div id="register" class="content">
+               
                 <form id="register-form">
-                    
+                    <h1 class="name"> REGISTRO </h1>
                     <input type="text" class="input" id="dni"  name="dni" placeholder="DNI" required>
                 
                     <input type="password" class="input" id="register-password" name="password" placeholder="contraseña">
@@ -50,6 +54,8 @@
             </div>
             <div id="error-message" style="color: red; display: none;"></div>
             <div id="success-message" style="color: green; display: none;"></div>
+
+        </div>
         </div>
    
     </main>

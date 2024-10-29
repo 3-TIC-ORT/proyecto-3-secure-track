@@ -20,7 +20,7 @@
     --font-size-base: 18px;
     --title-font-size: 28px;
 
-    --container-padding: 40px;
+    --container-padding: 40px 70px;
     --input-padding: 15px 25px;
     --button-padding: 15px 25px;
     --border-radius: 12px;
@@ -51,10 +51,15 @@ main {
     height: 100%;
     max-width: 500px;
     width: 95%;
-    padding: var(--container-padding);
+   
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.cont{
+   /* margin: 15%; */
+   padding: var(--container-padding);
 }
 
 
@@ -66,11 +71,11 @@ main {
 
 }
 .decision-button {
-    margin: 5px;
+    /* margin: 5px; */
     font-family: var(--font-family);
     font-size: 20px;
     flex: 1;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     padding: 15px 25px;
     background: var(--body-background); 
     border: none;
@@ -88,6 +93,10 @@ main {
 .decision-button:hover {
 background: linear-gradient(var(--hover-color), var(--hover-color));
     /* background-color: var(--hover-color); */
+}
+.name{
+     font-family: var(--font-family);
+     font-size: 30px;
 }
 .content {
     display: none;
