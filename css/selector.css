@@ -10,7 +10,7 @@
     --loader-border: #f3f3f3;
     --loader-border-top: #3498db;
 
-    --font-tittle: 'K2D', sans-serif; 
+    --font-tittle: 'K2D', sans-serif;
 --main-shadow:0 1 6px rgba(0, 0, 0, 0.5);
 --box-shadow-hover: 0 4px 8px #00000033;
 }
@@ -31,7 +31,7 @@ main {
 .decision {
     display: flex;
     justify-content: center;
-    gap: 20px; 
+    gap: 20px;
 }
 
 .hola {
@@ -40,7 +40,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px; 
+    padding: 5px;
 }
 
 .hola:hover {
@@ -50,7 +50,7 @@ main {
 .building {
     font-family: var(--font-tittle);
     padding: 10px 19px;
-    border-radius: 15px; 
+    border-radius: 15px;
     background-color: var(--main-bg-color);
     font-size: var(--font-size-base);
     cursor: pointer;
@@ -74,6 +74,14 @@ select {
     border-radius: 8px;
     border: 3px solid var(--border-color);
     font-size: var(--font-size-base);
+    transition: all 0.3s ease;
+        appearance: none;
+    padding-right: 2em;
+
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMiIgdmlld0JveD0iMCAwIDEwMSAxMDIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zMC4xMzc2IDQyLjY1MjNMNTAuOTU2NCA2My41MDAyTDcxLjgwNDMgNDIuNjgxNCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 60px;
 }
 
 .button-container {
@@ -101,14 +109,14 @@ select {
     margin: 4px;
     color: rgb(255, 255, 255);
     border-radius: 25px;
-    padding: 15px 20px; 
+    padding: 15px 20px;
     background: #0055C0CC;
     font-size: 16px;
     text-align: center;
     display: inline-block;
     text-decoration: none;
     box-shadow: var(--main-shadow);
-    transition: background-color var(--transition-duration) ease; 
+    transition: background-color var(--transition-duration) ease;
 }
 
 .des:hover {
@@ -123,13 +131,13 @@ select {
 
 
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
 }
 
@@ -138,7 +146,7 @@ select {
     margin: 15% auto;
     padding: 15px 10px;
     border: 1px solid #888;
-    width: 80%; 
+    width: 80%;
     max-width: 500px;
     text-align: center;
 }
