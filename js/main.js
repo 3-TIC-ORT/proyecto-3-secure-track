@@ -115,7 +115,7 @@ function showTab(tabId) {
                 body: JSON.stringify(user)
             });
             let data = await response.json();
-           
+            console.log(data)
             if (response.status === 200) {
                 console.log(data)
                 showSuccess("Inicio de sesión exitoso. Redirigiendo...");
@@ -125,13 +125,21 @@ function showTab(tabId) {
                 sessionStorage.setItem("status", data.status);
                 console.log(data.avatar)
                 
+                
                     if (data.occupation === "Estudiante") {
-                        location.href = "../selectorItems.html";
+                        if (data.status === "En proceso") {
+                            sessionStorage.setItem("correctKey",JSON.stringify({tokenId: data.tokenId}))
+                            location.href = "../qr.html"
+                        }else{
+                            location.href = "../selectorItems.html";
+                        }
+                        
                     } else if (data.occupation === "Asistente") {
                         location.href = "../asistente.html";
                     } else if (data.occupation === "Profesor") {
                         location.href = "../selectorItems.html";
                     }
+
               
             } else {
                 showError(data.message || "Usuario o contraseña incorrectos.");

@@ -1,6 +1,6 @@
 :root {
-    --tamaño-lineal: 290px;
-    --tamaño-white: 270px;
+    --tamaño-lineal: 220px;
+    --tamaño-white: 200px;
     --radious: 30px;
     --shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
     --hover-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
@@ -52,15 +52,16 @@ main {
 }
 
 .qr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: var(--radious);
-    height: 90%; 
-    width: 90%;
-    scale: 1; 
-}
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: var(--radious);
+        height: 90%; 
+        width: 90%;
+scale: 1.1;
+    }
 
 .text {
     font-weight: bold;
