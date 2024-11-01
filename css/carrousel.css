@@ -55,6 +55,10 @@
     color: black;
     border-radius: var(--border-radius); 
 }
+.img{
+    height: 100%;
+    width: 100%;
+}
 
 /* Colors for carousel items */
 .color1 { background-color: white; }

@@ -9,7 +9,14 @@ const username = sessionStorage.getItem("username")
 const p_user = document.getElementById("dni")
 const nfc = document.getElementById("nfc")
 const user = sessionStorage.getItem("userId")
+const ocupacion = sessionStorage.getItem("userId")
 
+
+if (ocupacion=== "Profeesor") {
+    document.getElementById("asignar").style.display="block"
+} else {
+        document.getElementById("asignar").style.display="none"
+}
     if (profilePhotoURL) {
         profileImage.src = `./img/${profilePhotoURL}.jpg`; 
         div.style.display = "block"; 
@@ -91,6 +98,6 @@ location.href="./qr.html"
              datalist.appendChild(noTransaccionP);
          }  
      } catch (error) {
-         location.href = "./error500.html";
+         console.log(error)
      }
  }
