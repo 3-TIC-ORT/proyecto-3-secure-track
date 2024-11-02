@@ -1,6 +1,24 @@
 import { getCarros } from "./repository.js";
 let usuario = (sessionStorage.getItem("userId"));
 let occupation = sessionStorage.getItem("occupation")
+let response = await fetch(
+    `https://secure-track-db.vercel.app/users/status`,
+    {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            userId: usuario,
+        }),
+    }
+);
+const res = await response.json()
+console.log(await res);
+if (response.status == 200) {
+    sessionStorage.setItem("status", res.status);
+}
 
 if (!usuario) {
     window.location.href = "accesodenegado.html";
