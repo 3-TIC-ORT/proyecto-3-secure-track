@@ -10,8 +10,8 @@ const p_user = document.getElementById("dni")
 const nfc = document.getElementById("nfc")
 const user = sessionStorage.getItem("userId")
 const ocupacion = sessionStorage.getItem("userId")
-
-
+const asignar = document.getElementById("asignar")
+const occupation = sessionStorage.getItem("occupation")
 if (ocupacion=== "Profeesor") {
     document.getElementById("asignar").style.display="block"
 } else {
@@ -100,4 +100,10 @@ location.href="./qr.html"
      } catch (error) {
          console.log(error)
      }
+ }
+
+ if ( occupation ==="profesor") {
+    asignar.style.display="block"
+ } else {
+    return
  }

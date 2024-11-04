@@ -12,7 +12,8 @@
     --error-color: red;
     --tran-hover:  scale(1.05);
     --body-background: linear-gradient(rgba(7, 9, 168, 1),rgba(0, 85, 192, 0.8), rgba(68, 114, 255, 1));
-
+    ---main-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    --hover-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
     
 
    
@@ -22,7 +23,7 @@
 
     --container-padding: 40px 70px;
     --input-padding: 15px 25px;
-    --button-padding: 15px 25px;
+    --button-padding: 30px 50px;
     --border-radius: 12px;
     --input-margin: 20px 0;
 }
@@ -190,21 +191,33 @@ select.avatar option {
 
 
 .submit {
-    padding: var(--input-padding);
-    background-color: var(--primary-color); 
-    color: #fff;
-    border: none;
-    border-radius: 50px;
+border: none;
+width: 100%;
+margin-top: 20px;
+margin-bottom: 5px;
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+    padding:15px 60px;
+    background: rgba(68, 114, 255, 1);
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
     cursor: pointer;
     font-size: var(--font-size-base);
-    width: 100%;
-    margin-top: 20px;
-    box-shadow: 0 5 15px var(--box-shadow);
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: solid;
+letter-spacing: 3px;
+box-shadow: var(---main-shadow);
 }
 
 .submit:hover {
-    background-color: var(--hover-color);
+    /* background-color: var(--hover-color); */
     transform: var(--tran-hover);
+box-shadow: var(--hover-shadow);
+    text-decoration: none;
+    scale: 1.1;
+    box-shadow: var(--box-shadow-focus)
 }
 
 #error-message {

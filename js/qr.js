@@ -8,7 +8,6 @@ const finalizar = document.getElementById("finalizar")
 const modal= document.getElementById("modal")
 const closeModal= document.getElementById("closeModal")
 
-
 finalizar.addEventListener("click",async()=>{
 
     let data = await fetch(`https://secure-track-db.vercel.app/verificar`,{
