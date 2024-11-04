@@ -257,3 +257,9 @@ initializeClassrooms();
 
 
 
+// if (estado ==="retirada")) {
+//     notn de desbloquear set  attinbute disbaled y activwar classe o esitlo blur
+// } else if (estado === "devulets") {
+//     boton de desblouquear activppo 
+//     retirar ocn clase y disabked 
+// }
