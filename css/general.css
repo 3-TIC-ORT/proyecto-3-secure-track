@@ -26,9 +26,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 5%;
-      /* position: stick; 
-      top: 0px; */
-  }
+      /* position: sticky;
+      top: 0px;
+      box-shadow: var(--box-shadow-hover); 
+      background: var(--body-background);  
+      verlo con mati */
+
+width: 100%;
+}
   
   .logo-title {
       display: flex;
