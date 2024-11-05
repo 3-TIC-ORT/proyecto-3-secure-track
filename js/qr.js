@@ -7,6 +7,7 @@ const parsedRes = JSON.parse(user);
 const finalizar = document.getElementById("finalizar")
 const modal = document.getElementById("modal")
 const closeModal = document.getElementById("closeModal")
+const modalmes = document.getElementById("modal-message")
 
 finalizar.addEventListener("click", async () => {
 
@@ -31,7 +32,8 @@ finalizar.addEventListener("click", async () => {
         }
         location.href = "../selectorItems.html"
     } else {
-        modal.style.display = "block"
+        modal.style.display = "block";
+        modalmess.textContent ="Por favor, utiliza el qr que te proporcionamos!!"
     }
 })
 closeModal.addEventListener("click", close)
@@ -46,25 +48,27 @@ function startTimer(duration, display, callback) {
         minutes = Math.floor(timer / 60);
         seconds = timer % 60;
 
-        // Formatea minutos y segundos con ceros a la izquierda si es necesario
+    
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        // Muestra el tiempo restante en el elemento display
+      
         display.textContent = minutes + ":" + seconds;
 
-        // Decrementa el tiempo restante y verifica si se ha terminado
+    
         if (--timer < 0) {
             clearInterval(interval);
-            callback(); // Llama al callback al finalizar
+            callback(); 
         }
     }, 1000);
 }
 
 
 function onTimerFinish() {
-    alert("Se ha acabado tu tiempo, por favor vuelve a seleccionar");
+     modalmess.textContent ="Se ha acabado tu tiempo, por favor vuelve a seleccionar";
+if (closeModal) {
     location.href = "../selectorItems.html";
+} 
 }
 
 

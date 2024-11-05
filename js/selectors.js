@@ -154,11 +154,14 @@ function checkAllSelected() {
     }
 
     if (estado === "Retirada") {
-        returnButton.disabled = true;
-        confirmButton.disabled = false;
+        returnButton.setAttribute("disabled", true);
+        returnButton.style.cursor= "not-allowed";
+        confirmButton.setAttribute("disabled", false);
+         
     } else if (estado === "Devuelta") {
-        returnButton.disabled = false;
-        confirmButton.disabled = true;
+        returnButton.setAttribute("disabled", false);
+        confirmButton.setAttribute("disabled", true);;
+        confirmButton.style.cursor= "not-allowed"
     } else {
 
         returnButton.disabled = false;
