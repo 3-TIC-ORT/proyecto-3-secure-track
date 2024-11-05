@@ -105,6 +105,7 @@ async function onTimer() {
 
 }
 
+// Iniciar el temporizador con 5 minutos
 window.onload = async function () {
     if (!user) {
         location.href = "../accesodenegado.html"
