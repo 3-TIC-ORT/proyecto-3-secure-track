@@ -173,7 +173,7 @@ returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
     let status = sessionStorage.getItem("status")
-    if (status != "Devuelta") {
+    if (status === "Retirada") {
         return
     }
     console.log(

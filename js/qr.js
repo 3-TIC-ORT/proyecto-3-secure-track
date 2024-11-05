@@ -110,7 +110,6 @@ window.onload = async function () {
     if (!user) {
         location.href = "../accesodenegado.html"
     }
-    onTimer()
 };
 
 let img = document.createElement("img")
