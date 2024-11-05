@@ -1,6 +1,6 @@
 import { getCarros } from "./repository.js";
 let usuario = (sessionStorage.getItem("userId"));
-let occupation = sessionStorage.getItem("occupation") 
+let occupation = sessionStorage.getItem("occupation")
 let estado = sessionStorage.getItem("status") || "Devuelta"
 const confirmButton = document.getElementById("confirmButton");
 const returnButton = document.getElementById("returnButton");
@@ -13,22 +13,18 @@ let response = await fetch(
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            userId: usuario,
+            userId: sessionStorage.getItem("userId"),
         }),
     }
 );
 const res = await response.json()
-console.log(await res);
-if (res.status == 200) {
+console.log(res.status);
+if (response.status === 200) {
     sessionStorage.setItem("status", res.status);
-    console.log("entre")
     if (res.status === "Retirada") {
-        confirmButton.disabled = true
-        returnButton.disabled = false
-    }else{
-        
-        confirmButton.disabled = false
-        returnButton.disabled = true
+        confirmButton.style.filter = "brightness(50%)"
+    } else {
+        returnButton.style.filter = "brightness(50%)"
     }
 }
 
@@ -38,8 +34,8 @@ if (!usuario) {
 
 
 
-let libertador =  [  [],  [],  [],  [], [] ];
-let monta = [  [],  [],  [],  [], [] ];
+let libertador = [[], [], [], [], []];
+let monta = [[], [], [], [], []];
 
 function showModal() {
     document.getElementById("modal").style.display = "block";
@@ -57,11 +53,11 @@ const classrooms = document.getElementById("classrooms");
 
 const loadingScreen = document.getElementById("loadingScreen");
 
- const botonM= document.getElementById("monta");
- const botonL = document.getElementById("libertador");
+const botonM = document.getElementById("monta");
+const botonL = document.getElementById("libertador");
 
- botonM.addEventListener("click", showMonta);
- botonL.addEventListener("click", showLibertador);
+botonM.addEventListener("click", showMonta);
+botonL.addEventListener("click", showLibertador);
 
 
 
@@ -72,8 +68,8 @@ function showMonta() {
     confirmButton.style.display = "none";
     returnButton.style.display = "none";
     classrooms.innerHTML = "";
-     botonL.style.background= ""
-    botonM.style.background= "#cac8c8"
+    botonL.style.background = ""
+    botonM.style.background = "#cac8c8"
 
 }
 function showLibertador() {
@@ -83,8 +79,8 @@ function showLibertador() {
     confirmButton.style.display = "none";
     returnButton.style.display = "none";
     classrooms.innerHTML = "";
-botonM.style.background= ""
-     botonL.style.background= "#cac8c8"
+    botonM.style.background = ""
+    botonL.style.background = "#cac8c8"
 }
 
 
@@ -99,13 +95,13 @@ document.getElementById("select-libertador").addEventListener("change", () => {
 async function updateClassroomsOptions(piso, edificio) {
     let options = [];
     console.log(edificio);
-    
+
     // Aquí accedes al array correcto de acuerdo al edificio y piso seleccionados
     if (edificio === "monta") {
         options = monta[piso] || []; // Si no hay aulas, deja el array vacío
     } else if (edificio === "libertador") {
         options = libertador[piso] || []; // Lo mismo aquí para Libertador
-    }else{
+    } else {
         console.log("no hay")
     }
     console.log(options);
@@ -159,16 +155,16 @@ function checkAllSelected() {
 
     if (estado === "Retirada") {
         returnButton.disabled = true;
-        confirmButton.disabled = false; 
+        confirmButton.disabled = false;
     } else if (estado === "Devuelta") {
         returnButton.disabled = false;
-        confirmButton.disabled = true; 
+        confirmButton.disabled = true;
     } else {
-      
+
         returnButton.disabled = false;
         confirmButton.disabled = false;
     }
-    
+
 
 }
 
@@ -176,40 +172,48 @@ confirmButton.addEventListener("click", () => requestComputer());
 returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
-        console.log(
-            JSON.stringify({
+    let status = sessionStorage.getItem("status")
+    if (status != "Devuelta") {
+        return
+    }
+    console.log(
+        JSON.stringify({
+            userId: usuario,
+            cartId: parseInt(classrooms.value),
+        })
+    );
+    const response = await fetch(
+        `https://secure-track-db.vercel.app/computers/request`,
+        {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
                 userId: usuario,
                 cartId: parseInt(classrooms.value),
-            })
-        );
-        const response = await fetch(
-            `https://secure-track-db.vercel.app/computers/request`,
-            {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId: usuario,
-                    cartId: parseInt(classrooms.value),
-                }),
-            }
-        );
-        const res = JSON.stringify(await response.json());
-        console.log(await res);
-        if (response.status == 200) {
-            sessionStorage.setItem("status", "En proceso");
-            sessionStorage.setItem("correctKey", res);
-            location.href = "../qr.html";
+            }),
         }
-   
-    
+    );
+    const res = JSON.stringify(await response.json());
+    console.log(await res);
+    if (response.status == 200) {
+        sessionStorage.setItem("status", "En proceso");
+        sessionStorage.setItem("correctKey", res);
+        location.href = "../qr.html";
+    }
+
+
 
 
 }
 
 async function returnComputer() {
+    let status = sessionStorage.getItem("status")
+    if (status != "Retirada") {
+        return
+    }
     console.log(
         JSON.stringify({
             userId: usuario,
@@ -241,19 +245,19 @@ async function returnComputer() {
 
 async function initializeClassrooms() {
     try {
-    
+
         loadingScreen.style.display = "flex";
 
         const data = await getCarros();
         console.log("Datos recibidos del backend:", data);
 
-      
+
         for (let key in libertador) libertador[key] = [];
         for (let key in monta) monta[key] = [];
 
         data.forEach((item) => {
-            const roomNumber = item.room.roomNumber; 
-            const building = roomNumber[0]; 
+            const roomNumber = item.room.roomNumber;
+            const building = roomNumber[0];
             const floor = roomNumber.slice(1, 2);
 
             if (building === "M" && monta[floor] !== undefined) {
@@ -269,13 +273,13 @@ async function initializeClassrooms() {
         console.log("Aulas de Libertador:", libertador);
 
     } catch (error) {
-        
 
-      
+
+
     } finally {
         loadingScreen.style.display = "none";
     }
-    
+
 }
 
 
