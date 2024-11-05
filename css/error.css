@@ -9,6 +9,12 @@ body{
     min-height: 100vh; 
     /* background-repeat: no-repeat; */
 }
+/* main{
+    margin-top: 20%;
+    margin-right: 50%;
+   margin-left: 50%;
+   margin-bottom: 50%;
+} */
 section {
     display: flex;
     justify-content: center;

@@ -25,15 +25,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 5%;
-      /* position: sticky;
-      top: 0px;
-      box-shadow: var(--box-shadow-hover); 
-      background: var(--body-background);  
-      verlo con mati */
-
-width: 100%;
+      /* padding: 10px 5%; */
 }
+
+
   
   .logo-title {
       display: flex;
@@ -61,6 +56,8 @@ width: 100%;
       border-radius: 50%;  
       border: 2px solid #fff;
       overflow: hidden;
+ display: flex;
+ justify-content: flex-end;
   }
   
   .image-user:hover {

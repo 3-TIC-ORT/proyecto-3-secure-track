@@ -19,7 +19,7 @@ async function cargarTransacciones() {
            
          }); 
         const transacciones = await response.json();
-        console.log(transacciones)
+        console.log( "estas son" ,  transacciones)
         
    
         
@@ -37,17 +37,19 @@ async function cargarTransacciones() {
         loadingScreen.style.display = "none";
     }
 }
+const fila = document.createElement('tr');
+let input =  document.createElement("input") 
+let button = document.createElement("button")
 
  function crearTransacciones(data) {
     for (let i = 0; i < data.computers.length; i++) {
-        const fila = document.createElement('tr');
-         let input =  document.createElement("input") 
+       
          input.setAttribute("id", `input${i}`)
          input.setAttribute("placeholder", "Usuario")
          input.setAttribute("class", "input")
          input.setAttribute("type", "text")
          button.addClassName("input")
-         let button = document.createElement("button")
+        
          button.setAttribute("id",`button${i}`)
          button.addClassName("button")
          button.innerText = "Asignar"
@@ -90,7 +92,7 @@ for (let i = 0; i < data.computers.length; i++) {
            
             
         } catch (error) {
-            console.log(error)       
+            console.log( "error de", error)       
         }
         finally {
             loadingScreen.style.display = "none";

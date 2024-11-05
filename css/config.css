@@ -151,7 +151,10 @@ border-color: blue;
   justify-content: flex-start;
     margin-top: 50%;
 } */
+
 .nfc{
+
+  text-decoration: none;
   padding: 10px 20px;
   border-radius: 8px;
   font-size: 15px;

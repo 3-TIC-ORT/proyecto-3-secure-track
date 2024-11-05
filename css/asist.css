@@ -19,6 +19,26 @@
    margin-right: 10%;
     display: flex;
     /* justify-content: space-around; */
+    /* position: sticky;
+    top: 0px;
+
+    box-shadow: var(--box-shadow-hover); 
+    animation-name: animation;
+    animation-duration: 15s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running; */
+
+}
+
+@keyframes animation {
+0% {background-color: rgba(7, 9, 168, 1)}
+25%{
+background-color: rgba(0, 85, 192, 0.8) ;
+}
+75%{  background-color: rgba(68, 114, 255, 1)}
+100%{  background-color: rgb(114, 148, 252)}
+
  }
 .titulo{
     font-size: 70px;
@@ -169,3 +189,21 @@ text-align: justify;
         font-size: 14px;
     }
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pagination-button{
+    margin: 0 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+}
+.pagination-button:hover{
+    scale: 1.1;
+}
+

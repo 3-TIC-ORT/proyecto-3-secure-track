@@ -6,54 +6,86 @@
         const loadingScreen = document.getElementById("loadingScreen");
 
 
-async function cargarTransacciones() {
-    try {
-        loadingScreen.style.display = "flex";
-
-        const response = await fetch('https://secure-track-db.vercel.app/asistente/tokens',{
-            method: "GET",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-            },
-           
-         }); 
-        const transacciones = await response.json();
-        console.log(transacciones)
+        const itemsPerPage = 10;
+        let currentPage = 1;
+        let totalPages = 1;
+        let transaccionesData = []; 
         
-   
+        async function cargarTransacciones(url = 'https://secure-track-db.vercel.app/asistente/tokens') {
+            try {
+                loadingScreen.style.display = "flex";
         
+                const response = await fetch(url, {
+                    method: "GET",
+                    mode: "cors",
+                    headers: { "Content-Type": "application/json" },
+                });
+                
+                const transacciones = await response.json();
+                console.log(transacciones);
         
-        tbody.innerHTML = '';
+              
+                transaccionesData = transacciones.tokens;
+                totalPages = Math.ceil(transaccionesData.length / itemsPerPage);
         
-       
-        transacciones.tokens.forEach(transaccion => {
-          crearTransacciones(transaccion)
-        });
-    } catch (error) {
-        location.href("./error500.html")
-    }
-    finally {
-        loadingScreen.style.display = "none";
-    }
-}
-
-cargarTransacciones();
- function crearTransacciones(data) {
-
-    const fila = document.createElement('tr');
+                renderPage(transaccionesData, currentPage);
+                
+            } catch (error) {
+                console.error("error", error)
+            } finally {
+                loadingScreen.style.display = "none";
+            }
+        }
+        
+        function renderPage(data, page) {
+            tbody.innerHTML = '';
             
-    fila.innerHTML = `
-        <td>${data.token.user.username}</td>
-        <td>${data.token.user.occupation}</td>
-        <td>${data.token.cart.room.roomNumber}</td>
-        <td>${data.computerId}</td>
-        <td>${data.token.status}</td>
-        <td>${(data.token.createdAt).toString().slice(0,10)}</td>
-    `;
-    
-    tbody.appendChild(fila);
-}
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageData = data.slice(start, end);
+            
+            pageData.forEach(transaccion => crearTransacciones(transaccion));
+            
+            updatePaginationButtons();
+        }
+        
+        function crearTransacciones(data) {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${data.token.user.username}</td>
+                <td>${data.token.user.occupation}</td>
+                <td>${data.token.cart.room.roomNumber}</td>
+                <td>${data.computerId}</td>
+                <td>${data.token.status}</td>
+                <td>${(data.token.createdAt).toString().slice(0,10)}</td>
+            `;
+            tbody.appendChild(fila);
+        }
+        
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(transaccionesData, currentPage); 
+            }
+        }
+        
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage(transaccionesData, currentPage); 
+            }
+        }
+        
+        function updatePaginationButtons() {
+          document.getElementById("currentPage").innerText = `Página ${currentPage} de ${totalPages}`;
+          document.getElementById("prevButton").disabled = currentPage === 1;
+          document.getElementById("prevButton").style.cursor = currentPage === 1 ? "not-allowed" : "pointer"; // Agregado para el cursor del botón anterior
+          document.getElementById("botonSiguiente").disabled = currentPage === totalPages;
+          document.getElementById("botonSiguiente").style.cursor = currentPage === totalPages ? "not-allowed" : "pointer";
+      }
+      
+        cargarTransacciones();
+        
 
 const alumno= document.getElementById("alumno")
 const ocupacion = document.getElementById("ocupacion")
@@ -69,8 +101,6 @@ computadora.addEventListener("change", checkValues);
 estado.addEventListener("change", checkValues);
 horario.addEventListener("change", checkValues);
 aula.addEventListener("change", checkValues);
-
-
 
 buscar.addEventListener("click", filtrado)
 
@@ -132,8 +162,6 @@ function checkValues() {
 
   }
 }
-
-
 
 async function filtrado() {
     try {
@@ -209,7 +237,8 @@ async function filtrado() {
        
 
     } catch (error) {
-        location.href = "./error500.html";
+      console.error(error)
+        // location.href = "./error500.html";
     }
 }
 

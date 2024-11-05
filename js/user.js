@@ -9,14 +9,11 @@ const username = sessionStorage.getItem("username")
 const p_user = document.getElementById("dni")
 const nfc = document.getElementById("nfc")
 const user = sessionStorage.getItem("userId")
-const ocupacion = sessionStorage.getItem("userId")
 const asignar = document.getElementById("asignar")
 const occupation = sessionStorage.getItem("occupation")
-if (ocupacion=== "Profeesor") {
-    document.getElementById("asignar").style.display="block"
-} else {
-        document.getElementById("asignar").style.display="none"
-}
+
+
+
     if (profilePhotoURL) {
         profileImage.src = `./img/${profilePhotoURL}.jpg`; 
         div.style.display = "block"; 
@@ -102,8 +99,9 @@ location.href="./qr.html"
      }
  }
 
- if ( occupation ==="profesor") {
-    asignar.style.display="block"
- } else {
-  asignar.style.display="none"
- }
+//  if ( occupation === "Profesor") {
+//     asignar.style.display="block"
+//  } else {
+//   asignar.style.display="none"
+//  }
+ 
