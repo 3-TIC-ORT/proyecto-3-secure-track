@@ -123,8 +123,7 @@ function showTab(tabId) {
                 sessionStorage.setItem("occupation", data.occupation)
                 sessionStorage.setItem("profilePhoto", data.avatar);
                 sessionStorage.setItem("status", data.status);
-                console.log(data.avatar)
-                
+             
                 
                     if (data.occupation === "Estudiante") {
                         if (data.status === "En proceso") {

@@ -6,7 +6,7 @@
         const loadingScreen = document.getElementById("loadingScreen");
 
 
-        const itemsPerPage = 10;
+        const itemsPerPage = 18;
         let currentPage = 1;
         let totalPages = 1;
         let transaccionesData = []; 
@@ -22,7 +22,7 @@
                 });
                 
                 const transacciones = await response.json();
-                console.log(transacciones);
+        
         
               
                 transaccionesData = transacciones.tokens;

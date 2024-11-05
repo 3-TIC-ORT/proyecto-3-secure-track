@@ -7,6 +7,7 @@ const parsedRes = JSON.parse(user);
 const finalizar = document.getElementById("finalizar")
 const modal= document.getElementById("modal")
 const closeModal= document.getElementById("closeModal")
+const loadingScreen = document.getElementById("loadingScreen");
 
 finalizar.addEventListener("click",async()=>{
 
@@ -102,17 +103,28 @@ if ((await data).status === 200) {
 
 }
 
-// Iniciar el temporizador con 5 minutos
 window.onload = async function () {
-if (!user) {
-location.href = "../accesodenegado.html"
-}
-onTimer()
+    if (!user) {
+        location.href = "../accesodenegado.html";
+    }
+    loadingScreen.style.display = "flex"; 
+
+    onTimer();
+
+    try {
+       
+        let img = document.createElement("img");
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(JSON.parse(res).tokenId)}`;
+        qr.appendChild(img);
+
+       
+        text.innerText = `El slot para el retiro es el ${JSON.parse(res).slot}`;
+
+    } catch (error) {
+        console.error("Error backend", error);
+    } finally {
+
+        loadingScreen.style.display = "none";
+    }
 };
-
-let img = document.createElement("img")
-img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(JSON.parse(res).tokenId)}`
-qr.appendChild(img)
-text.innerText = `El slot para el retiro es el ${JSON.parse(res).slot}`
-
 

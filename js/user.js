@@ -99,9 +99,9 @@ location.href="./qr.html"
      }
  }
 
-//  if ( occupation === "Profesor") {
-//     asignar.style.display="block"
-//  } else {
-//   asignar.style.display="none"
-//  }
+ if ( occupation === "Profesor") {
+    asignar.style.display="block"
+ } else {
+  asignar.style.display="none"
+ }
  

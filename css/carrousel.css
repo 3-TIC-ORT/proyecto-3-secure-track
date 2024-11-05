@@ -1,7 +1,7 @@
 :root {
-    --carousel-width: 75%;
-    --carousel-height: 350px;
-    --carousel-margin-top: 2%;
+    --carousel-width: 60%;
+    --carousel-height: 380px;
+    --carousel-margin-top: 4%;
     --control-bg-color: transparent; 
     --control-border-color: black; 
     --carousel-border-color: linear-gradient(180deg,rgb(47, 76, 163),  rgba(4, 67, 143, 0.8), rgb(4, 5, 109), ); 
@@ -10,8 +10,8 @@
 }
 
 .container {
-    width: var(--carousel-width);
-    height: var(--carousel-height);
+    width: 60%;
+    height:380px;
     border-radius: var(--border-radius);
     background-color: var(--carousel-border-color);
     position: relative;
@@ -32,8 +32,8 @@
 }
 
 .carousel {
-    width: 95%;
-    height: 320px;
+    width: 60%;
+    height: 350px;
     overflow: hidden;
     border-radius: var(--border-radius);
 }
