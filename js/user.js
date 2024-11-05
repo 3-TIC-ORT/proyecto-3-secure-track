@@ -105,5 +105,5 @@ location.href="./qr.html"
  if ( occupation ==="profesor") {
     asignar.style.display="block"
  } else {
-    return
+  asignar.style.display="none"
  }
