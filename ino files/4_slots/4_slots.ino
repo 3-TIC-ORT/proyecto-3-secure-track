@@ -17,7 +17,7 @@
 #define btnSlot3 33
 #define btnSlot4 35
 #define btnGral1 22
-#define buzzer 7
+#define buzzer 48
 #define electroIman 41
 #define led_rojo 10
 #define waitTime 5
@@ -93,7 +93,7 @@ void buzzerFunc(bool state){
   }else{
     analogWrite(buzzer, 0);
   }
-}
+} 
 
 void slot1(bool state) {
   if (state) {
@@ -297,78 +297,7 @@ void devolucion(String rfid, int timeStart) {
   }else if(outputArray[0]=="1"){
     multiple(outputArray, 0);
   }
-  // if (serialString == "1") {
-  //   stateStart = digitalRead(btnSlot1);
-  //   slot1(true);
-  //   puertaGeneral(true);
-  //   lcd.clear();
-  //   lcd.print("slot 1 abierto");
-  //   while (stateStart == digitalRead(btnSlot1)) {
-  //   }
-  //   lcd.clear();
-  //   lcd.print("por favor cierre la puerta");
-  //   timeStart=millis();
-  //     while (digitalRead(btnGral1)) { 
-  //       buzzerFunc(true);
-  //     } 
-  //     buzzerFunc(false);
-  //   puertaGeneral(false);
-  // } else if (serialString == "2") {
-  //   stateStart = digitalRead(btnSlot2);
-  //   slot2(true);
-  //   puertaGeneral(true);
-  //   lcd.clear();
-  //   lcd.print("slot 2 abierto");
-  //   while (stateStart == digitalRead(btnSlot2)) {
 
-  //   }
-  //   lcd.clear();
-  //   lcd.print("por favor cierre la puerta");
-  //   timeStart=millis();
-  //     while (digitalRead(btnGral1)) {
-  //       buzzerFunc(true);
-  //     }
-  //     buzzerFunc(false);
-  //   puertaGeneral(false);
-  // } else if (serialString == "3") {
-  //   stateStart = digitalRead(btnSlot3);
-  //   slot3(true);
-  //   puertaGeneral(true);
-  //   lcd.clear();
-  //   lcd.print("slot 3 abierto");
-  //   while (stateStart == digitalRead(btnSlot3)) {
-
-  //   }
-  //   lcd.clear();
-  //   lcd.print("por favor cierre la puerta");
-  //   timeStart=millis();
-  //     while (digitalRead(btnGral1)) {
-  //       buzzerFunc(true);
-  //     }
-  //     buzzerFunc(false);
-  //   puertaGeneral(false);
-  // } else if (serialString == "4") {
-  //   stateStart = digitalRead(btnSlot4);
-  //   slot4(true);
-  //   puertaGeneral(true);
-  //   lcd.clear();
-  //   lcd.print("slot 4 abierto");
-  //   while (stateStart == digitalRead(btnSlot4)) {
-
-  //   }
-  //   lcd.clear();
-  //   lcd.print("por favor cierre la puerta");
-  //   timeStart=millis();
-  //     while (digitalRead(btnGral1)) {
-  //       buzzerFunc(true);
-  //     }
-  //     buzzerFunc(false);
-  //   puertaGeneral(false);
-  // } else {
-  //   lcd.print("computadora no reconozida");
-  //   digitalWrite(buzzer, HIGH);
-  //   delay(2000);
-  // }
   lcd.clear();
   puertaGeneral(false);
   lcd.print("podes escanear");
@@ -378,7 +307,6 @@ void devolucion(String rfid, int timeStart) {
   slot3(false);
   slot4(false);
 }
-
 
 void loop() {
   serialString="";

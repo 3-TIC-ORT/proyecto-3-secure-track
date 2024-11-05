@@ -79,7 +79,6 @@ while capture.isOpened():
 
     try:
         data, bbox, rectifiedImage = qrDetector.detectAndDecode(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
-        cv2.imshow("qr", rectifiedImage) 
     except:
         data=[]
 
