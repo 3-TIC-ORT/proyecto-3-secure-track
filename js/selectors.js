@@ -1,6 +1,9 @@
 import { getCarros } from "./repository.js";
 let usuario = (sessionStorage.getItem("userId"));
-let occupation = sessionStorage.getItem("occupation")
+let occupation = sessionStorage.getItem("occupation") 
+let estado = sessionStorage.getItem("status") || "Devuelta"
+const confirmButton = document.getElementById("confirmButton");
+const returnButton = document.getElementById("returnButton");
 let response = await fetch(
     `https://secure-track-db.vercel.app/users/status`,
     {
@@ -16,13 +19,24 @@ let response = await fetch(
 );
 const res = await response.json()
 console.log(await res);
-if (response.status == 200) {
+if (res.status == 200) {
     sessionStorage.setItem("status", res.status);
+    console.log("entre")
+    if (res.status === "Retirada") {
+        confirmButton.disabled = true
+        returnButton.disabled = false
+    }else{
+        
+        confirmButton.disabled = false
+        returnButton.disabled = true
+    }
 }
 
 if (!usuario) {
     window.location.href = "accesodenegado.html";
 }
+
+
 
 let libertador =  [  [],  [],  [],  [], [] ];
 let monta = [  [],  [],  [],  [], [] ];
@@ -40,8 +54,7 @@ document.getElementById("closeModal").addEventListener("click", closeModal);
 const selectMonta = document.getElementById("select-monta");
 const selectLib = document.getElementById("select-libertador");
 const classrooms = document.getElementById("classrooms");
-const confirmButton = document.getElementById("confirmButton");
-const returnButton = document.getElementById("returnButton");
+
 const loadingScreen = document.getElementById("loadingScreen");
 
  const botonM= document.getElementById("monta");
@@ -143,6 +156,20 @@ function checkAllSelected() {
         confirmButton.style.display = "none";
         returnButton.style.display = "none";
     }
+
+    if (estado === "Retirada") {
+        returnButton.disabled = true;
+        confirmButton.disabled = false; 
+    } else if (estado === "Devuelta") {
+        returnButton.disabled = false;
+        confirmButton.disabled = true; 
+    } else {
+      
+        returnButton.disabled = false;
+        confirmButton.disabled = false;
+    }
+    
+
 }
 
 confirmButton.addEventListener("click", () => requestComputer());
@@ -254,12 +281,3 @@ async function initializeClassrooms() {
 
 initializeClassrooms();
 
-
-
-
-// if (estado ==="retirada")) {
-//     notn de desbloquear set  attinbute disbaled y activwar classe o esitlo blur
-// } else if (estado === "devulets") {
-//     boton de desblouquear activppo 
-//     retirar ocn clase y disabked 
-// }
