@@ -33,7 +33,7 @@ finalizar.addEventListener("click", async () => {
         location.href = "../selectorItems.html"
     } else {
         modal.style.display = "block";
-        modalmess.textContent ="Por favor, utiliza el qr que te proporcionamos!!"
+        modalmes.textContent ="Por favor, utiliza el qr que te proporcionamos!!"
     }
 })
 closeModal.addEventListener("click", close)
@@ -65,7 +65,7 @@ function startTimer(duration, display, callback) {
 
 
 function onTimerFinish() {
-     modalmess.textContent ="Se ha acabado tu tiempo, por favor vuelve a seleccionar";
+     modalmes.textContent ="Se ha acabado tu tiempo, por favor vuelve a seleccionar";
 if (closeModal) {
     location.href = "../selectorItems.html";
 } 
