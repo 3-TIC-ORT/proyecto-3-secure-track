@@ -90,7 +90,7 @@ async function onTimer() {
             console.log(horario);
 
             let hola = document.getElementById("hola");
-            hola.innerText = horario.time;
+            hola.innerText = `El QR estará disponible por` , horario.time;
 
             startTimer(300 - horario.time, timerDisplay, () => {
                 onTimerFinish();
