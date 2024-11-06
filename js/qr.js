@@ -3,42 +3,47 @@ const res = sessionStorage.getItem("correctKey");
 const user = sessionStorage.getItem("userId");
 const qr = document.getElementById("qr");
 const timerDisplay = document.getElementById("time");
-const parsedRes = JSON.parse(user);
-const finalizar = document.getElementById("finalizar")
-const modal = document.getElementById("modal")
-const closeModal = document.getElementById("closeModal")
-const modalmes = document.getElementById("modal-message")
+const finalizar = document.getElementById("finalizar");
+const modal = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
+const modalMessage = document.getElementById("modal-message");
+const loadingScreen = document.getElementById("loadingScreen");
+
+const parsedRes = res ? JSON.parse(res) : null; 
 
 finalizar.addEventListener("click", async () => {
+    try {
+        let data = await fetch(`https://secure-track-db.vercel.app/verificar`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: parsedRes?.tokenId }) 
+        });
 
-    let data = await fetch(`https://secure-track-db.vercel.app/verificar`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            token: (JSON.parse(res).tokenId)
-        })
-    })
+        if (data.status === 200) {
+            let horario = await data.json();
+            console.log(horario);
 
-    if (await data.status === 200) {
-        sessionStorage.removeItem("correctKey")
-        if (sessionStorage.getItem("status") === "En proceso") {
-            sessionStorage.setItem("status", "Retirada")
+            timerDisplay.innerText = horario.time;
 
+            startTimer(300 - horario.time, timerDisplay, () => {
+                onTimerFinish();
+            });
         } else {
-            sessionStorage.setItem("status", "Devuelta")
+            if (parsedRes?.tokenId === null) {
+                location.href = "../selectorItems.html";
+            }
         }
-        location.href = "../selectorItems.html"
-    } else {
-        modal.style.display = "block";
-        modalmes.textContent ="Por favor, utiliza el qr que te proporcionamos!!"
+    } catch (error) {
+        console.error("Error fetching data:", error);
     }
-})
-closeModal.addEventListener("click", close)
+});
 
-function close() {
+closeModal.addEventListener("click", closeModalHandler);
+
+function closeModalHandler() {
     modal.style.display = "none";
 }
 
@@ -48,77 +53,76 @@ function startTimer(duration, display, callback) {
         minutes = Math.floor(timer / 60);
         seconds = timer % 60;
 
-    
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      
         display.textContent = minutes + ":" + seconds;
 
-    
         if (--timer < 0) {
             clearInterval(interval);
-            callback(); 
+            callback();
         }
     }, 1000);
 }
 
-
 function onTimerFinish() {
-     modalmes.textContent ="Se ha acabado tu tiempo, por favor vuelve a seleccionar";
-if (closeModal) {
-    location.href = "../selectorItems.html";
-} 
+    modalMessage.textContent = "Se ha acabado tu tiempo, por favor vuelve a seleccionar";
+    modal.style.display = "block"; 
 }
 
-
-
-
 async function onTimer() {
-    loadingScreen.style.display = "flex";
+    try {
+        loadingScreen.style.display = "flex";
 
-    let data = await fetch("https://secure-track-db.vercel.app/computers/time",
-        {
+        let data = await fetch("https://secure-track-db.vercel.app/computers/time", {
             method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                token: JSON.parse(res).tokenId,
-            }),
+            body: JSON.stringify({ token: parsedRes?.tokenId })
+        });
+
+        loadingScreen.style.display = "none";
+
+        if (data.status === 200) {
+            let horario = await data.json();
+            console.log(horario);
+
+            let hola = document.getElementById("hola");
+            hola.innerText = horario.time;
+
+            startTimer(300 - horario.time, timerDisplay, () => {
+                onTimerFinish();
+            });
+        } else {
+            if (parsedRes?.tokenId === null) {
+                location.href = "../selectorItems.html";
+            }
         }
-    )
-    loadingScreen.style.display = "none";
-
-    if ((await data).status === 200) {
-        let horario = await data.json();
-        console.log(horario)
-        horario = 300 - horario.time
-        console.log(horario)
-
-        timer.innerText = horario
-
-        startTimer(horario, timerDisplay, () => { onTimer(); location.href = "../selectorItems.html" });
-
-    } else {
-        if (parseInt(res.tokenId) === null) {
-            location.href = "../selectorItems.html"
-        }
+    } catch (error) {
+        console.error("Error in onTimer:", error);
+        loadingScreen.style.display = "none";
     }
-
 }
 
-// Iniciar el temporizador con 5 minutos
+if (!user) {
+    location.href = "../accesodenegado.html";
+}
+
 window.onload = async function () {
-    if (!user) {
-        location.href = "../accesodenegado.html"
+    try {
+        loadingScreen.style.display = "flex";
+
+        let img = document.createElement("img");
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(parsedRes?.tokenId)}`;
+        qr.appendChild(img);
+
+        text.innerText = `El slot para el retiro es el ${parsedRes?.slots}`;
+        onTimer();
+    } catch (error) {
+        console.error("Error on window load:", error);
+    } finally {
+        loadingScreen.style.display = "none";
     }
 };
-
-let img = document.createElement("img")
-img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(JSON.parse(res).tokenId)}`
-qr.appendChild(img)
-text.innerText = `El slot para el retiro es el ${JSON.parse(res).slot}`
-
-

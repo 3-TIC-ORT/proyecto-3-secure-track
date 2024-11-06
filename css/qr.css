@@ -29,6 +29,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .lineal-qr {
@@ -63,7 +64,7 @@ main {
 scale: 1.1;
     }
 
-.text {
+.textoQr {
     font-weight: bold;
     font-size: 20px; 
     color: white; 
@@ -106,7 +107,7 @@ scale: 1.1;
         --radious: 20px;
     }
 
-    .text {
+    .textoQr {
         font-size: 18px; 
     }
 

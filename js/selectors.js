@@ -23,8 +23,10 @@ if (response.status === 200) {
     sessionStorage.setItem("status", res.status);
     if (res.status === "Retirada") {
         confirmButton.style.filter = "brightness(50%)"
+       confirmButton.style.cursor = "not-allowed"
     } else {
         returnButton.style.filter = "brightness(50%)"
+        returnButton.style.cursor = "not-allowed"
     }
 }
 
@@ -160,6 +162,7 @@ confirmButton.addEventListener("click", () => requestComputer());
 returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
+    loadingScreen.style.display="flex"
     console.log(
         JSON.stringify({
             userId: usuario,
