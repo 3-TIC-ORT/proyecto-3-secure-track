@@ -1,7 +1,9 @@
 const tbody = document.querySelector('#transaccionesTable tbody');
 const loadingScreen = document.getElementById("loadingScreen");
 const userId = sessionStorage.getItem("userId")
-
+const fila = document.createElement('tr');
+let input =  document.createElement("input") 
+let button = document.createElement("button")
 
 
 async function cargarTransacciones() {
@@ -37,11 +39,9 @@ async function cargarTransacciones() {
         loadingScreen.style.display = "none";
     }
 }
-const fila = document.createElement('tr');
-let input =  document.createElement("input") 
-let button = document.createElement("button")
 
- function crearTransacciones(data) {
+
+function crearTransacciones(data) {
     for (let i = 0; i < data.computers.length; i++) {
        
          input.setAttribute("id", `input${i}`)
@@ -63,7 +63,7 @@ let button = document.createElement("button")
         fila.appendChild(button)
         
         tbody.appendChild(fila);
-    }
+   }}
    
 
 
@@ -99,6 +99,6 @@ for (let i = 0; i < data.computers.length; i++) {
         }
     })
 }
-}
+
 
 cargarTransacciones();

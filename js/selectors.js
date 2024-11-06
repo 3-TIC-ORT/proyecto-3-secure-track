@@ -96,17 +96,15 @@ async function updateClassroomsOptions(piso, edificio) {
     let options = [];
     console.log(edificio);
 
-    // Aquí accedes al array correcto de acuerdo al edificio y piso seleccionados
+ 
     if (edificio === "monta") {
-        options = monta[piso] || []; // Si no hay aulas, deja el array vacío
+        options = monta[piso] || []; 
     } else if (edificio === "libertador") {
-        options = libertador[piso] || []; // Lo mismo aquí para Libertador
+        options = libertador[piso] || []; 
     } else {
         console.log("no hay")
     }
     console.log(options);
-
-    // Asegúrate de limpiar el contenido previo del selector de aulas
     classrooms.innerHTML = "";
 
     let classroomOption = document.createElement("option");
@@ -115,13 +113,13 @@ async function updateClassroomsOptions(piso, edificio) {
     classroomOption.selected = true;
     classrooms.appendChild(classroomOption);
 
-    // Si hay aulas disponibles, las agregamos al selector
+   
     if (options.length > 0) {
         options.forEach(room => {
             let opt = document.createElement("option");
             opt.value = room.id;
             opt.textContent = room.room.roomNumber;
-            // opt.textContent = `ID: ${room.id} - Aula: ${room.room.roomNumber}`; 
+        // opt.textContent = `ID: ${room.id} - Aula: ${room.room.roomNumber}`; aa
             classrooms.appendChild(opt);
         });
         classrooms.classList.remove("disactive");
@@ -153,20 +151,7 @@ function checkAllSelected() {
         returnButton.style.display = "none";
     }
 
-    if (estado === "Retirada") {
-        returnButton.setAttribute("disabled", true);
-        returnButton.style.cursor= "not-allowed";
-        confirmButton.setAttribute("disabled", false);
-         
-    } else if (estado === "Devuelta") {
-        returnButton.setAttribute("disabled", false);
-        confirmButton.setAttribute("disabled", true);;
-        confirmButton.style.cursor= "not-allowed"
-    } else {
 
-        returnButton.disabled = false;
-        confirmButton.disabled = false;
-    }
 
 
 }
@@ -175,10 +160,6 @@ confirmButton.addEventListener("click", () => requestComputer());
 returnButton.addEventListener("click", () => returnComputer());
 
 async function requestComputer() {
-    let status = sessionStorage.getItem("status")
-    if (status === "Retirada") {
-        return
-    }
     console.log(
         JSON.stringify({
             userId: usuario,
@@ -202,7 +183,7 @@ async function requestComputer() {
     const res = JSON.stringify(await response.json());
     console.log(await res);
     if (response.status == 200) {
-        sessionStorage.setItem("status", "En proceso");
+        sessionStorage.setItem("status", "Retirada");
         sessionStorage.setItem("correctKey", res);
         location.href = "../qr.html";
     }
@@ -213,10 +194,6 @@ async function requestComputer() {
 }
 
 async function returnComputer() {
-    let status = sessionStorage.getItem("status")
-    if (status != "Retirada") {
-        return
-    }
     console.log(
         JSON.stringify({
             userId: usuario,
@@ -240,8 +217,13 @@ async function returnComputer() {
 
     const res = JSON.stringify(await response.json());
     if (response.status == 200) {
+        loadingScreen.style.display = "flex";
+
+
         sessionStorage.setItem("status", "En proceso devolucion");
         sessionStorage.setItem("correctKey", res);
+
+
         location.href = "../qr.html";
     }
 }
@@ -272,13 +254,12 @@ async function initializeClassrooms() {
             }
         });
 
-        console.log("Aulas de Montañeses:", monta);
-        console.log("Aulas de Libertador:", libertador);
+    
 
     } catch (error) {
 
 
-
+location.href="./error500.html"
     } finally {
         loadingScreen.style.display = "none";
     }
