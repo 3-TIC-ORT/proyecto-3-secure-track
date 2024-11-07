@@ -3,8 +3,9 @@ import time
 import requests as req
 import json
 import serial
+from pyzbar.pyzbar import decode
 
-arduino = serial.Serial(port='COM8', baudrate=9600, timeout=.1)
+arduino = serial.Serial(port='COM11', baudrate=9600, timeout=.1)
 carro=73 #  M 110
 def sendRequestQR(data):
     payload = {
@@ -57,7 +58,7 @@ def traducirArduino(data):
             res[i]=str(res[i])
         print(",".join(res))
         return (",".join(res))
-    except KeyError:
+    except:
         print(data)
 
 
@@ -66,8 +67,6 @@ def enviarSerial(data):
     print(f"Enviado al arduino: {data}") 
 
 capture = cv2.VideoCapture(0)
-capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1366)
-capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 768) # --> 0 o 1 depende de que camara
 qrDetector = cv2.QRCodeDetector()
 
 while capture.isOpened():
@@ -78,7 +77,9 @@ while capture.isOpened():
         break
 
     try:
-        data, bbox, rectifiedImage = qrDetector.detectAndDecode(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+        # data, bbox, rectifiedImage = qrDetector.detectAndDecode(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+        decoded=decode(frame)
+        data = decoded[0].data.decode("utf-8") if decoded else ""
     except:
         data=[]
 
