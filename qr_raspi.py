@@ -52,7 +52,7 @@ def enviarSerial(data):
     arduino.write(data.encode())
     print(f"Enviado al arduino: {data}") 
 
-capture = cv2.VideoCapture(/dev/video0)
+capture = cv2.VideoCapture("/dev/video0")
 qrDetector = cv2.QRCodeDetector()
 
 while capture.isOpened():
