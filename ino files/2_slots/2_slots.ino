@@ -121,8 +121,11 @@ void unico(String lista[4]) {
       while (digitalRead(btnGral1)) {
         if (millis() - timeStart > 5000) {
           digitalWrite(buzzer, HIGH);
+        }else{ 
+          digitalWrite(buzzer, LOW);
         }
       }
+      digitalWrite(buzzer, LOW);
       puertaGeneral(false);
       break;
     case 2:
@@ -139,8 +142,11 @@ void unico(String lista[4]) {
       while (digitalRead(btnGral1)) {
         if (millis() - timeStart > 5000) {
           digitalWrite(buzzer, HIGH);
+        }else{ 
+          digitalWrite(buzzer, LOW);
         }
       }
+      digitalWrite(buzzer, LOW);
       puertaGeneral(false);
       break;
     default:
@@ -189,11 +195,15 @@ void multiple(String lista[4]) {
       while (digitalRead(btnGral1)) {
         if (millis() - timeStart > 5000) {
           digitalWrite(buzzer, HIGH);
+        }else{ 
+          digitalWrite(buzzer, LOW);
         }
       }
-  lcd.clear();
+      digitalWrite(buzzer, LOW);
+  
   slot1(false);
   slot2(false);
+  lcd.clear();
   digitalWrite(buzzer, LOW);
   puertaGeneral(false);
   lcd.print("podes escanear");
@@ -221,8 +231,11 @@ void devolucion(String rfid) {
       while (digitalRead(btnGral1)) {
         if (millis() - timeStart > 5000) {
           digitalWrite(buzzer, HIGH);
+        }else{ 
+          digitalWrite(buzzer, LOW);
         }
       }
+      digitalWrite(buzzer, LOW);
     puertaGeneral(false);
   } else if (serialString == "2") {
     stateStart = digitalRead(btnSlot2);
@@ -239,8 +252,11 @@ void devolucion(String rfid) {
       while (digitalRead(btnGral1)) {
         if (millis() - timeStart > 5000) {
           digitalWrite(buzzer, HIGH);
+        }else{ 
+          digitalWrite(buzzer, LOW);
         }
       }
+      digitalWrite(buzzer, LOW);
     puertaGeneral(false);
   } else {
     lcd.print("computadora no reconozida");
