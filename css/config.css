@@ -69,20 +69,28 @@
 }
 
 
-  .user-settings {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    height: 100vh; 
-    width: 30%; 
-    background-color: white;
-    position: fixed;
-    right: 0; 
-    top: 0; 
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); 
-    z-index: 1000; 
-    display: none; 
+.user-settings {
+  display: block;
+  flex-direction: column;
+  justify-content: flex-start; 
+  height: 100vh; 
+  width: 30%; 
+  background-color: white;
+  position: fixed;
+  right: 0; 
+  top: 0; 
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); 
+  z-index: 1000;
+  opacity: 0; /* Inicialmente oculto */
+  transform: translateX(100%); /* Fuera de la vista */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
 }
+
+.user-settings.active {
+  opacity: 1;
+  transform: translateX(0); /* Vuelve a la posición original */
+}
+
 .div-dni{
 color: black;
 }

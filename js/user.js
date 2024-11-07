@@ -21,12 +21,13 @@ const occupation = sessionStorage.getItem("occupation")
     }
     profileImage.addEventListener("click", mostrarConfiguraciones);
 
-    function mostrarConfiguraciones() {
-        if (userSettings.style.display === "none") {
-            userSettings.style.display = "block"; 
-        } else {
-            userSettings.style.display = "none"; 
-        }
+        function mostrarConfiguraciones() {
+            userSettings.classList.toggle("active");
+        //       if (userSettings.style.display === "none") {
+        //     userSettings.style.display = "block"; 
+        // } else {
+        //     userSettings.style.display = "none"; 
+        // }
     }
 closeDiv.addEventListener("click", close)
 
