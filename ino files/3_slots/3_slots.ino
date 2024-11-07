@@ -194,6 +194,7 @@ void unico(String lista[4], int timeStart) {
   slot1(false);
   slot2(false);
   slot3(false);
+  Serial.println("done")
 }
 
 void multiple(String lista[4], int timeStart) {
@@ -246,6 +247,7 @@ void multiple(String lista[4], int timeStart) {
   buzzerFunc(false);
   puertaGeneral(false);
   lcd.print("podes escanear");
+  Serial.println("done")
 }
 
 void devolucion(String rfid, int timeStart) {
@@ -270,6 +272,7 @@ void devolucion(String rfid, int timeStart) {
   slot1(false);
   slot2(false);
   slot3(false);
+  Serial.println("done")
 }
 
 void loop() {
@@ -300,7 +303,6 @@ void loop() {
         uidString += String(rfid.uid.uidByte[i], HEX);
       }
       devolucion(uidString, 0);
-      digitalWrite(led_rojo, LOW);
     }
   }
 }

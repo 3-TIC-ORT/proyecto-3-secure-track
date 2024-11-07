@@ -63,8 +63,15 @@ def traducirArduino(data):
 
 
 def enviarSerial(data):
-    arduino.write(data.encode())
-    print(f"Enviado al arduino: {data}") 
+    try:
+        arduino.write(data.encode())
+        print(f"Enviado al arduino: {data}") 
+        while arduino.in_waiting <= 0:
+        data = arduino.readline().decode('utf-8').strip() 
+        if(data=="done")
+    except Exception as err:
+        print("error: data={data}")
+        print err
 
 capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
@@ -77,9 +84,9 @@ while capture.isOpened():
         break
 
     try:
-        # data, bbox, rectifiedImage = qrDetector.detectAndDecode(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+        # data, bbox, rectifiedImage = qrDetector.detectAndDecode(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)) --> opencv qr decode
         decoded=decode(frame)
-        data = decoded[0].data.decode("utf-8") if decoded else ""
+        data = decoded[0].data.decode("utf-8") if decoded else "" # pyzbar qr decode
     except:
         data=[]
 
