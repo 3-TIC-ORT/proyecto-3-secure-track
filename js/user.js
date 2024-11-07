@@ -64,41 +64,50 @@ sessionStorage.setItem("correctKey", JSON.stringify({tokenId:user,slots:[]}))
 location.href="./qr.html"
  }
 
- const datalist = document.getElementById("transacciones");
- const summary = document.getElementById("summary");
- 
- summary.addEventListener("click", cargarTransacciones);
- 
- async function cargarTransacciones() {
-     try {
-         const response = await fetch('https://secure-track-db.vercel.app/users/transactions', {
-             method: "POST",
-             mode: "cors",
-             body: JSON.stringify({ userId: user }),
-             headers: {
-                 "Content-Type": "application/json",
-             },
-         });
-         const transacciones = await response.json();
-         console.log(transacciones);
- 
-         datalist.innerHTML = '';
- 
-         if (transacciones.length > 0) {
-             transacciones.forEach(transaccion => {
-                 const transaccionP = document.createElement("p");
-                 transaccionP.textContent = `Hora: ${transaccion.data.token.createdAt} - Aula: ${transaccion.data.token.cart.room.roomNumber}`; 
-                 datalist.appendChild(transaccionP);
-             });
-         } else {
-             const noTransaccionP = document.createElement("p");
-             noTransaccionP.textContent = `No hay transacciones disponibles`; 
-             datalist.appendChild(noTransaccionP);
-         }  
-     } catch (error) {
-         console.log(error)
-     }
- }
+ document.addEventListener("DOMContentLoaded", () => {
+    const summary = document.getElementById("summary");
+    const datalist = document.getElementById("transacciones"); 
+
+    summary.addEventListener("click", cargarTransacciones);
+
+    async function cargarTransacciones() {
+        try {
+            console.log("User ID:", user);
+
+            const response = await fetch('https://secure-track-db.vercel.app/users/transactions', {
+                method: "POST",
+                mode: "cors",
+                body: JSON.stringify({ userId: user }), 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Error en la solicitud: " + response.statusText);
+            }
+
+            const transacciones = await response.json();
+            console.log(transacciones);
+
+            datalist.innerHTML = ''; 
+            if (transacciones.length > 0) {
+                transacciones.forEach(transaccion => {
+                    const transaccionP = document.createElement("p");
+                    transaccionP.textContent = `Hora: ${transaccion.data.token.createdAt} - Aula: ${transaccion.data.token.cart.room.roomNumber}`;
+                    datalist.appendChild(transaccionP);
+                });
+            } else {
+                const noTransaccionP = document.createElement("p");
+                noTransaccionP.textContent = "No hay transacciones disponibles"; 
+                datalist.appendChild(noTransaccionP);
+            }  
+        } catch (error) {
+            console.error("Error:", error);
+            datalist.innerHTML = '<p>Error al cargar las transacciones, por  favor intente mas tarde.</p>';
+        }
+    }
+});
 
  if ( occupation === "Profesor") {
     asignar.style.display="block"
