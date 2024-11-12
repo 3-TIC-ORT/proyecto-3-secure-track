@@ -29,6 +29,8 @@ finalizar.addEventListener("click", async () => {
        let info = await data.json()
        if (info.verificado) {
         location.href = "./selectorItems.html"
+       }else{
+        document.getElementById("error").innerText = "El qr no ha sido utilizado"
        }
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,7 +61,8 @@ function startTimer(duration, display, callback) {
     }, 1000);
 }
 
-function onTimerFinish() {
+async function onTimerFinish() {
+   
     modalMessage.textContent = "Se ha acabado tu tiempo, por favor vuelve a seleccionar";
     modal.style.display = "block"; 
 }
@@ -90,9 +93,8 @@ async function onTimer() {
                 onTimerFinish();
             });
         } else {
-            if (parsedRes?.tokenId === null) {
                 location.href = "../selectorItems.html";
-            }
+            
         }
     } catch (error) {
         console.error("Error in onTimer:", error);
