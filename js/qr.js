@@ -67,6 +67,8 @@ async function onTimerFinish() {
     modal.style.display = "block"; 
 }
 
+
+document.addEventListener("DOMContentLoaded", onTimer);
 async function onTimer() {
     try {
         loadingScreen.style.display = "flex";
@@ -98,6 +100,8 @@ async function onTimer() {
         }
     } catch (error) {
         console.error("Error in onTimer:", error);
+        let hola = document.getElementById("hola");
+        hola.innerText = `error deel servidor`  
         loadingScreen.style.display = "none";
     }
 }
@@ -122,5 +126,6 @@ window.onload = async function () {
         loadingScreen.style.display = "none";
     }
 };
+
 
 

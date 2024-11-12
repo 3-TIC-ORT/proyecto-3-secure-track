@@ -1,6 +1,6 @@
 :root {
-    --tamaño-lineal: 220px;
-    --tamaño-white: 200px;
+    --tamaño-lineal: 280px; /* Increased from 250px */
+    --tamaño-white: 240px;  /* Increased from 200px */
     --radious: 30px;
     --shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
     --hover-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
@@ -39,6 +39,8 @@ main {
     background: linear-gradient(rgba(68, 114, 255, 1), rgba(0, 85, 192, 0.8), rgba(7, 9, 168, 1));
     height: var(--tamaño-lineal);
     width: var(--tamaño-lineal);
+    max-width: 100vw; /* Allowing it to scale larger */
+    max-height: 100vw; /* Allowing it to scale larger */
     border-radius: var(--radious);
 }
 
@@ -50,21 +52,23 @@ main {
     background-color: aliceblue;
     height: var(--tamaño-white);
     width: var(--tamaño-white);
+    max-width: 90vw; /* Allowing it to scale larger */
+    max-height: 90vw; /* Allowing it to scale larger */
 }
 
 .qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: var(--radious);
+    transform: scale(1.4); 
+    height: 10%;  
+    width: 10%;
+    margin: 0;
+}
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: white;
-        border-radius: var(--radious);
-        height: 90%; 
-        width: 90%;
-scale: 1.1;
-    }
-
-.textoQr {
+.textQr {
     font-weight: bold;
     font-size: 20px; 
     color: white; 
@@ -78,7 +82,6 @@ scale: 1.1;
     align-items: center; 
     gap: 10px;
     flex-direction: column;
-    /* flex-wrap: wrap;  */
 }
 
 .button {
@@ -102,12 +105,12 @@ scale: 1.1;
 
 @media (max-width: 768px) {
     :root {
-        --tamaño-lineal: 230px;
-        --tamaño-white: 200px;
+        --tamaño-lineal: 270px;  /* Scaled down for smaller screens */
+        --tamaño-white: 220px;   /* Scaled down for smaller screens */
         --radious: 20px;
     }
 
-    .textoQr {
+    .textQr {
         font-size: 18px; 
     }
 
