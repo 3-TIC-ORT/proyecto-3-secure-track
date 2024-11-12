@@ -50,7 +50,7 @@ function startTimer(duration, display, callback) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.innerText = minutes + ":" + seconds;
+        display.innerText =   "El QR estará disponible por " + minutes + ":" + seconds;
 
         if (--timer < 0) {
             clearInterval(interval);
@@ -84,9 +84,9 @@ async function onTimer() {
             console.log(horario);
 
             let hola = document.getElementById("hola");
-            hola.innerText = `El QR estará disponible por` , horario.time;
+            hola.innerText = `El QR estará disponible por`    
 
-            startTimer(300 - horario.time, timerDisplay, () => {
+            startTimer(300 - horario.time, hola, () => {
                 onTimerFinish();
             });
         } else {
@@ -122,4 +122,3 @@ window.onload = async function () {
 };
 
 
-onTimer()
