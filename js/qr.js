@@ -1,17 +1,21 @@
-const text = document.getElementById("text");
-const res = sessionStorage.getItem("correctKey");
-const user = sessionStorage.getItem("userId");
-const qr = document.getElementById("qr");
-const timerDisplay = document.getElementById("time");
-const finalizar = document.getElementById("finalizar");
-const modal = document.getElementById("modal");
-const closeModal = document.getElementById("closeModal");
-const modalMessage = document.getElementById("modal-message");
-const loadingScreen = document.getElementById("loadingScreen");
+    const text = document.getElementById("text");
+    const res = sessionStorage.getItem("correctKey");
+    const user = sessionStorage.getItem("userId");
+    const qr = document.getElementById("qr");
+    const timerDisplay = document.getElementById("time");
+    const finalizar = document.getElementById("finalizar");
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("closeModal");
+    const modalMessage = document.getElementById("modal-message");
+    const loadingScreen = document.getElementById("loadingScreen");
 
-const parsedRes = res ? JSON.parse(res) : null; 
+    const parsedRes = res ? JSON.parse(res) : null;
+
+    // Place the rest of your JavaScript code here...
+ 
 
 finalizar.addEventListener("click", async () => {
+    console.log(parsedRes.tokenId)
     try {
         let data = await fetch(`https://secure-track-db.vercel.app/verificar`, {
             method: "POST",
@@ -19,23 +23,13 @@ finalizar.addEventListener("click", async () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ token: parsedRes?.tokenId }) 
+            body: JSON.stringify({ token: parsedRes.tokenId }) 
         });
 
-        if (data.status === 200) {
-            let horario = await data.json();
-            console.log(horario);
-
-            timerDisplay.innerText = horario.time;
-
-            startTimer(300 - horario.time, timerDisplay, () => {
-                onTimerFinish();
-            });
-        } else {
-            if (parsedRes?.tokenId === null) {
-                location.href = "../selectorItems.html";
-            }
-        }
+       let info = await data.json()
+       if (info.verificado) {
+        location.href = "./selectorItems.html"
+       }
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -56,7 +50,7 @@ function startTimer(duration, display, callback) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds;
+        display.innerText = minutes + ":" + seconds;
 
         if (--timer < 0) {
             clearInterval(interval);
@@ -126,3 +120,6 @@ window.onload = async function () {
         loadingScreen.style.display = "none";
     }
 };
+
+
+onTimer()
