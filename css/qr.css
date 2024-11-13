@@ -106,7 +106,7 @@ main {
 @media (max-width: 768px) {
     :root {
         --tamaño-lineal: 270px;  /* Scaled down for smaller screens */
-        --tamaño-white: 220px;   /* Scaled down for smaller screens */
+        --tamaño-white: 200px;   /* Scaled down for smaller screens */
         --radious: 20px;
     }
 

@@ -1,6 +1,4 @@
-    if (!sessionStorage.getItem("asist-Key")) {
-            window.location.href = "accesodenegado.html";
-            }
+    
         
         
         const tbody = document.querySelector('#transaccionesTable tbody');
