@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Track</title>
     <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/asist.css">
     <link rel="stylesheet" href="css/config.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/asing.css">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,14 +19,16 @@
         <div class="slider">
             <img src="img/logo.png" alt="loading" class="loading-image">
         </div>
-    </div>
+    </div> 
     
     
   <header class="header-container"> 
     <a href="index.html" class="logo-title">
         <img id="logo" src="img/logo.png" width="130px" height="130px">
-        <h1 class="titulo">SECURE TRACK</h1>
     </a> 
+    <div class="div-titulo">
+        <h1 class="titulo">SECURE TRACK</h1>
+        </div>
     <div class="image-user" id="div-image" style="display: none;">
        <img id="image-user" style="display: none;" alt="Profile Photo" />
     </div>
@@ -73,46 +75,20 @@
 </section>
  <main>
     
-
-    <div class="container">
-
-
-       <div class="div-input">
-        <input type="text" placeholder="N° de Computadora" class="input" id="computadora">
-        <input type="text" placeholder="Ocupacion" class="input" id="ocupacion">
-        <input type="text" placeholder="Usuario" class="input" id="alumno">
-        <input type="text" placeholder="Aula" class="input" id="aula">
-        <input type="date" placeholder="Horario" class="input" id="horario">
-        <input type="text" placeholder="Estado" class="input" id="estado">
-     
-        <button class="search-button" id="go"> Buscar </button>
-    </div>
-
-    </div>
-    
-<table class="tabla" id="transaccionesTable">
-    <thead>
-        <tr>
-            <th class="special">Alumno</th>
-            <th class="special">Ocupación</th>
-            <th class="special">Aula</th>
-            <th class="special">N° de Computadora</th>
-            <th class="special">Status</th>
-            <th class="special">Fecha de retiro</th>
-        </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
+    <table class="tabla" id="transaccionesTable">
+        <thead>
+            <tr>
+                <th class="special">Aula</th>
+                <th class="special">N° de Computadora</th>
+                <th class="special">HORARIO</th>
+                <th class="special">ALUMNO</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
 </main>
-
-<div class="pagination">
-    <button id="prevButton" onclick="previousPage()" class="pagination-button">Anterior</button>
-    <span id="currentPage">Página 1 de X</span>
-    <button id="botonSiguiente" onclick="nextPage(transacciones.tokens)" class="pagination-button">Siguiente</button>
-</div>
-
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -124,7 +100,7 @@
             </div>
         </div>
     </footer>
-    <script src="js/asistente.js"></script>
+    <script src="js/asignar.js"></script>
     <script src="js/user.js"></script>
 </body>
 </html>

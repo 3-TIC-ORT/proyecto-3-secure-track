@@ -1,0 +1,10 @@
+:root{
+    --font-tittle: 'K2D', sans-serif; 
+    --font-tittle-size: 40px;
+}
+
+
+.option-select{
+    font-family: var(--font-tittle);
+    font-size: var(--font-tittle-size);
+}

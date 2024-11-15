@@ -1,66 +1,131 @@
-    let text = document.getElementById("text")    
-    let res = localStorage.getItem("correctKey")
+    const text = document.getElementById("text");
+    const res = sessionStorage.getItem("correctKey");
+    const user = sessionStorage.getItem("userId");
+    const qr = document.getElementById("qr");
+    const timerDisplay = document.getElementById("time");
+    const finalizar = document.getElementById("finalizar");
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("closeModal");
+    const modalMessage = document.getElementById("modal-message");
+    const loadingScreen = document.getElementById("loadingScreen");
 
-    let qr = document.getElementById("qr");
-    let timerDisplay = document.getElementById("time");
+    const parsedRes = res ? JSON.parse(res) : null;
 
-    // Función para manejar el temporizador
-    function startTimer(duration, display, callback) {
-        let timer = duration, minutes, seconds;
-        let interval = setInterval(function () {
-            minutes = Math.floor(timer / 60);
-            seconds = timer % 60;
+    // Place the rest of your JavaScript code here...
+ 
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+finalizar.addEventListener("click", async () => {
+    console.log(parsedRes.tokenId)
+    try {
+        let data = await fetch(`https://secure-track-db.vercel.app/verificar`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: parsedRes.tokenId }) 
+        });
 
-            display.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
-                clearInterval(interval);
-                callback(); // Ejecutar la función cuando el tiempo llegue a 0
-            }
-        }, 1000);
+       let info = await data.json()
+       if (info.verificado) {
+        location.href = "./selectorItems.html"
+       }else{
+        document.getElementById("error").innerText = "El qr no ha sido utilizado"
+       }
+    } catch (error) {
+        console.error("Error fetching data:", error);
     }
+});
 
-    // Función que se ejecuta cuando el temporizador termina
-    async function onTimerFinish() {
-        try {
-            const response = await fetch(
-                `https://secure-track-db.vercel.app/computers/delete`,
-                {
-                    method: "DELETE",
-                    mode: "cors",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        token: JSON.parse(res).tokenId,
-                    }),
-                }
-            );
-            const result = await response.json();
-            let modalMessage = document.getElementById("modal-message")
-            modalMessage.innerText = `El tiempo ha terminado. Respuesta: ${result.message}`;
-            modal.style.display = "flex"; 
-        } catch (error) {
-            modalMessage.innerText = `Error: ${error.message}`;
-            modal.style.display = "flex"; 
+closeModal.addEventListener("click", closeModalHandler);
+
+function closeModalHandler() {
+    modal.style.display = "none";
+}
+
+function startTimer(duration, display, callback) {
+    let timer = duration, minutes, seconds;
+    let interval = setInterval(function () {
+        minutes = Math.floor(timer / 60);
+        seconds = timer % 60;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.innerText =   "El QR estará disponible por " + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            clearInterval(interval);
+            callback();
         }
-    }
-document.getElementById("close-btn").addEventListener("click", closeModal)
-    function closeModal() {
-        modal.style.display = "none";
-    }
+    }, 1000);
+}
+
+async function onTimerFinish() {
+   
+    modalMessage.textContent = "Se ha acabado tu tiempo, por favor vuelve a seleccionar";
+    modal.style.display = "block"; 
+}
 
 
-    // Iniciar el temporizador con 5 minutos
-    window.onload = function () {
-        let fiveMinutes = 5;
-        startTimer(fiveMinutes, timerDisplay, onTimerFinish);
-    };
-    
-    let img = document.createElement("img")
-    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(JSON.parse(res).tokenId)}`
-    qr.appendChild(img)
-    text.innerText = `El slot para el retiro es el ${JSON.parse(res).slot}`
+document.addEventListener("DOMContentLoaded", onTimer);
+async function onTimer() {
+    try {
+        loadingScreen.style.display = "flex";
+
+        let data = await fetch("https://secure-track-db.vercel.app/computers/time", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: parsedRes?.tokenId })
+        });
+
+        loadingScreen.style.display = "none";
+
+        if (data.status === 200) {
+            let horario = await data.json();
+            console.log(horario);
+
+            let hola = document.getElementById("hola");
+            hola.innerText = `El QR estará disponible por`    
+
+            startTimer(300 - horario.time, hola, () => {
+                onTimerFinish();
+            });
+        } else {
+                location.href = "../selectorItems.html";
+            
+        }
+    } catch (error) {
+        console.error("Error in onTimer:", error);
+        let hola = document.getElementById("hola");
+        hola.innerText = `error deel servidor`  
+        loadingScreen.style.display = "none";
+    }
+}
+
+if (!user) {
+    location.href = "../accesodenegado.html";
+}
+
+window.onload = async function () {
+    try {
+        loadingScreen.style.display = "flex";
+
+        let img = document.createElement("img");
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(parsedRes?.tokenId)}`;
+        qr.appendChild(img);
+
+        text.innerText = `El slot para el retiro es el ${parsedRes?.slots}`;
+        onTimer();
+    } catch (error) {
+        console.error("Error on window load:", error);
+    } finally {
+        loadingScreen.style.display = "none";
+    }
+};
+
+
+
