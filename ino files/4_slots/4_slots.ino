@@ -97,7 +97,7 @@ void buzzerFunc(bool state){
 
 void slot1(bool state) {
   if (state) {
-    servoSlot1.write(90);
+    servoSlot1.write(45);
     digitalWrite(ledSlot1, HIGH);
   } else {
     servoSlot1.write(0);
@@ -106,7 +106,7 @@ void slot1(bool state) {
 }
 void slot2(bool state) {
   if (state) {
-    servoSlot2.write(90);
+    servoSlot2.write(45);
     digitalWrite(ledSlot2, HIGH);
   } else {
     servoSlot2.write(0);
@@ -115,7 +115,7 @@ void slot2(bool state) {
 }
 void slot3(bool state) {
   if (state) {
-    servoSlot3.write(90);
+    servoSlot3.write(45);
     digitalWrite(ledSlot3, HIGH);
   } else {
     servoSlot3.write(0);
@@ -124,7 +124,7 @@ void slot3(bool state) {
 }
 void slot4(bool state) {
   if (state) {
-    servoSlot4.write(90);
+    servoSlot4.write(45);
     digitalWrite(ledSlot4, HIGH);
   } else {
     servoSlot4.write(0);
