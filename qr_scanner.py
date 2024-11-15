@@ -5,7 +5,7 @@ import json
 import serial
 from pyzbar.pyzbar import decode
 
-arduino = serial.Serial(port='COM11', baudrate=9600, timeout=.1)
+arduino = serial.Serial(port='COM10', baudrate=9600, timeout=.1)
 carro=73 #  M 110
 def sendRequestQR(data):
     payload = {
@@ -43,6 +43,24 @@ def sendRequestRFID(data):
     except Exception as e:
         print(e)
 
+def sendRequestRfidAsignment(userId, rfid):
+    payload = {
+        "rfid": rfid,
+        "userId":userId
+
+    }
+    try:
+        res = req.post("https://secure-track-db.vercel.app/users/register/rfid", json=payload, headers={'content-type': 'application/json'})
+        print(res.status_code)
+        print(payload)
+        if res.status_code == 200:
+            return res.json() 
+        else:
+            return res.json()
+        
+    except Exception as e:
+        print(e)
+
 def traducirArduino(data):
     try:
         if data["type"]=="error":
@@ -67,11 +85,11 @@ def enviarSerial(data):
         arduino.write(data.encode())
         print(f"Enviado al arduino: {data}") 
         while arduino.in_waiting <= 0:
+            continue
         data = arduino.readline().decode('utf-8').strip() 
-        if(data=="done")
     except Exception as err:
         print("error: data={data}")
-        print err
+        print(err)
 
 capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
@@ -89,27 +107,36 @@ while capture.isOpened():
         data = decoded[0].data.decode("utf-8") if decoded else "" # pyzbar qr decode
     except:
         data=[]
-
-    if len(data) > 0:  
-        print(f"QR Code detected: {data}")
-        enviarSerial(traducirArduino(sendRequestQR(data)))
-        time.sleep(2)  
     
-    time.sleep(0.01)
+    try:
+        userQr=int(data)
+        print("qr detected: " + str(userQr))
+        enviarSerial("registrando usuario\n")
+        while arduino.in_waiting == 0:
+            continue
+        userRfid = arduino.readline().decode('utf-8').strip()
+        print(sendRequestRfidAsignment(userQr, userRfid))
 
-    if arduino.in_waiting > 0:
-        data = arduino.readline().decode('utf-8').strip() 
-        print(f"RFID leído: {data}")
-        rfidResponse = sendRequestRFID(data)
-        try:
-            if len(rfidResponse.get("slots"))>0:
-                enviarSerial(traducirArduino(rfidResponse))
-            else:
-                enviarSerial("error") 
-        except TypeError:
-            if rfidResponse.get("slots")>0:
-                enviarSerial(traducirArduino(rfidResponse))
-            else:
-                enviarSerial("error") 
+    except Exception as err:
+        if len(data) > 0:  
+            print(f"QR Code detected: {data}")
+            enviarSerial(traducirArduino(sendRequestQR(data)))
+            time.sleep(2)  
+        
+        time.sleep(0.01)
+        if arduino.in_waiting > 0:
+            data = arduino.readline().decode('utf-8').strip() 
+            print(f"RFID leído: {data}")
+            rfidResponse = sendRequestRFID(data)
+            try:
+                if len(rfidResponse.get("slots"))>0:
+                    enviarSerial(traducirArduino(rfidResponse))
+                else:
+                    enviarSerial("error") 
+            except TypeError:
+                if rfidResponse.get("slots")>0:
+                    enviarSerial(traducirArduino(rfidResponse))
+                else:
+                    enviarSerial("error") 
 capture.release()
 cv2.destroyAllWindows()

@@ -81,7 +81,7 @@ void setup() {
 
 void buzzerFunc(bool state){
   if(state){
-    analogWrite(buzzer, 0); // prendido
+    analogWrite(buzzer, 400); // prendido
   }else{
     analogWrite(buzzer, 0);
   }
@@ -194,7 +194,7 @@ void unico(String lista[4], int timeStart) {
   slot1(false);
   slot2(false);
   slot3(false);
-  Serial.println("done")
+  Serial.println("done");
 }
 
 void multiple(String lista[4], int timeStart) {
@@ -247,7 +247,7 @@ void multiple(String lista[4], int timeStart) {
   buzzerFunc(false);
   puertaGeneral(false);
   lcd.print("podes escanear");
-  Serial.println("done")
+  Serial.println("done");
 }
 
 void devolucion(String rfid, int timeStart) {
@@ -272,7 +272,7 @@ void devolucion(String rfid, int timeStart) {
   slot1(false);
   slot2(false);
   slot3(false);
-  Serial.println("done")
+  Serial.println("done");
 }
 
 void loop() {
@@ -284,15 +284,36 @@ void loop() {
   puertaGeneral(false);
   if (Serial.available() > 0) {
     serialString = Serial.readStringUntil('\n');
-    listTranslate(serialString, inputList);
-    if (inputList[0] == "0") {
-      unico(inputList, 0);
-    } else if (inputList[0] == "1") {
-      multiple(inputList, 0);
-    }else if(inputList[0]=="5"){
-      lcd.print(inputList[1]);
-      delay(3000);
+    if(serialString=="registrando usuario"){
       lcd.clear();
+      lcd.print("Rgistrando usuario");
+      lcd.setCursor(0,1);
+      lcd.print("escanee rfid ...");
+      while(true){
+        if (rfid.PICC_IsNewCardPresent()) {
+          if (rfid.PICC_ReadCardSerial()) {
+            uidString = "";
+            for (byte i = 0; i < rfid.uid.size; i++) {
+              uidString += String(rfid.uid.uidByte[i] < 0x10 ? "0" : "");
+              uidString += String(rfid.uid.uidByte[i], HEX);
+            }
+            Serial.println(uidString);
+            break;
+          }
+        }
+      }
+      lcd.clear();
+    }else{
+      listTranslate(serialString, inputList);
+      if (inputList[0] == "0") {
+        unico(inputList, 0);
+      } else if (inputList[0] == "1") {
+        multiple(inputList, 0);
+      }else if(inputList[0]=="5"){
+        lcd.print(inputList[1]);
+        delay(3000);
+        lcd.clear();
+      }
     }
   }
   if (rfid.PICC_IsNewCardPresent()) {
