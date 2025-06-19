@@ -5,8 +5,8 @@ import json
 import serial
 from pyzbar.pyzbar import decode
 
-arduino = serial.Serial(port='/dev/tty.usbserial-120', baudrate=9600, timeout=0.1)
-carro=6 #  M 110
+arduino = serial.Serial(port='/dev/tty.usbserial-130', baudrate=9600, timeout=0.1)
+carro=12 #  L211
 def sendRequestQR(data):
     payload = {
         "token": data,
@@ -109,7 +109,7 @@ while capture.isOpened():
         data=[]
     
     try:
-        userQr=int(data)
+        userQr=int(data.data)
         print("qr detected: " + str(userQr))
         enviarSerial("registrando usuario\n")
         while arduino.in_waiting == 0:
