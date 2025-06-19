@@ -19,7 +19,8 @@
 #define electroIman 40
 // #define led_rojo 10
 #define waitTime 5
-
+#define closedServoAngle 90
+#define openServoAngle 0
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 MFRC522 rfid(RFID_SS_PIN, RFID_RST_PIN);
@@ -64,9 +65,9 @@ void setup() {
   servoSlot1.attach(2);
   servoSlot2.attach(3);
   servoSlot3.attach(4);
-  servoSlot1.write(90);
-  servoSlot2.write(90);
-  servoSlot3.write(90);
+  servoSlot1.write(closedServoAngle);
+  servoSlot2.write(closedServoAngle);
+  servoSlot3.write(closedServoAngle);
   // pinMode(ledSlot1, OUTPUT);
   // pinMode(ledSlot2, OUTPUT);
   // pinMode(ledSlot3, OUTPUT);
@@ -89,28 +90,28 @@ void setup() {
 
 void slot1(bool state) {
   if (state) {
-    servoSlot1.write(0);
+    servoSlot1.write(openServoAngle);
     // digitalWrite(ledSlot1, HIGH);
   } else {
-    servoSlot1.write(90);
+    servoSlot1.write(closedServoAngle);
     // digitalWrite(ledSlot1, LOW);
   }
 }
 void slot2(bool state) {
   if (state) {
-    servoSlot2.write(0);
+    servoSlot2.write(openServoAngle);
     // digitalWrite(ledSlot2, HIGH);
   } else {
-    servoSlot2.write(90);
+    servoSlot2.write(closedServoAngle);
     // digitalWrite(ledSlot2, LOW);
   }
 }
 void slot3(bool state) {
   if (state) {
-    servoSlot3.write(0);
+    servoSlot3.write(openServoAngle);
     // digitalWrite(ledSlot3, HIGH);
   } else {
-    servoSlot3.write(90);
+    servoSlot3.write(closedServoAngle);
     // digitalWrite(ledSlot3, LOW);
   }
 }
