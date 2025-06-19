@@ -175,6 +175,7 @@ void unico(String lista[4], int timeStart) {
       while (digitalRead(btnGral1)) {
         // buzzerFunc(true);
       }
+
       // buzzerFunc(false);
       puertaGeneral(false);
       break;
@@ -194,7 +195,7 @@ void unico(String lista[4], int timeStart) {
   slot1(false);
   slot2(false);
   slot3(false);
-  Serial.println("done");
+  
 }
 
 void multiple(String lista[4], int timeStart) {
@@ -247,7 +248,7 @@ void multiple(String lista[4], int timeStart) {
   // buzzerFunc(false);
   puertaGeneral(false);
   lcd.print("podes escanear");
-  Serial.println("done");
+  
 }
 
 void devolucion(String rfid, int timeStart) {
@@ -258,11 +259,15 @@ void devolucion(String rfid, int timeStart) {
   while (Serial.available() == 0) {
   }
   serialString = Serial.readStringUntil('\n');
-  listTranslate(serialString, outputArray);
-  if(outputArray[0]=="0"){
-    unico(outputArray, 0);
-  }else if(outputArray[0]=="1"){
-    multiple(outputArray, 0);
+  if(serialString=="error"){
+     // porque cuando el python devuelve error con su funcon enviarSerial esto no vuelve el arduino a su estado inicial (no modifiques nada mas que esto)
+  }else{ 
+    listTranslate(serialString, outputArray);
+    if(outputArray[0]=="0"){
+      unico(outputArray, 0);
+    }else if(outputArray[0]=="1"){
+      multiple(outputArray, 0);
+    } 
   }
 
   lcd.clear();
@@ -272,7 +277,7 @@ void devolucion(String rfid, int timeStart) {
   slot1(false);
   slot2(false);
   slot3(false);
-  Serial.println("done");
+  
 }
 
 void loop() {
