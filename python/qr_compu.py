@@ -5,7 +5,10 @@ import json
 import serial
 from pyzbar.pyzbar import decode
 
-arduino = serial.Serial(port='/dev/tty.usbserial-1130', baudrate=9600, timeout=0.1)
+
+portWindows="COM4"
+portMac="/dev/tty.usbserial-1130"
+arduino = serial.Serial(port=portWindows, baudrate=9600, timeout=0.1)
 carro=132 #  L211
 def sendRequestQR(data):
     payload = {
@@ -83,7 +86,7 @@ def traducirArduino(data):
 
 def enviarSerial(data):
     try:    
-        arduino = serial.Serial(port='/dev/tty.usbserial-1130', baudrate=9600, timeout=0.1)
+        arduino = serial.Serial(port=portWindows, baudrate=9600, timeout=0.1)
         arduino.write(data.encode())
         print(f"Enviado al arduino: {data}") 
         data = arduino.readline().decode('utf-8').strip() 

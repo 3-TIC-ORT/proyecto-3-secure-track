@@ -5,7 +5,9 @@ import json
 import serial
 from pyzbar.pyzbar import decode
 
-arduino = serial.Serial(port='COM4', baudrate=9600, timeout=.1)
+portWindows="COM4"
+portMac="/dev/tty.usbserial-1130"
+arduino = serial.Serial(port=portWindows, baudrate=9600, timeout=.1)
 carro=73 #  M 110
 def sendRequestQR(data):
     payload = {
