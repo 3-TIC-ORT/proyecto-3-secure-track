@@ -5,7 +5,7 @@ import json
 import serial
 from pyzbar.pyzbar import decode
 
-arduino = serial.Serial(port='/dev/ttyUSB0', baudrate=9600, timeout=.1)
+arduino = serial.Serial(port='COM4', baudrate=9600, timeout=.1)
 carro=73 #  M 110
 def sendRequestQR(data):
     payload = {
@@ -91,7 +91,7 @@ def enviarSerial(data):
         print("error: data={data}")
         print(err)
 
-capture = cv2.VideoCapture("/dev/video0")
+capture = cv2.VideoCapture(0)
 qrDetector = cv2.QRCodeDetector()
 
 while capture.isOpened():
