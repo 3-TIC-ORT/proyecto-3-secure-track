@@ -9,5 +9,4 @@ pyserial==3.5
 PyYAML==6.0.2
 pyzbar==0.1.9
 requests==2.32.4
-serial==0.0.97
 urllib3==2.5.0
