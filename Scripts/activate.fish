@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV 'C:\Users\ADM\Desktop\proyecto-3-secure-track'
+set -gx VIRTUAL_ENV 'C:\Users\49004065\Downloads\proyecto-3-secure-track'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"Scripts $PATH

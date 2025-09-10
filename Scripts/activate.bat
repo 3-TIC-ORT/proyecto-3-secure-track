@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\ADM\Desktop\proyecto-3-secure-track"
+set "VIRTUAL_ENV=C:\Users\49004065\Downloads\proyecto-3-secure-track"
 
 if not defined PROMPT set PROMPT=$P$G
 
