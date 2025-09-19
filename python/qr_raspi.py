@@ -165,7 +165,7 @@ def enviarSerial(data):
         arduino = None  # fuerza reconexión
 
 # ---------------- CONFIGURAR CÁMARA ----------------
-capture = cv2.VideoCapture(0)
+capture = cv2.VideoCapture(1)
 capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
